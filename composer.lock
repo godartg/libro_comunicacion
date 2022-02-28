@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b56bfb5d21eaae286e532c3ed2f8941",
+    "content-hash": "c7cf40034b4f27797fca3d51f04d8e11",
     "packages": [
         {
             "name": "brick/math",
@@ -1029,6 +1029,56 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
+        },
+        {
+            "name": "kkszymanowski/traitor",
+            "version": "0.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KKSzymanowski/Traitor.git",
+                "reference": "9770fc7de72ff585601dc9c42b31715d9fc40a24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KKSzymanowski/Traitor/zipball/9770fc7de72ff585601dc9c42b31715d9fc40a24",
+                "reference": "9770fc7de72ff585601dc9c42b31715d9fc40a24",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^1.0|^2.0|^3.0|^4.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Traitor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kuba Szymanowski",
+                    "email": "kuba.szymanowski@inf24.pl"
+                }
+            ],
+            "description": "Add a trait use statement to existing PHP class",
+            "keywords": [
+                "add",
+                "php",
+                "trait"
+            ],
+            "support": {
+                "email": "kuba.szymanowski@inf24.pl",
+                "issues": "https://github.com/kkszymanowski/traitor/issues",
+                "source": "https://github.com/kkszymanowski/traitor"
+            },
+            "time": "2018-04-19T12:24:36+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2854,6 +2904,81 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "santigarcor/laratrust",
+            "version": "6.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/santigarcor/laratrust.git",
+                "reference": "81206ca3aab9bcbd4bed9b2c0b93158c8c1fb568"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/81206ca3aab9bcbd4bed9b2c0b93158c8c1fb568",
+                "reference": "81206ca3aab9bcbd4bed9b2c0b93158c8c1fb568",
+                "shasum": ""
+            },
+            "require": {
+                "kkszymanowski/traitor": "^0.2.0",
+                "laravel/framework": "~6.0|~7.0|~8.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.2",
+                "orchestra/testbench": "4.*|5.*|6.*",
+                "phpunit/phpunit": "^7.5.15|^8.4|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laratrust\\LaratrustServiceProvider"
+                    ],
+                    "aliases": {
+                        "Laratrust": "Laratrust\\LaratrustFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laratrust\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Santiago Garcia",
+                    "homepage": "http://santigarcor.me"
+                }
+            ],
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
+            "keywords": [
+                "Teams",
+                "acl",
+                "authorization",
+                "laratrust",
+                "laravel",
+                "multiusers",
+                "permissions",
+                "php",
+                "rbac",
+                "roles"
+            ],
+            "support": {
+                "issues": "https://github.com/santigarcor/laratrust/issues",
+                "source": "https://github.com/santigarcor/laratrust/tree/6.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/santigarcor",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-09T17:17:44+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5841,6 +5966,67 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "laravel/ui",
+            "version": "v3.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "f11d295de1508c5bb56206a620b00b6616de414c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/f11d295de1508c5bb56206a620b00b6616de414c",
+                "reference": "f11d295de1508c5bb56206a620b00b6616de414c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.42|^9.0",
+                "illuminate/filesystem": "^8.42|^9.0",
+                "illuminate/support": "^8.82|^9.0",
+                "illuminate/validation": "^8.42|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/ui/tree/v3.4.5"
+            },
+            "time": "2022-02-21T14:59:16+00:00"
+        },
+        {
             "name": "mockery/mockery",
             "version": "1.5.0",
             "source": {
@@ -7840,5 +8026,5 @@
         "php": "^7.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
