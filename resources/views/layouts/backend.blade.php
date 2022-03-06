@@ -79,7 +79,7 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                       <li class="active">
-                          <a aria-expanded="false" href="">
+                          <a aria-expanded="false" href="{{ route('usuarioIndex')}}">
 							              <span class="educate-icon educate-home icon-wrap sub-icon-mg" aria-hidden="true"></span>
 							              <span class="mini-click-non">Usuarios</span>
 							            </a>
@@ -747,7 +747,7 @@
                       <div class="mobile-menu">
                           <nav id="dropdown">
                               <ul class="mobile-menu-nav">
-                                  <li><a href="#">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
+                                  <li><a href="{{ route('usuarioIndex')}}">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
                                   <li><a href="#">Salones <span class="admin-project-icon edu-icon "></span></a></li>
                                   <li><a href="#">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
                               </ul>
