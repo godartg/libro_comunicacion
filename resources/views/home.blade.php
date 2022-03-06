@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="logo-pro">
-                <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                <a href="index.html"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png')}}" alt="" /></a>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                                                         <li>
                                                             <a href="#">
                                                                 <div class="message-img">
-                                                                    <img src="img/contact/1.jpg" alt="">
+                                                                    <img src="{{ asset('backend/img/contact/1.jpg')}}" alt="">
                                                                 </div>
                                                                 <div class="message-content">
                                                                     <span class="message-date">16 Sept</span>
@@ -72,7 +72,7 @@
                                                         <li>
                                                             <a href="#">
                                                                 <div class="message-img">
-                                                                    <img src="img/contact/4.jpg" alt="">
+                                                                    <img src="{{ asset('backend/img/contact/4.jpg')}}" alt="">
                                                                 </div>
                                                                 <div class="message-content">
                                                                     <span class="message-date">16 Sept</span>
@@ -84,7 +84,7 @@
                                                         <li>
                                                             <a href="#">
                                                                 <div class="message-img">
-                                                                    <img src="img/contact/3.jpg" alt="">
+                                                                    <img src="{{ asset('backend/img/contact/3.jpg')}}" alt="">
                                                                 </div>
                                                                 <div class="message-content">
                                                                     <span class="message-date">16 Sept</span>
@@ -96,7 +96,7 @@
                                                         <li>
                                                             <a href="#">
                                                                 <div class="message-img">
-                                                                    <img src="img/contact/2.jpg" alt="">
+                                                                    <img src="{{ asset('backend/img/contact/2.jpg')}}" alt="">
                                                                 </div>
                                                                 <div class="message-content">
                                                                     <span class="message-date">16 Sept</span>
@@ -173,7 +173,7 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-														<img src="img/product/pro4.jpg" alt="" />
+														<img src="{{ asset('backend/img/product/pro4.jpg')}}" alt="" />
 														<span class="admin-name">Prof.Anderson</span>
 														<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
 													</a>
@@ -213,7 +213,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/4.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/4.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -226,7 +226,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/1.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/1.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -239,7 +239,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/2.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/2.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -252,7 +252,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/3.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/3.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -265,7 +265,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/4.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/4.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -278,7 +278,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/1.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/1.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -291,7 +291,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/2.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/2.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -304,7 +304,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/1.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/1.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -317,7 +317,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/2.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/2.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -330,7 +330,7 @@
                                                                             <a href="#">
                                                                                 <div class="notes-list-flow">
                                                                                     <div class="notes-img">
-                                                                                        <img src="img/contact/3.jpg" alt="" />
+                                                                                        <img src="{{ asset('backend/img/contact/3.jpg')}}" alt="" />
                                                                                     </div>
                                                                                     <div class="notes-content">
                                                                                         <p> The point of using Lorem Ipsum is that it has a more-or-less normal.</p>
@@ -514,9 +514,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
                                                                                         <label class="onoffswitch-label" for="example">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -530,9 +530,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
                                                                                         <label class="onoffswitch-label" for="example3">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -546,9 +546,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
                                                                                         <label class="onoffswitch-label" for="example4">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -562,9 +562,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
                                                                                         <label class="onoffswitch-label" for="example7">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -578,9 +578,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example2">
                                                                                         <label class="onoffswitch-label" for="example2">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -594,9 +594,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example6">
                                                                                         <label class="onoffswitch-label" for="example6">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -610,9 +610,9 @@
                                                                                     <div class="onoffswitch">
                                                                                         <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example5">
                                                                                         <label class="onoffswitch-label" for="example5">
-																								<span class="onoffswitch-inner"></span>
-																								<span class="onoffswitch-switch"></span>
-																							</label>
+																							<span class="onoffswitch-inner"></span>
+																							<span class="onoffswitch-switch"></span>
+																						</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1025,10 +1025,10 @@
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-cards-item">
                     <div class="single-product-image">
-                        <a href="#"><img src="img/product/profile-bg.jpg" alt=""></a>
+                        <a href="#"><img src="{{ asset('backend/img/product/profile-bg.jpg')}}" alt=""></a>
                     </div>
                     <div class="single-product-text">
-                        <img src="img/product/pro4.jpg" alt="">
+                        <img src="{{ asset('backend/img/product/pro4.jpg')}}" alt="">
                         <h4><a class="cards-hd-dn" href="#">Angela Dominic</a></h4>
                         <h5>Web Designer & Developer</h5>
                         <p class="ctn-cards">Lorem ipsum dolor sit amet, this is a consectetur adipisicing elit</p>
@@ -1062,7 +1062,7 @@
                         <h2>Reviews</h2>
                     </div>
                     <div class="single-review-st-text">
-                        <img src="img/notification/1.jpg" alt="">
+                        <img src="{{ asset('backend/img/notification/1.jpg')}}" alt="">
                         <div class="review-ctn-hf">
                             <h3>Sarah Graves</h3>
                             <p>Highly recommend</p>
@@ -1076,7 +1076,7 @@
                         </div>
                     </div>
                     <div class="single-review-st-text">
-                        <img src="img/notification/2.jpg" alt="">
+                        <img src="{{ asset('backend/img/notification/2.jpg')}}" alt="">
                         <div class="review-ctn-hf">
                             <h3>Garbease sha</h3>
                             <p>Awesome Pro</p>
@@ -1090,7 +1090,7 @@
                         </div>
                     </div>
                     <div class="single-review-st-text">
-                        <img src="img/notification/3.jpg" alt="">
+                        <img src="{{ asset('backend/img/notification/3.jpg')}}" alt="">
                         <div class="review-ctn-hf">
                             <h3>Gobetro pro</h3>
                             <p>Great Website</p>
@@ -1104,7 +1104,7 @@
                         </div>
                     </div>
                     <div class="single-review-st-text">
-                        <img src="img/notification/4.jpg" alt="">
+                        <img src="{{ asset('backend/img/notification/4.jpg')}}" alt="">
                         <div class="review-ctn-hf">
                             <h3>Siam Graves</h3>
                             <p>That's Good</p>
@@ -1118,7 +1118,7 @@
                         </div>
                     </div>
                     <div class="single-review-st-text">
-                        <img src="img/notification/5.jpg" alt="">
+                        <img src="{{ asset('backend/img/notification/5.jpg')}}" alt="">
                         <div class="review-ctn-hf">
                             <h3>Sarah Graves</h3>
                             <p>Highly recommend</p>
@@ -1132,7 +1132,7 @@
                         </div>
                     </div>
                     <div class="single-review-st-text">
-                        <img src="img/notification/6.jpg" alt="">
+                        <img src="{{ asset('backend/img/notification/6.jpg')}}" alt="">
                         <div class="review-ctn-hf">
                             <h3>Julsha Grav</h3>
                             <p>Sei Hoise bro</p>
@@ -1150,7 +1150,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="single-product-item res-mg-t-30 table-mg-t-pro-n tb-sm-res-d-n dk-res-t-d-n">
                     <div class="single-product-image">
-                        <a href="#"><img src="img/product/book-4.jpg" alt=""></a>
+                        <a href="#"><img src="{{ asset('backend/img/product/book-4.jpg')}}" alt=""></a>
                     </div>
                     <div class="single-product-text edu-pro-tx">
                         <h4><a href="#">Title Demo Here</a></h4>
@@ -1329,7 +1329,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="courses-inner res-mg-t-30 table-mg-t-pro-n tb-sm-res-d-n dk-res-t-d-n">
                     <div class="courses-title">
-                        <a href="#"><img src="img/courses/1.jpg" alt="" /></a>
+                        <a href="#"><img src="{{ asset('backend/img/courses/1.jpg')}}" alt="" /></a>
                         <h2>Apps Development</h2>
                     </div>
                     <div class="courses-alaltic">
