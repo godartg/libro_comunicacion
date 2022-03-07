@@ -85,7 +85,7 @@
 							            </a>
                       </li>
                       <li>
-                          <a aria-expanded="false" href=""><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos</span></a>
+                          <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos</span></a>
                       </li>
                       <li>
                           <a aria-expanded="false" href=""><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Salones</span></a>
@@ -749,7 +749,7 @@
                               <ul class="mobile-menu-nav">
                                   <li><a href="{{ route('usuarioIndex')}}">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
                                   <li><a href="#">Salones <span class="admin-project-icon edu-icon "></span></a></li>
-                                  <li><a href="#">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
+                                  <li><a href="{{ route('cursoIndex')}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
                               </ul>
                           </nav>
                       </div>
