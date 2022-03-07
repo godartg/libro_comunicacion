@@ -9,7 +9,7 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>LISTA DE MATERIALES<span class="table-project-n"> (Comunicación)</span> </h1>
+                        <h1>LISTA DE Unidades<span class="table-project-n"> (Comunicación)</span> </h1>
                     </div>
                 </div>
 
@@ -27,29 +27,29 @@
                               <tr>
                                 <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">N°</th>
-                                <th data-field="titulo">Título</th>
+                                <th data-field="titulo">Nombre</th>
                                 <!--<th data-field="Nunidades">N°Unidades</th>-->
                                 <th data-field="estado">Estado</th>
                                 <th data-field="action">Opciones</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach($materiales as $material)
+                              @foreach($unidades as $unidad)
                                 <tr>
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
-                                  <td>{{$material->titulo}}</td>
+                                  <td>{{$unidad->nombre}}</td>
                                   <!--<td>{{$material->titulo}}</td>-->
                                   <td>
-                                    @if($material->estado)
+                                    @if($unidad->estado)
                                       Activo
                                     @else
                                       Inactivo
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="{{route('materialEdit', $material->id)}}" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
-                                    <a href="{{route('unidadIndex', $material->id)}}" class="btn btn-primary btn-sm">Unidades <i class="fa fa-edit"></i>
+                                    <a href="" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
+                                    <a href="" class="btn btn-primary btn-sm">Actividades <i class="fa fa-edit"></i>
                                   </td>
                                 </tr>
                               @endforeach

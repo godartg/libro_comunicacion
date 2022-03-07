@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\UnidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('store', [MaterialController::class, 'store'])->name('materialStore');
         Route::get('edit/{id}', [MaterialController::class, 'edit'])->name('materialEdit');
         Route::post('update/{id}', [MaterialController::class, 'update'])->name('materialUpdate');
+    });
+    Route::group(['prefix' => 'unidad/'], function(){
+        Route::get('index/{id}', [UnidadController::class, 'index'])->name('unidadIndex');
+        Route::get('create', [UnidadController::class, 'create'])->name('unidadCreate');
+        Route::post('store', [UnidadController::class, 'store'])->name('unidadStore');
+        Route::get('edit/{id}', [UnidadController::class, 'edit'])->name('unidadEdit');
+        Route::post('update/{id}', [UnidadController::class, 'update'])->name('unidadUpdate');
     });
 });

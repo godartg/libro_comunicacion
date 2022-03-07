@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Curso;
 use App\Models\Material;
@@ -54,9 +54,18 @@ class MaterialController extends Controller
      * @param  \App\Http\Requests\StoreMaterialRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMaterialRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'titutlo'  =>  'required|max:250',
+            'estado' => 'required|max:1'
+        ]);
+
+        $material = new Material;
+        $material->titulo = $request->titulo;
+        $material->estado = $request->estado;
+        $material->save();       
+        return redirect()->route('materialIndex');
     }
 
     /**
@@ -76,9 +85,10 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function edit(Material $material)
+    public function edit($id)
     {
-        //
+        $material = Material::find($id);
+        return view('backend.material.edit', compact('material'));
     }
 
     /**
@@ -88,9 +98,14 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaterialRequest $request, Material $material)
+    public function update(Request $request, $id)
     {
-        //
+        $material           = Material::find($id);
+        $material->titulo   = $request->titulo;
+        $material->estado   = $request->estado;
+        
+        $material->save();
+        return redirect()->route('materialIndex','1');
     }
 
     /**
