@@ -8,15 +8,21 @@
 </p>
 
 ## About Laravel
+Requerimientos:
+NODE JS
+COMPOSER
+PHP 7.4
+LARAVEL 8
 
 Procedimiento de instalación :
 
 - ``` git clone https://github.com/godartg/libro_comunicacion.git ```<br/>
-- ``` php artisan key generate ```<br/>
 - ``` composer update ```<br/>
+- ``` php artisan key:generate ```<br/>
 - ``` npm install ```<br/>
 - Crear base de datos libro-comunicacion y configurar archivo .env en Username y password.<br/>
 - ``` php artisan migrate ```<br/>
+- ``` php artisan db:seed ```<br/>
 - <a href="https://docs.google.com/document/d/14s2Dez-JbIBuQA3C95pJr8xffyQn4xGy/edit?usp=sharing&ouid=100637755540342709034&rtpof=true&sd=true">Documento guía de versionamiento</a>
 - Para poner los requerimientos, crear primero la rama ``` git checkout -b "requerimiento" ```<br/>
 

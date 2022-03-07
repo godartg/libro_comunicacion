@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +15,21 @@ use App\Http\Controllers\DocenteController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('docentes', DocenteController::class);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::group(['prefix' => 'usuario/'], function(){
+        Route::get('index', [UserController::class, 'index'])->name('usuarioIndex');
+        Route::get('create', [UserController::class, 'create'])->name('usuarioCreate');
+        Route::post('store', [UserController::class, 'store'])->name('usuarioStore');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('usuarioEdit');
+        Route::post('update/{id}', [UserController::class, 'update'])->name('usuarioUpdate');
+    });
+});
