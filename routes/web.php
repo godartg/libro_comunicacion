@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('store', [UnidadController::class, 'store'])->name('unidadStore');
         Route::get('edit/{id}', [UnidadController::class, 'edit'])->name('unidadEdit');
         Route::post('update/{id}', [UnidadController::class, 'update'])->name('unidadUpdate');
+    });  
     Route::group(['prefix' => 'salon/'], function(){
         Route::get('index', [SalonController::class, 'index'])->name('salonIndex');
         Route::get('create', [SalonController::class, 'create'])->name('salonCreate');
