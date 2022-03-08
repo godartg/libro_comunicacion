@@ -79,16 +79,16 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                       <li class="active">
-                          <a aria-expanded="false" href="{{ route('usuarioIndex')}}">
-							              <span class="educate-icon educate-home icon-wrap sub-icon-mg" aria-hidden="true"></span>
-							              <span class="mini-click-non">Usuarios</span>
-							            </a>
+                        <a aria-expanded="false" href="{{ route('usuarioIndex')}}">
+						  <span class="educate-icon educate-home icon-wrap sub-icon-mg" aria-hidden="true"></span>
+						  <span class="mini-click-non">Usuarios</span>
+						</a>
                       </li>
                       <li>
                           <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos</span></a>
                       </li>
                       <li>
-                          <a aria-expanded="false" href=""><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Salones</span></a>
+                          <a aria-expanded="false" href="{{ route('salonIndex')}}"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Salones</span></a>
                       </li>
                     </ul>
                 </nav>
@@ -617,11 +617,11 @@
                                                                                   <h2>Show notifications</h2>
                                                                                   <div class="ts-custom-check">
                                                                                       <div class="onoffswitch">
-                                                                                          <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
-                                                                                          <label class="onoffswitch-label" for="example">
-                                                <span class="onoffswitch-inner"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                              </label>
+                                                                                            <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                                                                                            <label class="onoffswitch-label" for="example">
+                                                                                              <span class="onoffswitch-inner"></span>
+                                                                                              <span class="onoffswitch-switch"></span>
+                                                                                            </label>
                                                                                       </div>
                                                                                   </div>
                                                                               </div>
@@ -750,6 +750,8 @@
                                   <li><a href="{{ route('usuarioIndex')}}">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
                                   <li><a href="#">Salones <span class="admin-project-icon edu-icon "></span></a></li>
                                   <li><a href="{{ route('cursoIndex')}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
+                                  <li><a href="{{ route('cursoIndex')}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
+                                  <li><a href="{{ route('salonIndex')}}">Salones <span class="admin-project-icon edu-icon "></span></a></li>
                               </ul>
                           </nav>
                       </div>

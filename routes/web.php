@@ -5,6 +5,10 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\UnidadController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\SalonController;
+use App\Http\Controllers\ListaAlumnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,5 +58,18 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('store', [UnidadController::class, 'store'])->name('unidadStore');
         Route::get('edit/{id}', [UnidadController::class, 'edit'])->name('unidadEdit');
         Route::post('update/{id}', [UnidadController::class, 'update'])->name('unidadUpdate');
+    Route::group(['prefix' => 'salon/'], function(){
+        Route::get('index', [SalonController::class, 'index'])->name('salonIndex');
+        Route::get('create', [SalonController::class, 'create'])->name('salonCreate');
+        Route::post('store', [SalonController::class, 'store'])->name('salonStore');
+        Route::get('edit/{id}', [SalonController::class, 'edit'])->name('salonEdit');
+        Route::post('update/{id}', [SalonController::class, 'update'])->name('salonUpdate');
+    });
+    Route::group(['prefix' => 'listaAlumno/'], function(){
+        Route::get('index/{id}', [ListaAlumnoController::class, 'index'])->name('listaAlumnoIndex');
+        Route::get('create', [ListaAlumnoController::class, 'create'])->name('listaAlumnoCreate');
+        Route::post('store', [ListaAlumnoController::class, 'store'])->name('listaAlumnoStore');
+        Route::get('edit/{id}', [ListaAlumnoController::class, 'edit'])->name('listaAlumnoEdit');
+        Route::post('update/{id}', [ListaAlumnoController::class, 'update'])->name('listaAlumnoUpdate');
     });
 });

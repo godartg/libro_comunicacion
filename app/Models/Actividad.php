@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actividad extends Model
 {
-    //use HasFactory;
-
-    protected $fillable = [
-        'name', 'email', 'password', 'dni', 'estado',
-    ];
+    use HasFactory;
+    public function unidad(){
+        return $this->belongsTo(Unidad::class);
+    }
 }

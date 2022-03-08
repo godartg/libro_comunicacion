@@ -15,6 +15,7 @@
                         <br>GRADO: {{$salon_d->grado}}
                         
                       </h1>
+                        <h1>Projects <span class="table-project-n">Data</span> Table</h1>
                     </div>
                 </div>
 
@@ -37,6 +38,14 @@
                                 <th data-field="nivel">Nivel</th>
                                 <th data-field="estado">Estado</th>
                                 <th data-field="action">Opciones</th>
+                                <th data-field="id">ID</th>
+                                <th data-field="name">Nombre</th>
+                                <th data-field="last-name">Grado</th>
+                                <th data-field="email">Correo</th>
+                                <th data-field="dni">Nivel</th>
+                                <th data-field="fecha_nacimiento">estado</th>
+                                <th data-field="created_at">Creado en</th>
+                                <th data-field="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -57,6 +66,15 @@
                                   <td>
                                     <a href="{{route('materialIndex', $curso->id)}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
                                     <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
+                                  </td>
+                                  <td>{{$curso->name}}</td>
+                                  <td>{{$curso->last_name}}</td>
+                                  <td>{{$curso->grade}}</td>
+                                  <td>{{$curso->created_at}}</td>
+                                  <td>
+                                    @if(Auth::user()->isAbleTo('curso-update'))
+                                    <a href="{{route('cursoEdit', $curso->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    @endif
                                   </td>
                                 </tr>
                               @endforeach
@@ -129,6 +147,8 @@
                                   <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li><span class="bread-blod">Dashboard V.1</span>
+                                  <li>
+                                    <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                               </ul>
                           </div>

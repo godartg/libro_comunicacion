@@ -15,7 +15,8 @@ class SalonController extends Controller
      */
     public function index()
     {
-        //
+        $salons = Salon::join('users', 'users.id', '=', 'salons.docente_id')->get(['salons.id','salons.docente_id','users.name', 'users.last_name', 'salons.grado', 'salons.seccion', 'salons.nivel', 'salons.fecha_creacion', 'salons.estado', 'salons.created_at']);
+        return view('backend.salon.index', compact('salons'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SalonController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.salon.create', compact('salons'));
     }
 
     /**
@@ -36,18 +37,13 @@ class SalonController extends Controller
      */
     public function store(StoreSalonRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Salon  $salon
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Salon $salon)
-    {
-        //
+        $salon = new Salon;
+        $salon->docente_id = $request->docente_id;
+        $salon->grado = $request->grado;
+        $salon->seccion = $request->seccion;
+        $salon->fecha_creacion = $request->fecha_creacion;
+        $salon->estado     = $request->estado;
+        return redirect()->route('salonIndex');
     }
 
     /**
@@ -58,7 +54,7 @@ class SalonController extends Controller
      */
     public function edit(Salon $salon)
     {
-        //
+        return view('backend.salon.edit', compact('salon'));
     }
 
     /**
@@ -70,17 +66,12 @@ class SalonController extends Controller
      */
     public function update(UpdateSalonRequest $request, Salon $salon)
     {
-        //
+        $salon->docente_id = $request->docente_id;
+        $salon->grado = $request->grado;
+        $salon->seccion = $request->seccion;
+        $salon->fecha_creacion = $request->fecha_creacion;
+        $salon->estado = $request->estado;
+        return redirect()->route('salonIndex');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Salon  $salon
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Salon $salon)
-    {
-        //
-    }
 }

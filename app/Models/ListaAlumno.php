@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ListaAlumno extends Model
 {
-    //use HasFactory;
-    protected $fillable = [
-        'salon_id', 'alumno_id', 'estado',
-    ];
+    use HasFactory;
+    public function salon(){
+        return $this->belongsTo(Salon::class);
+    }
+    public function usuario(){
+        return $this->belongsTo(User::class);
+    }
 }
