@@ -15,7 +15,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        $cursos = Curso::all();
+        return view('backend.curso.index', compact('cursos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.curso.create');
     }
 
     /**
@@ -36,18 +37,8 @@ class CursoController extends Controller
      */
     public function store(StoreCursoRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Curso  $curso
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Curso $curso)
-    {
-        //
+        Curso::create($request->all());
+        return redirect()->route('cursoIndex')->with('success', 'Curso creado exitoso');
     }
 
     /**
@@ -58,7 +49,7 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
-        //
+        return view('backend.curso.edit', compact('curso'));
     }
 
     /**
@@ -70,17 +61,7 @@ class CursoController extends Controller
      */
     public function update(UpdateCursoRequest $request, Curso $curso)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Curso  $curso
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Curso $curso)
-    {
-        //
+        $curso->update($request->all());
+        return redirect()->route('cursoIndex')->with('success', 'Curso updated successfully');
     }
 }

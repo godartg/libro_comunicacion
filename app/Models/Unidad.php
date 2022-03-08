@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unidad extends Model
 {
-    //use HasFactory;
-    protected $fillable = [
-        'material_id', 'nombre', 'estado',
-    ];
+    use HasFactory;
+    public function material(){
+        return $this->belongsTo(Material::class);
+    }
+    public function actividads(){
+        return $this->hasMany(Actividad::class);
+    }
 }

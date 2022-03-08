@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salon extends Model
 {
-    //use HasFactory;
-    protected $fillable = [
-        'docente_id', 'grado', 'seccion', 'fecha_creacion', 'estado',
-    ];
+    use HasFactory;
+    public function usuario(){
+        return $this->belongsTo(User::class);
+    }
+    public function listaAlumnos(){
+        return $this->hasMany(ListaAlumno::class);
+    }
 }

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\SalonController;
+use App\Http\Controllers\ListaAlumnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +33,26 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('store', [UserController::class, 'store'])->name('usuarioStore');
         Route::get('edit/{id}', [UserController::class, 'edit'])->name('usuarioEdit');
         Route::post('update/{id}', [UserController::class, 'update'])->name('usuarioUpdate');
+    });
+    Route::group(['prefix' => 'curso/'], function(){
+        Route::get('index', [CursoController::class, 'index'])->name('cursoIndex');
+        Route::get('create', [CursoController::class, 'create'])->name('cursoCreate');
+        Route::post('store', [CursoController::class, 'store'])->name('cursoStore');
+        Route::get('edit/{id}', [CursoController::class, 'edit'])->name('cursoEdit');
+        Route::post('update/{id}', [CursoController::class, 'update'])->name('cursoUpdate');
+    });
+    Route::group(['prefix' => 'salon/'], function(){
+        Route::get('index', [SalonController::class, 'index'])->name('salonIndex');
+        Route::get('create', [SalonController::class, 'create'])->name('salonCreate');
+        Route::post('store', [SalonController::class, 'store'])->name('salonStore');
+        Route::get('edit/{id}', [SalonController::class, 'edit'])->name('salonEdit');
+        Route::post('update/{id}', [SalonController::class, 'update'])->name('salonUpdate');
+    });
+    Route::group(['prefix' => 'listaAlumno/'], function(){
+        Route::get('index/{id}', [ListaAlumnoController::class, 'index'])->name('listaAlumnoIndex');
+        Route::get('create', [ListaAlumnoController::class, 'create'])->name('listaAlumnoCreate');
+        Route::post('store', [ListaAlumnoController::class, 'store'])->name('listaAlumnoStore');
+        Route::get('edit/{id}', [ListaAlumnoController::class, 'edit'])->name('listaAlumnoEdit');
+        Route::post('update/{id}', [ListaAlumnoController::class, 'update'])->name('listaAlumnoUpdate');
     });
 });

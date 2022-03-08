@@ -13,9 +13,11 @@ class ListaAlumnoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_salon)
     {
-        //
+        $listaAlumnos = ListaAlumno::join('salons', 'salons.id', '=', 'lista_alumnos.salon_id')->join('users', 'users.id', '=', 'lista_alumnos.alumno_id')->where('lista_alumnos.salon_id', $id_salon)->get(['lista_alumnos.id', 'users.dni', 'users.name', 'users.last_name', 'users.estado', 'lista_alumnos.created_at']);
+        
+        return view('backend.listaAlumno.index', compact('listaAlumnos'));
     }
 
     /**
