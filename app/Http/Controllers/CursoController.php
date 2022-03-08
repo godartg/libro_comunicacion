@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Models\Salon;
 use App\Http\Requests\StoreCursoRequest;
 use App\Http\Requests\UpdateCursoRequest;
 
@@ -16,7 +17,9 @@ class CursoController extends Controller
     public function index()
     {
         $cursos = Curso::all();
-        return view('backend.curso.index', compact('cursos'));
+        //$salon_d= Salon::where('id','=','1');
+        $salon_d = Salon::find('1');
+        return view('backend.curso.index', compact('cursos','salon_d'));
     }
 
     /**

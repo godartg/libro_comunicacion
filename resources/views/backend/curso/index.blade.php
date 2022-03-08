@@ -9,7 +9,12 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>LISTA DE CURSOS<span class="table-project-n"> (3° A primaria)</span> </h1>
+                      <h1>LISTA DE CURSOS</br>
+                        <span class="table-project-n">Salon: 3° A (Primaria)</span>
+                       
+                        <br>GRADO: {{$salon_d->grado}}
+                        
+                      </h1>
                     </div>
                 </div>
 
