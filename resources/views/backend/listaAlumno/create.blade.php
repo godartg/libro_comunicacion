@@ -27,37 +27,36 @@
                               <tr>
                                 <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">ID</th>
-                                <th data-field="name">Nombre</th>
-                                <th data-field="last-name">Apellido</th>
-                                <th data-field="email">Correo</th>
-                                <th data-field="dni">DNI</th>
-                                <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
-                                <th data-field="sexo">Sexo</th>
-                                <th data-field="created_at">Creado en</th>
+                                <th data-field="name">Docente</th>
+                                <th data-field="last-name">Grado</th>
+                                <th data-field="email">Sección</th>
+                                <th data-field="dni">Nivel</th>
+                                <th data-field="fecha_nacimiento">fecha</th>
+                                <th data-field="created_at">estado</th>
                                 <th data-field="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach($users as $user)
+                              @foreach($listoAlumnos as $listoAlumno)
                                 <tr>
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
-                                  <td>{{$user->name}}</td>
-                                  <td>{{$user->last_name}}</td>
-                                  <td>{{$user->email}}</td>
-                                  <td>{{$user->dni}}</td>
-                                  <td>{{$user->fecha_nacimiento}}</td>
+                                  <td>{{$listoAlumno->dni}}</td>
+                                  <td>{{$listoAlumno->name.' '.$listoAlumno->last_name}}</td>
                                   <td>
-                                    @if($user->sexo)
-                                      Hombre
-                                    @else
-                                      Mujer
-                                    @endif
+                                      @if($listoAlumno->estado)
+                                        Activo
+                                      @else
+                                        Desactivo
+                                      @endif
                                   </td>
-                                  <td>{{$user->created_at}}</td>
+                                  <td>{{$salon->created_at}}</td>
                                   <td>
-                                    @if(Auth::user()->isAbleTo('user-update'))
-                                    <a href="{{route('usuarioEdit', $user->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    @if(Auth::user()->isAbleTo('salon-update'))
+                                    <a href="{{route('salonEdit', 'salon')}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    @endif
+                                    @if(Auth::user()->isAbleTo('salon-update'))
+                                    <a href="{{route('listaAlumnoIndex', $salon->id)}}" class="btn btn-primary btn-sm">Lista de alumnos</a>
                                     @endif
                                   </td>
                                 </tr>
@@ -121,7 +120,7 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('user-create'))
+                                @if(Auth::user()->isAbleTo('salon-create'))
                                   <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
                                 @endif
                               </div>

@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    //use HasFactory;
-    protected $fillable = [
-        'curso_id', 'docente_id', 'titulo', 'estado',
-    ];
+    use HasFactory;
+    public function usuario(){
+        return $this->belongsTo(User::class);
+    }
+    public function curso(){
+        return $this->belongsTo(Curso::class);
+    }
+    public function unidads(){
+        return $this->hasMany(Unidad::class);
+    }
 }

@@ -28,36 +28,26 @@
                                 <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">ID</th>
                                 <th data-field="name">Nombre</th>
-                                <th data-field="last-name">Apellido</th>
+                                <th data-field="last-name">Grado</th>
                                 <th data-field="email">Correo</th>
-                                <th data-field="dni">DNI</th>
-                                <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
-                                <th data-field="sexo">Sexo</th>
+                                <th data-field="dni">Nivel</th>
+                                <th data-field="fecha_nacimiento">estado</th>
                                 <th data-field="created_at">Creado en</th>
                                 <th data-field="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach($users as $user)
+                              @foreach($cursos as $curso)
                                 <tr>
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
-                                  <td>{{$user->name}}</td>
-                                  <td>{{$user->last_name}}</td>
-                                  <td>{{$user->email}}</td>
-                                  <td>{{$user->dni}}</td>
-                                  <td>{{$user->fecha_nacimiento}}</td>
+                                  <td>{{$curso->name}}</td>
+                                  <td>{{$curso->last_name}}</td>
+                                  <td>{{$curso->grade}}</td>
+                                  <td>{{$curso->created_at}}</td>
                                   <td>
-                                    @if($user->sexo)
-                                      Hombre
-                                    @else
-                                      Mujer
-                                    @endif
-                                  </td>
-                                  <td>{{$user->created_at}}</td>
-                                  <td>
-                                    @if(Auth::user()->isAbleTo('user-update'))
-                                    <a href="{{route('usuarioEdit', $user->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    @if(Auth::user()->isAbleTo('curso-update'))
+                                    <a href="{{route('cursoEdit', $curso->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                     @endif
                                   </td>
                                 </tr>

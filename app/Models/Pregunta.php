@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
 {
-    //use HasFactory;
-    protected $fillable = [
-        'evaluacion_id', 'detalle', 'estado', 'puntaje', 
-    ];
+    use HasFactory;
+    public function evaluacion(){
+        return $this->belongsTo(Evaluacion::class);
+    }
+    public function alternativas(){
+        return $this->hasMany(Alternativa::class);
+    }
 }

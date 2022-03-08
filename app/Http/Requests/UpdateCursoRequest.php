@@ -13,7 +13,7 @@ class UpdateCursoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class UpdateCursoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => 'required',
+            'grado' => 'required',
+            'nivel' => 'required'
+        ];
+    }
+
+    public function message()
+    {
+        return [
+            'nombre.required' => 'El :attribute es obligatorio',
+            'grado.required' => 'El :attribute es obligatorio',
+            'nivel.required' => 'El :attribute es obligatorio'
         ];
     }
 }

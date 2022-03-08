@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calificacion extends Model
 {
-    //use HasFactory;
-    protected $fillable = [
-        'evaluacion_id', 'alumno_id', 'nota',
-    ];
+    use HasFactory;
+    public function evaluacion(){
+        return $this->morphTo();
+    }
+    public function usuario(){
+        return $this->belongsTo(User::class);
+    }
 }
