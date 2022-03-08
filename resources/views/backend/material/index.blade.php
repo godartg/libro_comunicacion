@@ -9,7 +9,9 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>LISTA DE MATERIALES<span class="table-project-n"> (Comunicación)</span> </h1>
+                        <h1>LISTA DE MATERIALES</br>
+                          <span class="table-project-n">Curso: Comunicación</span>
+                        </h1>
                     </div>
                 </div>
 
@@ -112,8 +114,8 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('user-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
+                                @if(Auth::user()->hasRole('docente'))
+                                  <a href="" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
                                 @endif
                               </div>
                           </div>
