@@ -53,7 +53,9 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="{{route('materialIndex', $curso->id)}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
+                                    <div>{{var_dump(Auth::user()->id)}}</div>
+                                    <div>{{var_dump( $curso->id)}}</div>
+                                    <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
                                     <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
                                   </td>
                                  

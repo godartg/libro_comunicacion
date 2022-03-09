@@ -18,7 +18,7 @@ class MaterialController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index($docente,$curso)
+    public function index($docente, $curso)
     {
         $materiales = Material::join('cursos','cursos.id','=','materials.curso_id')
                     ->join('users','users.id','=','materials.docente_id')
