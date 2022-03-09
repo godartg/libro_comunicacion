@@ -15,8 +15,11 @@ class UnidadController extends Controller
      */
     public function index($id)
     {
-        $unidades = Unidad::all();
+        $unidades = Unidad::join('materials','materials.id','=','unidads.material_id')
+        ->where('materials.id',$id)
+        ->get(['unidads.id','unidads.material_id','unidads.nombre','unidads.estado']);
         return view('backend.unidad.index', compact('unidades'));
+
     }
 
     /**

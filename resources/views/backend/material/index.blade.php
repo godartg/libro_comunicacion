@@ -41,7 +41,6 @@
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
                                   <td>{{$material->titulo}}</td>
-                                  <!--<td>{{$material->titulo}}</td>-->
                                   <td>
                                     @if($material->estado)
                                       Activo

@@ -17,25 +17,16 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function index($docente,$curso)
     {
-        $materiales = Material::all();
+        $materiales = Material::join('cursos','cursos.id','=','materials.curso_id')
+                    ->join('users','users.id','=','materials.docente_id')
+                    ->where('users.id',$docente)
+                    ->where('cursos.id',$curso)
+                    ->get(['materials.id','materials.curso_id','materials.titulo','materials.estado']);
         return view('backend.material.index', compact('materiales'));
 
-        /*$materiales = Material::where('curso_id',"=", $idcurso)->where('docente_id',"=", $iddocente);
-        return view('backend.material.index', compact('materiales'));*/
-
-
-        /*$materiales = Curso::find($id)->curso;
-        return view('backend.material.index', compact('materiales'));*/
-
-        /*$materiales = \BD::table('users')
-                    ->select('user.*')
-                    ->orderBy('id','DESC')
-                    ->get();
-        return view('materiales')->with('usuarios',$usuarios);
-        return view('backend.material.index', compact('users'));
-        */
     }
 
     /**

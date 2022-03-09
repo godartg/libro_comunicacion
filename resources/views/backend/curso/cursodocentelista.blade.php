@@ -9,7 +9,7 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                      <h1>LISTA DE CURSOS</br>
+                      <h1>LISTA DE CURSOS (Docente)</br>
                         <span class="table-project-n">Salon: 3° A (Primaria)</span>
                       </h1>
                         <h1>Projects <span class="table-project-n">Data</span> Table</h1>
@@ -53,10 +53,9 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="{{route('materialIndex', $curso->id)}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
+                                    <a href="{{route('materialIndex', $curso->id, Auth::user()->id)}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
                                     <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
                                   </td>
-                                 
                                 </tr>
                               @endforeach
                             </tbody>

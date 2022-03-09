@@ -88,6 +88,9 @@
                           <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos</span></a>
                       </li>
                       <li>
+                          <a aria-expanded="false" href="{{ route('cursoDocenteLista',Auth::user()->id)}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos (Docente)</span></a>
+                      </li>
+                      <li>
                           <a aria-expanded="false" href="{{ route('salonIndex')}}"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Salones</span></a>
                       </li>
                     </ul>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Salon;
 use App\Http\Requests\StoreCursoRequest;
@@ -17,11 +17,20 @@ class CursoController extends Controller
     public function index()
     {
         $cursos = Curso::all();
-        //$salon_d= Salon::where('id','=','1');
-        $salon_d = Salon::find('1');
-        return view('backend.curso.index', compact('cursos','salon_d'));
         return view('backend.curso.index', compact('cursos'));
     }
+
+    public function cursoDocenteLista($usu)
+    {
+        $cursos = Curso::join('salons','salons.grado','=','cursos.grado')
+                    ->join('users','users.id','=','salons.docente_id')
+                    ->where('users.id',$usu)
+                    ->get(['cursos.id','cursos.nombre','cursos.grado','cursos.nivel','cursos.estado']);
+        return view('backend.curso.cursodocentelista', compact('cursos'));
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

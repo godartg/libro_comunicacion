@@ -9,7 +9,8 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>LISTA DE Unidades<span class="table-project-n"> (Comunicación)</span> </h1>
+                        <h1>LISTA DE UNIDADES 
+                          <BR></BR><span class="table-project-n"> (Comunicación)</span> </h1>
                     </div>
                 </div>
 
@@ -28,7 +29,6 @@
                                 <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">N°</th>
                                 <th data-field="titulo">Nombre</th>
-                                <!--<th data-field="Nunidades">N°Unidades</th>-->
                                 <th data-field="estado">Estado</th>
                                 <th data-field="action">Opciones</th>
                               </tr>
@@ -39,7 +39,6 @@
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
                                   <td>{{$unidad->nombre}}</td>
-                                  <!--<td>{{$material->titulo}}</td>-->
                                   <td>
                                     @if($unidad->estado)
                                       Activo
