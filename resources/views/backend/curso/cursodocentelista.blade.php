@@ -10,9 +10,12 @@
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
                       <h1>LISTA DE CURSOS (Docente)</br>
-                        <span class="table-project-n">Salon: 3° A (Primaria)</span>
+                      @if ($salon->count())
+                      <span class="table-project-n">Salon: {{$salon[0]->grado}} {{$salon[0]->seccion}}</span>
+                      @else
+                       El salon esta desactivado
+                      @endif
                       </h1>
-                        <h1>Projects <span class="table-project-n">Data</span> Table</h1>
                     </div>
                 </div>
 
@@ -39,25 +42,25 @@
                             </thead>
                             <tbody>
                               @foreach($cursos as $curso)
-                                <tr>
-                                    <td></td>
-                                  <td>{{$loop->index+1}}</td>
-                                  <td>{{$curso->nombre}}</td>
-                                  <td>{{$curso->grado}}</td>
-                                  <td>{{$curso->nivel}}</td>
-                                  <td>
-                                    @if($curso->estado)
-                                      Activo
-                                    @else
-                                      Inactivo
-                                    @endif
-                                  </td>
-                                  <td>
-                                    <a href="{{route('materialIndex', $curso->id, Auth::user()->id)}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
-                                    <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
-                                  </td>
-                                </tr>
-                              @endforeach
+                                  <tr>
+                                      <td></td>
+                                    <td>{{$loop->index+1}}</td>
+                                    <td>{{$curso->nombre}}</td>
+                                    <td>{{$curso->grado}}</td>
+                                    <td>{{$curso->nivel}}</td>
+                                    <td>
+                                      @if($curso->estado_salon)
+                                        Activo
+                                      @else
+                                        Inactivo Activo
+                                      @endif
+                                    </td>
+                                    <td>
+                                      <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
+                                      <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
+                                    </td>
+                                  </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

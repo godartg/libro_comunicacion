@@ -89,14 +89,14 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $docente, $curso)
     {
         $material           = Material::find($id);
         $material->titulo   = $request->titulo;
         $material->estado   = $request->estado;
         
         $material->save();
-        return redirect()->route('materialIndex','1');
+        return redirect()->route('materialIndex',[$docente,$curso]);
     }
 
     /**

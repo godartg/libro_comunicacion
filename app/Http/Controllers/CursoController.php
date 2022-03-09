@@ -25,8 +25,20 @@ class CursoController extends Controller
         $cursos = Curso::join('salons','salons.grado','=','cursos.grado')
                     ->join('users','users.id','=','salons.docente_id')
                     ->where('users.id',$usu)
-                    ->get(['cursos.id','cursos.nombre','cursos.grado','cursos.nivel','cursos.estado']);
-        return view('backend.curso.cursodocentelista', compact('cursos'));
+                    ->where('salons.estado',true)
+                    ->where('cursos.estado',true)
+                    ->get(['cursos.id','cursos.nombre','cursos.grado','cursos.nivel','cursos.estado','salons.estado as estado_salon']);
+        
+        $salon = Curso::join('salons','salons.grado','=','cursos.grado')
+                    ->join('users','users.id','=','salons.docente_id')
+                    ->where('users.id',$usu)
+                    ->where('salons.estado',true)
+                    ->get(['salons.grado','salons.seccion','salons.nivel']);
+     
+        if ($salon === null) {
+            $salon = ["grado"=>"","seccion"=>"","nivel"=>""];
+        }
+        return view('backend.curso.cursodocentelista', compact('cursos','salon'));
 
     }
 

@@ -14,7 +14,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{route('materialUpdate', $material->id)}}" method="POST">
+                        <form action="{{route('materialUpdate', [$material->id, $material->docente_id, $material->curso_id])}}" method="POST">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="col-md-6">
@@ -24,14 +24,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="estado">Estado</label><br>
-                                        <input type="radio" class="form-check-input" id="estado1" name="estado" value="0" 
-                                        @if(!$material->estado)
+                                        <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
+                                        @if($material->estado)
                                             checked
                                         @endif
                                         >
                                         <label for="estado1">Activo</label><br>
-                                        <input type="radio" class="form-check-input" id="estado2" name="estado" value="1"
-                                        @if($material->estado)
+                                        
+                                        <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
+                                        @if(!$material->estado)
                                             checked
                                         @endif
                                         >

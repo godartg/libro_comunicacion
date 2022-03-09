@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('create', [MaterialController::class, 'create'])->name('materialCreate');
         Route::post('store', [MaterialController::class, 'store'])->name('materialStore');
         Route::get('edit/{id}', [MaterialController::class, 'edit'])->name('materialEdit');
-        Route::post('update/{id}', [MaterialController::class, 'update'])->name('materialUpdate');
+        Route::post('update/{id}/{docente}/{curso}', [MaterialController::class, 'update'])->name('materialUpdate');
     });
     Route::group(['prefix' => 'unidad/'], function(){
         Route::get('index/{id}', [UnidadController::class, 'index'])->name('unidadIndex');

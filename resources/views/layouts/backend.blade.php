@@ -78,21 +78,29 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
+                    @if(Auth::user()->hasRole('administrador'))
                       <li class="active">
                         <a aria-expanded="false" href="{{ route('usuarioIndex')}}">
 						  <span class="educate-icon educate-home icon-wrap sub-icon-mg" aria-hidden="true"></span>
 						  <span class="mini-click-non">Usuarios</span>
 						</a>
                       </li>
+                    @endif
+                    @if(Auth::user()->hasRole('administrador'))
                       <li>
-                          <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos</span></a>
+                          <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos (Administrador)</span></a>
                       </li>
+                    @endif
+                      @if(Auth::user()->hasRole('docente'))
                       <li>
                           <a aria-expanded="false" href="{{ route('cursoDocenteLista',Auth::user()->id)}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos (Docente)</span></a>
                       </li>
+                      @endif
+                    @if(Auth::user()->hasRole('administrador'))
                       <li>
                           <a aria-expanded="false" href="{{ route('salonIndex')}}"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Salones</span></a>
                       </li>
+                    @endif
                     </ul>
                 </nav>
             </div>
