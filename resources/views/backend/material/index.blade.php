@@ -13,7 +13,7 @@
                       <h4>
                         @if ($salon->count())
                         Salon: {{$salon[0]->grado}}°{{strtoupper($salon[0]->seccion)}} - {{$salon[0]->nivel}}
-                        <br>Docente: {{$salon[0]->usuario_nombre}}
+                        <br>Docente: {{$salon[0]->usuario_nombre}} {{$salon[0]->usuario_apellidos}}
                         <br>Curso: {{$salon[0]->nombrecurso}}
                         @else
                         El salon esta desactivado

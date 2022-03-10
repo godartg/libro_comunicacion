@@ -45,6 +45,7 @@
                               </tr>
                             </thead>
                             <tbody>
+                            
                               @foreach($unidades as $unidad)
                                 <tr>
                                     <td></td>

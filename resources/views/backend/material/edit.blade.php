@@ -14,25 +14,42 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{route('materialUpdate', [$material->id, $material->docente_id, $material->curso_id])}}" method="POST">
+                        <form action="{{route('materialUpdate', [$material[0]->id, $material[0]->docente_id, $material[0]->curso_id])}}" method="POST">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="docente">Docente:</label>
+                                        <input type="text" name="docente" class="form-control" placeholder="Docente" disabled="disabled" value="{{Auth::user()->name}} {{Auth::user()->last_name}} ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="curso">Curso:</label>
+                                        <input type="text" name="curso" class="form-control" placeholder="Curso" disabled="disabled" value="{{$material[0]->curso_nombre}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="grado">Grado:</label>
+                                        <input type="text" name="grado" class="form-control" placeholder="Grado" disabled="disabled" value="{{$material[0]->curso_grado}}">
+                                    </div>
+                                    <div class="form-group">    
+                                        <label for="curso_nivel">Nivel:</label>
+                                        <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$material[0]->curso_nivel}}">
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="titulo">Título</label>
-                                        <input type="text" name="titulo" value="{{$material->titulo}}" class="form-control">
+                                        <input type="text" name="titulo" value="{{$material[0]->material_titulo}}" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="estado">Estado</label><br>
                                         <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
-                                        @if($material->estado)
+                                        @if($material[0]->material_estado)
                                             checked
                                         @endif
                                         >
                                         <label for="estado1">Activo</label><br>
                                         
                                         <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
-                                        @if(!$material->estado)
+                                        @if(!$material[0]->material_estado)
                                             checked
                                         @endif
                                         >

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Unidad;
 use App\Models\User;
 use App\Models\Material;
@@ -34,19 +34,18 @@ class UnidadController extends Controller
         ,'salons.seccion as salon_seccion'
         ]);
 
-        $datosalon = Unidad::join('materials','materials.id','=','unidads.material_id')
-        ->join('cursos','cursos.id','=','materials.curso_id')
-        ->join('users','users.id','=','materials.docente_id')
-        ->join('salons','salons.docente_id','=','users.id')
-        ->where('materials.id',$id)
-        ->where('salons.estado',true)
-        ->get(['salons.grado as salon_grado'
-        ,'salons.seccion as salon_seccion'
-        ,'salons.nivel as salon_nivel'
-        ,'cursos.nombre as curso_nombre'
-        ,'materials.id as material_id'
-        ,'materials.titulo as material_titulo'
-        ]);
+        $datosalon = Material::join('cursos','cursos.id','=','materials.curso_id')
+                    ->join('users','users.id','=','materials.docente_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('materials.id',$id)
+                    ->get([
+                        'salons.grado as salon_grado'
+                        ,'salons.seccion as salon_seccion'
+                        ,'salons.nivel as salon_nivel'
+                        ,'cursos.nombre as curso_nombre'
+                        ,'materials.titulo as material_titulo'
+                        ,'materials.id as material_id'
+                        ,'users.name as usuario_nombre']);
 
         return view('backend.unidad.index', compact('unidades','datosalon'));
 
@@ -102,7 +101,6 @@ class UnidadController extends Controller
         $idmaterial = $request->material_id;
 
         $unidad->save();    
-
         return redirect()->route('unidadlIndex',$idmaterial);
     }
 

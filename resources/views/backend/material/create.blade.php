@@ -21,19 +21,31 @@
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
+                                <input type="hidden" name="curso_id" class="form-control" placeholder="ID Curso"  value="{{$curso->id}}">
+                                <input type="hidden" name="docente_id" class="form-control" placeholder="ID Docente" value="{{Auth::user()->id}}">
+                                
                                 <div class="form-group">
-                                    <input type="hidden" name="curso_id" class="form-control" placeholder="ID Curso"  value="{{$curso->id}}">
-                                    <input type="hidden" name="docente_id" class="form-control" placeholder="ID Docente" value="{{Auth::user()->id}}">
-                                    
-                                    <label for="curso">Curso:</label>
-                                    <input type="text" name="curso" class="form-control" placeholder="Curso" disabled="disabled" value="{{$curso->nombre}}">
-                                    <br>
                                     <label for="docente">Docente:</label>
                                     <input type="text" name="docente" class="form-control" placeholder="Docente" disabled="disabled" value="{{Auth::user()->name}} {{Auth::user()->last_name}} ">
-                                    <br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="curso">Curso:</label>
+                                    <input type="text" name="curso" class="form-control" placeholder="Curso" disabled="disabled" value="{{$curso->nombre}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="grado">Grado:</label>
+                                    <input type="text" name="grado" class="form-control" placeholder="Grado" disabled="disabled" value="{{$curso->grado}}">
+                                </div>
+                                <div class="form-group">    
+                                    <label for="curso_nivel">Nivel:</label>
+                                    <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$curso->nivel}}">
+                                </div>
+                                <div class="form-group">       
                                     <label for="nombre">Título de material:</label>
                                     <input type="text" name="titulo" class="form-control" placeholder="Nombre">
                                 </div>
+                                
+
                                 <div class="form-group">
                                     <label for="estado">Estado:</label><br>
                                     <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" checked>

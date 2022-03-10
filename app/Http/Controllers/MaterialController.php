@@ -31,7 +31,7 @@ class MaterialController extends Controller
                     ->where('users.id',$docente)
                     ->where('cursos.id',$curso)
                     ->where('salons.estado',true)
-                    ->get(['salons.grado','salons.seccion','salons.nivel','cursos.id as curso_id','cursos.nombre as nombrecurso','users.name as usuario_nombre']);
+                    ->get(['salons.grado','salons.seccion','salons.nivel','cursos.id as curso_id','cursos.nombre as nombrecurso','users.name as usuario_nombre','users.last_name as usuario_apellidos']);
 
         return view('backend.material.index', compact('materiales','salon'));
 
@@ -96,7 +96,21 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        $material = Material::find($id);
+        $material = Material::join('cursos','cursos.id','=','materials.curso_id')
+                    ->join('users','users.id','=','materials.docente_id')
+                    ->where('materials.id',$id)
+                    ->get([
+                        'users.id as docente_id'
+                        ,'users.name as docente_nombre'
+                        ,'users.last_name as docente_apellidos'
+                        ,'cursos.id as curso_id'
+                        ,'cursos.nombre as curso_nombre'
+                        ,'cursos.grado as curso_grado'
+                        ,'cursos.nivel as curso_nivel'
+                        ,'materials.id'
+                        ,'materials.titulo as material_titulo'
+                        ,'materials.estado as material_estado']);
+
         return view('backend.material.edit', compact('material'));
     }
 
