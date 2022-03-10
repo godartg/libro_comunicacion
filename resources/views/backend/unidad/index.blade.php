@@ -9,8 +9,16 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>LISTA DE UNIDADES 
-                          <BR></BR><span class="table-project-n"> (Comunicación)</span> </h1>
+                      <h1>LISTA DE UNIDADES 
+                        <h4>
+                      @if ($datosalon->count())
+                      Salon: {{$datosalon[0]->salon_grado}}°{{strtoupper($datosalon[0]->salon_seccion)}} - {{$datosalon[0]->salon_nivel}}
+                      <br>Curso: {{$datosalon[0]->curso_nombre}}
+                      <br>Material: {{$datosalon[0]->material_titulo}}
+                      @else
+                       El salon esta desactivado
+                      @endif
+                      </h4>
                     </div>
                 </div>
 
@@ -28,7 +36,10 @@
                               <tr>
                                 <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">N°</th>
-                                <th data-field="titulo">Nombre</th>
+                                <th data-field="nombre">Nombre de unidad </th>
+                                <th data-field="material">Nombre de Material</th>
+                                <th data-field="curso">Curso</th>
+                                <th data-field="salon">Salon</th>
                                 <th data-field="estado">Estado</th>
                                 <th data-field="action">Opciones</th>
                               </tr>
@@ -39,6 +50,9 @@
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
                                   <td>{{$unidad->nombre}}</td>
+                                  <td>{{$unidad->material_titulo}}</td>
+                                  <td>{{$unidad->curso_nombre}}</td>
+                                  <td>{{$unidad->salon_grado}}</td>
                                   <td>
                                     @if($unidad->estado)
                                       Activo
@@ -47,7 +61,7 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
+                                    <a href="" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>
                                     <a href="" class="btn btn-primary btn-sm">Actividades <i class="fa fa-edit"></i>
                                   </td>
                                 </tr>

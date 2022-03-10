@@ -9,12 +9,19 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>LISTA DE MATERIALES</br>
-                          <span class="table-project-n">Curso: Comunicación</span>
-                        </h1>
+                      <h1>LISTA DE MATERIALES</h1>
+                      <h4>
+                        @if ($salon->count())
+                        Salon: {{$salon[0]->grado}}°{{strtoupper($salon[0]->seccion)}} - {{$salon[0]->nivel}}
+                        <br>Docente: {{$salon[0]->usuario_nombre}}
+                        <br>Curso: {{$salon[0]->nombrecurso}}
+                        @else
+                        El salon esta desactivado
+                        @endif
+                      </h4>
+                      
                     </div>
                 </div>
-
                 <div class="sparkline13-graph">
                     <div class="datatable-dashv1-list custom-datatable-overright">
                         @if (session('status'))
@@ -49,13 +56,14 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="{{route('materialEdit', $material->id)}}" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
+                                    <a href="{{route('materialEdit', $material->id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
                                     <a href="{{route('unidadIndex', $material->id)}}" class="btn btn-primary btn-sm">Unidades <i class="fa fa-edit"></i>
                                   </td>
                                 </tr>
                               @endforeach
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -114,7 +122,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                 @if(Auth::user()->hasRole('docente'))
-                                  <a href="" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
+                                  <a href="{{ route('materialCreate',$salon[0]->curso_id) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
                                 @endif
                               </div>
                           </div>

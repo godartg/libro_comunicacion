@@ -1,75 +1,70 @@
 @extends('layouts.backend')
 
 @section('content')
-
-<div class="data-table-area mg-b-15">
+<div class="product-status mg-b-15">
   <div class="container-fluid">
-    <div class="row ">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="sparkline13-list">
-                <div class="sparkline13-hd">
-                    <div class="main-sparkline13-hd">
-                      <h1>LISTA DE CURSOS (Docente)</br>
-                      @if ($salon->count())
-                      <span class="table-project-n">Salon: {{$salon[0]->grado}} {{$salon[0]->seccion}}</span>
-                      @else
-                       El salon esta desactivado
-                      @endif
-                      </h1>
-                    </div>
-                </div>
-
-                <div class="sparkline13-graph">
-                    <div class="datatable-dashv1-list custom-datatable-overright">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="product-status-wrap"> 
+            <h3>LISTA DE CURSOS (DOCENTE)</h3>
+            <h4>
+            @if ($salon->count())
+              Salon: {{$salon[0]->grado}}°{{strtoupper($salon[0]->seccion)}} - {{$salon[0]->nivel}}
+            @else
+              El salon esta desactivado
+            @endif
+            </h4>
+            <div class="add-product"><a href="#">Nuevo Curso</a></div>
+            <div class="asset-inner">
+              <!--TABLA-->
+              <table>
+                <tbody>
+                  <tr>
+                    <th>N°</th>
+                    <th>Nombre</th>
+                    <th>Grado</th>
+                    <th>Nivel</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                  </tr>
+                  @foreach($cursos as $curso)
+                    <tr>
+                      <td>{{$loop->index+1}}</td>
+                      <td>{{$curso->nombre}}</td>
+                      <td>{{$curso->grado}}</td>
+                      <td>{{$curso->nivel}}</td>
+                      <td>
+                        @if($curso->estado_salon)
+                          Activo
+                        @else
+                          Inactivo Activo
                         @endif
-                        
-                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                            <thead>
-                              <tr>
-                                <th data-field="state" data-checkbox="true"></th>
-                                <th data-field="id">N°</th>
-                                <th data-field="nombre">Nombre</th>
-                                <th data-field="grado">Grado</th>
-                                <th data-field="nivel">Nivel</th>
-                                <th data-field="estado">Estado</th>
-                                <th data-field="action">Opciones</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @foreach($cursos as $curso)
-                                  <tr>
-                                      <td></td>
-                                    <td>{{$loop->index+1}}</td>
-                                    <td>{{$curso->nombre}}</td>
-                                    <td>{{$curso->grado}}</td>
-                                    <td>{{$curso->nivel}}</td>
-                                    <td>
-                                      @if($curso->estado_salon)
-                                        Activo
-                                      @else
-                                        Inactivo Activo
-                                      @endif
-                                    </td>
-                                    <td>
-                                      <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
-                                      <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
-                                    </td>
-                                  </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                      </td>
+                      <td>
+                        <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
+                        <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <!--END TABLA-->                          
+            </div>          
+            <div class="custom-pagination">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
             </div>
+          </div>
         </div>
     </div>
   </div>
 </div>
+
 @endsection
 
 @section('footer')
