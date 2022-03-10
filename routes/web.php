@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
     Route::group(['prefix' => 'unidad/'], function(){
         Route::get('index/{id}', [UnidadController::class, 'index'])->name('unidadIndex');
-        Route::get('create', [UnidadController::class, 'create'])->name('unidadCreate');
+        Route::get('create/{id}', [UnidadController::class, 'create'])->name('unidadCreate');
         Route::post('store', [UnidadController::class, 'store'])->name('unidadStore');
         Route::get('edit/{id}', [UnidadController::class, 'edit'])->name('unidadEdit');
         Route::post('update/{id}', [UnidadController::class, 'update'])->name('unidadUpdate');

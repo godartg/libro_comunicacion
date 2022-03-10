@@ -52,7 +52,7 @@
                                   <td>{{$unidad->nombre}}</td>
                                   <td>{{$unidad->material_titulo}}</td>
                                   <td>{{$unidad->curso_nombre}}</td>
-                                  <td>{{$unidad->salon_grado}}</td>
+                                  <td>{{$unidad->salon_grado}}°{{strtoupper($unidad->salon_seccion)}}</td>
                                   <td>
                                     @if($unidad->estado)
                                       Activo
@@ -61,7 +61,7 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>
+                                    <a href="" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
                                     <a href="" class="btn btn-primary btn-sm">Actividades <i class="fa fa-edit"></i>
                                   </td>
                                 </tr>
@@ -125,9 +125,9 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('user-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
-                                @endif
+                              @if(Auth::user()->hasRole('docente'))
+                                  <a href="{{route('unidadCreate',$datosalon[0]->material_id)}}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
+                              @endif
                               </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

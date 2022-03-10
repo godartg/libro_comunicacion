@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unidad;
+use App\Models\User;
 use App\Models\Material;
+use App\Models\Curso;
 use App\Http\Requests\StoreUnidadRequest;
 use App\Http\Requests\UpdateUnidadRequest;
 
@@ -28,8 +30,8 @@ class UnidadController extends Controller
         ,'cursos.nombre as curso_nombre'
         ,'users.name as usuario_nombre'
         ,'users.last_name as usuario_apellidos'
-        ,'salons.grado as ssalon_grado'
-        ,'salons.seccion as ssalon_seccion'
+        ,'salons.grado as salon_grado'
+        ,'salons.seccion as salon_seccion'
         ]);
 
         $datosalon = Unidad::join('materials','materials.id','=','unidads.material_id')
@@ -42,6 +44,7 @@ class UnidadController extends Controller
         ,'salons.seccion as salon_seccion'
         ,'salons.nivel as salon_nivel'
         ,'cursos.nombre as curso_nombre'
+        ,'materials.id as material_id'
         ,'materials.titulo as material_titulo'
         ]);
 
@@ -55,9 +58,45 @@ class UnidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $datosalon = Unidad::join('materials','materials.id','=','unidads.material_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->join('salons','salons.docente_id','=','users.id')
+        ->where('materials.id',$id)
+        ->where('salons.estado',true)
+        ->get(['salons.grado as salon_grado'
+        ,'salons.seccion as salon_seccion'
+        ,'salons.nivel as salon_nivel'
+        ,'cursos.id as curso_id'
+        ,'cursos.nombre as curso_nombre'
+        ,'materials.id as material_id'
+        ,'materials.titulo as material_titulo'
+        ]);
+/*
+SELECT 
+m.id
+,m.curso_id
+,m.docente_id
+,m.titulo
+,m.estado
+,c.id AS curso_id
+,c.nombre AS curso_nombre
+,c.grado AS curso_grado
+,c.nivel AS curso_nivel
+,u.name AS usuario_nombre
+,u.last_name AS usuario_apellidos
+FROM materials m
+INNER JOIN cursos c ON c.id = m.curso_id
+INNER JOIN users u ON u.id = m.docente_id
+
+WHERE m.id = 1;
+
+*/
+        return view('backend.unidad.create', compact('datosalon'));
+
+       
     }
 
     /**
@@ -68,7 +107,25 @@ class UnidadController extends Controller
      */
     public function store(StoreUnidadRequest $request)
     {
-        //
+        $this->validate($request, [
+            'material_id'  =>  'required|max:250',
+            'curso_id'  =>  'required|max:250',
+            'docente_id'  =>  'required|max:250',
+            'nombre'  =>  'required|max:250',
+            'estado' => 'required|max:1'
+        ]);
+
+        $unidad = new Unidad;
+        $unidad->material_id = $request->material_id;
+        $unidad->nombre = $request->nombre;
+        $unidad->estado = $request->estado;
+
+        $docente = $request->docente_id;
+        $curso = $request->curso_id;
+
+        $material->save();    
+
+        return redirect()->route('unidadlIndex',[$docente,$curso]);
     }
 
     /**
