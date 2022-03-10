@@ -6,51 +6,44 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="product-status-wrap"> 
-            <h3>LISTA DE UNIDADES</h3>
+            <h3>LISTA DE ACTIVIDADES</h3>
             <h4>
-            @if ($datosalon->count())
-            Salon: {{$datosalon[0]->salon_grado}}°{{strtoupper($datosalon[0]->salon_seccion)}} - {{$datosalon[0]->salon_nivel}}
-            <br>Curso: {{$datosalon[0]->curso_nombre}}
-            <br>Material: {{$datosalon[0]->material_titulo}}
-            @else
-            El salon esta desactivado
-            @endif
+            
             </h4>
-            <div class="add-product"><a href="#">Nuevo</a></div>
+            <div class="add-product"><a href="#">Nueva Actividad</a></div>
             <div class="asset-inner">
               <!--TABLA-->
               <table>
                 <tbody>
                   <tr>
-                  <th data-field="state" data-checkbox="true"></th>
-                  <th data-field="id">N°</th>
-                  <th data-field="nombre">Nombre de unidad </th>
-                  <th data-field="material">Nombre de Material</th>
-                  <th data-field="curso">Curso</th>
-                  <th data-field="salon">Salon</th>
-                  <th data-field="estado">Estado</th>
-                  <th data-field="action">Opciones</th>
+                    <th>N°</th>
+                    <th>Detalle de actividad</th>
+                    <th>Unidad</th>
+                    <th>Material</th>
+                    <th>Docente</th>
+                    <th>Curso</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
                   </tr>
-                  @foreach($unidades as $unidad)
-                  <tr>
-                    <td></td>
-                    <td>{{$loop->index+1}}</td>
-                    <td>{{$unidad->nombre}}</td>
-                    <td>{{$unidad->material_titulo}}</td>
-                    <td>{{$unidad->curso_nombre}}</td>
-                    <td>{{$unidad->salon_grado}}°{{strtoupper($unidad->salon_seccion)}}</td>
-                    <td>
-                      @if($unidad->estado)
-                        Activo
-                      @else
-                        Inactivo
-                      @endif
-                    </td>
-                    <td>
-                      <a href="{{route('unidadEdit', $unidad->id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
-                      <a href="{{route('actividadIndex', $unidad->id)}}" class="btn btn-primary btn-sm">Actividades<i class="fa fa-edit"></i>
-                    </td>
-                  </tr>
+                  @foreach($actividades as $actividad)
+                    <tr>
+                      <td>{{$loop->index+1}}</td>
+                      <td>{{$actividad->actividad_detalle}}</td>
+                      <td>{{$actividad->unidad_nombre}}</td>
+                      <td>{{$actividad->material_titulo}}</td>
+                      <td>{{$actividad->usuario_nombre}}</td>
+                      <td>{{$actividad->curso_nombre}}</td>
+                      <td>
+                        @if($actividad->actividad_estado)
+                          Activo
+                        @else
+                          Inactivo Activo
+                        @endif
+                      </td>
+                      <td>
+                        <a href="" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
+                      </td>
+                    </tr>
                   @endforeach
                 </tbody>
               </table>
@@ -70,13 +63,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 
 @endsection
 
@@ -128,9 +114,9 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                              @if(Auth::user()->hasRole('docente'))
-                                  <a href="{{route('unidadCreate',$datosalon[0]->material_id)}}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
-                              @endif
+                                @if(Auth::user()->isAbleTo('user-create'))
+                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
+                                @endif
                               </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -138,6 +124,8 @@
                                   <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li><span class="bread-blod">Dashboard V.1</span>
+                                  <li>
+                                    <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                               </ul>
                           </div>

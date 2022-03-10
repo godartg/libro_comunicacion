@@ -101,7 +101,7 @@ class UnidadController extends Controller
         $idmaterial = $request->material_id;
 
         $unidad->save();    
-        return redirect()->route('unidadlIndex',$idmaterial);
+        return redirect()->route('unidadIndex',$idmaterial);
     }
 
     /**
@@ -121,9 +121,28 @@ class UnidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit($id)
     {
-        //
+        $unidad = Unidad::join('materials','materials.id','=','unidads.material_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->where('unidads.id',$id)
+        ->get([
+        'materials.id as material_id'
+        ,'materials.titulo as material_titulo'
+        ,'materials.estado as material_estado'
+        ,'cursos.id as curso_id'
+        ,'cursos.nombre as curso_nombre'
+        ,'cursos.grado as curso_grado'
+        ,'cursos.nivel as curso_nivel'
+        ,'users.id as usuario_id'
+        ,'users.name as usuario_nombre'
+        ,'users.last_name as usuario_apellidos'
+        ,'unidads.id as unidad_id'
+        ,'unidads.nombre as unidad_nombre'
+        ,'unidads.nombre as unidad_estado'
+        ]);
+        return view('backend.unidad.edit', compact('unidad'));
     }
 
     /**
@@ -133,9 +152,14 @@ class UnidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUnidadRequest $request, Unidad $unidad)
+    public function update(Request $request, $id, $idmaterial)
     {
-        //
+        $unidad           = Unidad::find($id);
+        $unidad->nombre   = $request->unidad_nombre;
+        $unidad->estado   = $request->estado;
+        
+        $unidad->save();
+        return redirect()->route('unidadIndex',$idmaterial);
     }
 
     /**

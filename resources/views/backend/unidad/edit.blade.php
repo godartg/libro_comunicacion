@@ -1,68 +1,80 @@
 @extends('layouts.backend')
 
 @section('content')
-<div class="data-table-area mg-b-15">
-  <div class="container-fluid">
-    <div class="row ">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="sparkline16-list">
-                <div class="sparkline16-hd">
-                    <div class="main-sparkline16-hd">
-                        <h1>Gestion de Unidad</h1>
-                    </div>
-                </div>
-                <div class="sparkline16-graph">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <form action="{{route('unidadStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
-                        {{csrf_field()}}
-                        <div class="row">
-                            <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <input type="text" name="material_id" class="form-control" placeholder="ID material"  value="{{$datosmaterial[0]->id}}">
+<div class="analytics-sparkle-area">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card analytics-sparkle-line reso-mg-b-30">
+                    <div class="card-header">Editar Unidad</div>
 
-                                    <label for="docente_id">Docente:</label>
-                                    <input type="text" name="docente_id" class="form-control" placeholder="Docente" disabled="disabled" value="{{Auth::user()->name}} {{Auth::user()->last_name}}">
-                                    <br>
-                                    <label for="curso_nombre">Curso:</label>
-                                    <input type="text" name="curso_nombre" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datosmaterial[0]->curso_nombre}}">
-                                    <br>
-                                    <label for="curso_grado">Grado:</label>
-                                    <input type="text" name="curso_grado" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datosmaterial[0]->curso_grado}}">
-                                    <br>
-                                    <label for="curso_nivel">Nivel:</label>
-                                    <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$datosmaterial[0]->curso_nivel}}">
-                                    <br>                                    
-                                    <label for="material_titulo">Material:</label>
-                                    <input type="text" name="material_titulo" class="form-control" placeholder="Título" disabled="disabled" value="{{$datosmaterial[0]->titulo}}">
-                                    <br>
-                                    <label for="nombre">Nombre de unidad:</label>
-                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-                                </div>
-                                <div class="form-group">
-                                    <label for="estado">Estado:</label><br>
-                                    <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" checked>
-                                    <label for="estado1">Activo</label><br>
-                                    <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
-                                    <label for="estado2">Inactivo</label>
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <form action="{{route('unidadUpdate',[$unidad[0]->unidad_id, $unidad[0]->material_id])}}" method="POST">
+                            {{csrf_field()}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="docente">Docente:</label>
+                                        <input type="text" name="docente" class="form-control" placeholder="Docente" disabled="disabled" value="{{Auth::user()->name}} {{Auth::user()->last_name}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="curso">Curso:</label>
+                                        <input type="text" name="curso" class="form-control" placeholder="Curso" disabled="disabled" value="{{$unidad[0]->curso_nombre}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="grado">Grado:</label>
+                                        <input type="text" name="grado" class="form-control" placeholder="Grado" disabled="disabled" value="{{$unidad[0]->curso_grado}}">
+                                    </div>
+                                    <div class="form-group">    
+                                        <label for="curso_nivel">Nivel:</label>
+                                        <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$unidad[0]->curso_nivel}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="material_titulo">Material</label>
+                                        <input type="text" name="material_titulo" class="form-control" placeholder="Material" disabled="disabled" value="{{$unidad[0]->material_titulo}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="unidad_nombre">Nombre de unidad:</label>
+                                        <input type="text" name="unidad_nombre" class="form-control" placeholder="Unidad" value="{{$unidad[0]->unidad_nombre}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label><br>
+                                        <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
+                                        @if($unidad[0]->unidad_estado)
+                                            checked
+                                        @endif
+                                        >
+                                        <label for="estado1">Activo</label><br>
+                                        
+                                        <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
+                                        @if(!$unidad[0]->unidad_estado)
+                                            checked
+                                        @endif
+                                        >
+                                        <label for="estado2">Inactivo</label>
+                                    </div>
                                 </div>
                             </div>
-                          
-                        </div>
-                        <br>
-                        <button class="btn btn-success">Guardar</button>
-                    </form>
-                    
+                            <br>
+                            <button class="btn btn-success">Guardar</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
+
 @push('styles')
 <!-- favicon
 		============================================ -->
@@ -190,7 +202,6 @@
 @endpush
 
 @push('sidebar')
-  
   <!-- Mobile Menu end -->
   <div class="breadcome-area">
       <div class="container-fluid">
@@ -201,13 +212,11 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                   
-                                  
                               </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <ul class="breadcome-menu">
-                                  <li>
-                                      <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
+                                  <li><a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li>
                                     <a title="Usuarios" href="{{route('usuarioIndex')}}"><span class="bread-blod">Usuarios</span></a>

@@ -1,76 +1,79 @@
 @extends('layouts.backend')
 
 @section('content')
-
-<div class="data-table-area mg-b-15">
+<div class="product-status mg-b-15">
   <div class="container-fluid">
-    <div class="row ">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="sparkline13-list">
-                <div class="sparkline13-hd">
-                    <div class="main-sparkline13-hd">
-                      <h1>LISTA DE MATERIALES</h1>
-                      <h4>
-                        @if ($salon->count())
-                        Salon: {{$salon[0]->grado}}°{{strtoupper($salon[0]->seccion)}} - {{$salon[0]->nivel}}
-                        <br>Docente: {{$salon[0]->usuario_nombre}} {{$salon[0]->usuario_apellidos}}
-                        <br>Curso: {{$salon[0]->nombrecurso}}
-                        @else
-                        El salon esta desactivado
-                        @endif
-                      </h4>
-                      
-                    </div>
-                </div>
-                <div class="sparkline13-graph">
-                    <div class="datatable-dashv1-list custom-datatable-overright">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        
-                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                            <thead>
-                              <tr>
-                                <th data-field="state" data-checkbox="true"></th>
-                                <th data-field="id">N°</th>
-                                <th data-field="titulo">Título</th>
-                                <!--<th data-field="Nunidades">N°Unidades</th>-->
-                                <th data-field="estado">Estado</th>
-                                <th data-field="action">Opciones</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @foreach($materiales as $material)
-                                <tr>
-                                    <td></td>
-                                  <td>{{$loop->index+1}}</td>
-                                  <td>{{$material->titulo}}</td>
-                                  <td>
-                                    @if($material->estado)
-                                      Activo
-                                    @else
-                                      Inactivo
-                                    @endif
-                                  </td>
-                                  <td>
-                                    <a href="{{route('materialEdit', $material->id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
-                                    <a href="{{route('unidadIndex', $material->id)}}" class="btn btn-primary btn-sm">Unidades <i class="fa fa-edit"></i>
-                                  </td>
-                                </tr>
-                              @endforeach
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="product-status-wrap"> 
+            <h3>LISTA DE MATERIALES</h3>
+            <h4>
+              @if ($salon->count())
+              Salon: {{$salon[0]->grado}}°{{strtoupper($salon[0]->seccion)}} - {{$salon[0]->nivel}}
+              <br>Docente: {{$salon[0]->usuario_nombre}} {{$salon[0]->usuario_apellidos}}
+              <br>Curso: {{$salon[0]->nombrecurso}}
+              @else
+              El salon esta desactivado
+              @endif
+            </h4>
+            <div class="add-product"><a href="#">Nuevo</a></div>
+            <div class="asset-inner">
+              <!--TABLA-->
+              <table>
+                <tbody>
+                  <tr>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="id">N°</th>
+                    <th data-field="titulo">Título</th>
+                    <th data-field="estado">Estado</th>
+                    <th data-field="action">Opciones</th>
+                  </tr>
+                  @foreach($materiales as $material)
+                  <tr>
+                    <td></td>
+                    <td>{{$loop->index+1}}</td>
+                    <td>{{$material->titulo}}</td>
+                    <td>
+                      @if($material->estado)
+                        Activo
+                      @else
+                        Inactivo
+                      @endif
+                    </td>
+                    <td>
+                      <a href="{{route('materialEdit', $material->id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
+                      <a href="{{route('unidadIndex', $material->id)}}" class="btn btn-primary btn-sm">Unidades <i class="fa fa-edit"></i>
+                    </td>
+                  </tr>
+                 @endforeach
+                </tbody>
+              </table>
+              <!--END TABLA-->                          
+            </div>          
+            <div class="custom-pagination">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
             </div>
+          </div>
         </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
 @endsection
 
 @section('footer')

@@ -13,9 +13,23 @@ class ActividadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $actividades = Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
+        ->join('materials','materials.id','=','unidads.material_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->where('actividads.unidad_id',$id)
+        ->get([
+        'actividads.id as actividad_id'
+        ,'actividads.detalle as actividad_detalle'
+        ,'actividads.estado as actividad_estado'
+        ,'unidads.nombre as unidad_nombre'
+        ,'materials.titulo as material_titulo'
+        ,'users.name as usuario_nombre'
+        ,'cursos.nombre as curso_nombre'
+        ]);
+        return view('backend.actividad.index', compact('actividades'));
     }
 
     /**
