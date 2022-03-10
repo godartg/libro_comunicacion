@@ -60,41 +60,22 @@ class UnidadController extends Controller
      */
     public function create($id)
     {
-        $datosalon = Unidad::join('materials','materials.id','=','unidads.material_id')
-        ->join('cursos','cursos.id','=','materials.curso_id')
+        $datosmaterial = Material::join('cursos','cursos.id','=','materials.curso_id')
         ->join('users','users.id','=','materials.docente_id')
-        ->join('salons','salons.docente_id','=','users.id')
         ->where('materials.id',$id)
-        ->where('salons.estado',true)
-        ->get(['salons.grado as salon_grado'
-        ,'salons.seccion as salon_seccion'
-        ,'salons.nivel as salon_nivel'
-        ,'cursos.id as curso_id'
+        ->get([
+        'materials.id'
+        ,'materials.curso_id'
+        ,'materials.docente_id'
+        ,'materials.titulo'
+        ,'materials.estado'
         ,'cursos.nombre as curso_nombre'
-        ,'materials.id as material_id'
-        ,'materials.titulo as material_titulo'
+        ,'cursos.grado as curso_grado'
+        ,'cursos.nivel as curso_nivel'
+        ,'users.name as usuario_nombre'
+        ,'users.last_name as usuario_apellidos'
         ]);
-/*
-SELECT 
-m.id
-,m.curso_id
-,m.docente_id
-,m.titulo
-,m.estado
-,c.id AS curso_id
-,c.nombre AS curso_nombre
-,c.grado AS curso_grado
-,c.nivel AS curso_nivel
-,u.name AS usuario_nombre
-,u.last_name AS usuario_apellidos
-FROM materials m
-INNER JOIN cursos c ON c.id = m.curso_id
-INNER JOIN users u ON u.id = m.docente_id
-
-WHERE m.id = 1;
-
-*/
-        return view('backend.unidad.create', compact('datosalon'));
+        return view('backend.unidad.create', compact('datosmaterial'));
 
        
     }
@@ -109,8 +90,6 @@ WHERE m.id = 1;
     {
         $this->validate($request, [
             'material_id'  =>  'required|max:250',
-            'curso_id'  =>  'required|max:250',
-            'docente_id'  =>  'required|max:250',
             'nombre'  =>  'required|max:250',
             'estado' => 'required|max:1'
         ]);
@@ -120,12 +99,11 @@ WHERE m.id = 1;
         $unidad->nombre = $request->nombre;
         $unidad->estado = $request->estado;
 
-        $docente = $request->docente_id;
-        $curso = $request->curso_id;
+        $idmaterial = $request->material_id;
 
-        $material->save();    
+        $unidad->save();    
 
-        return redirect()->route('unidadlIndex',[$docente,$curso]);
+        return redirect()->route('unidadlIndex',$idmaterial);
     }
 
     /**

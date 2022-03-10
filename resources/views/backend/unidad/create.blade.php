@@ -22,24 +22,19 @@
                         <div class="row">
                             <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    
-                                    <label for="curso_id">Curso ID:</label>
-                                    <input type="text" name="curso_id" class="form-control" placeholder="ID material"  value="{{$datosalon->curso_id}}">
-                                    
-                                    <label for="docente_id">Docente ID:</label>
-                                    <input type="text" name="docente_id" class="form-control" placeholder="ID Docente" value="{{Auth::user()->id}}">
+                                    <input type="text" name="material_id" class="form-control" placeholder="ID material"  value="{{$datosmaterial[0]->id}}">
 
-                                    <label for="material_id">Material ID:</label>
-                                    <input type="text" name="material_id" class="form-control" placeholder="ID material"  value="{{$datosalon->material_id}}">
-
+                                    <label for="docente_id">Docente:</label>
+                                    <input type="text" name="docente_id" class="form-control" placeholder="Docente" disabled="disabled" value="{{Auth::user()->name}} {{Auth::user()->last_name}}">
+                                    <br>
                                     <label for="curso_nombre">Curso:</label>
-                                    <input type="text" name="curso_nombre" class="form-control" placeholder="Curso"  value="{{$datosalon->curso_nombre}}">
+                                    <input type="text" name="curso_nombre" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datosmaterial[0]->curso_nombre}}">
                                     <br>
-                                    <label for="docente">Docente:</label>
-                                    <input type="text" name="docente" class="form-control" placeholder="Docente" value="{{Auth::user()->name}} {{Auth::user()->last_name}}">
-                                    <br>
+                                    <label for="curso_nivel">Nivel:</label>
+                                    <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$datosmaterial[0]->curso_nivel}}">
+                                    <br>                                    
                                     <label for="material_titulo">Material:</label>
-                                    <input type="text" name="material_titulo" class="form-control" placeholder="Docente"  value="{{$datosalon->material_titulo}}">
+                                    <input type="text" name="material_titulo" class="form-control" placeholder="Título" disabled="disabled" value="{{$datosmaterial[0]->titulo}}">
                                     <br>
                                     <label for="nombre">Nombre de unidad:</label>
                                     <input type="text" name="nombre" class="form-control" placeholder="Nombre">
