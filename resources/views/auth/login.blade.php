@@ -65,8 +65,8 @@
                         <form method="POST" action="{{ route('login') }}" id="loginForm">
                             @csrf
                             <div class="row mb-3">
-                                <label class="control-label" for="username">Correo</label>
-                                <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="{{ old('email') }}" value="" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
+                                <label class="control-label" for="dni">Correo</label>
+                                <input type="text" placeholder="dni" title="Please enter you username" value="{{old('dni')}}" name="dni" id="dni" class="form-control @error('dni') is-invalid @enderror" required autocomplete="dni" autofocus>
                                 @error('email')
                                     <span class="help-block small" role="alert">
                                         <strong>{{ $message }}</strong>
