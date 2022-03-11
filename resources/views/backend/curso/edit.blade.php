@@ -6,7 +6,7 @@
         <div class="row ">
             <div class="col-md-12">
                 <div class="card analytics-sparkle-line reso-mg-b-30">
-                    <div class="card-header">Editar usuario</div>
+                    <div class="card-header">Editar curso</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -14,73 +14,37 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <form action="{{route('usuarioUpdate', $user->id)}}" method="POST">
+                        <form action="{{route('cursoUpdate', $curso)}}" method="POST">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Nombre</label>
-                                        <input type="text" name="name" value="{{$user->name}}" class="form-control">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" name="nombre" value="{{$curso->nombre}}" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="last_name">Apellido</label>
-                                        <input type="text" name="last_name" value="{{$user->last_name}}" class="form-control" >
+                                        <label for="last_name">Grado</label>
+                                        <input type="text" name="last_name" value="{{$curso->grado}}" class="form-control" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="text" name="email" value="{{$user->email}}" class="form-control">
+                                        <label for="email">Nivel</label>
+                                        <input type="text" name="email" value="{{$curso->nivel}}" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="dni">DNI</label>
-                                        <input type="text" name="dni" value="{{$user->dni}}" class="form-control" >
-                                    </div>
-                                    <div class="sparkline16-graph">
-                                        <div class="date-picker-inner">
-                                            <div class="form-group data-custon-pick" id="data_1">
-                                                <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                                                <div class="input-group date">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input name="fecha_nacimiento" value="{{$user->fecha_nacimiento}}" type="date" class="form-control" min="1920-01-01" max="2019-12-31">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sexo">Sexo</label><br>
-                                        <input type="radio" class="form-check-input" id="sexo1" name="sexo" value="0" 
-                                        @if(!$user->sexo)
+                                        <label for="estado">Estado</label><br>
+                                        <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
+                                        @if($curso->estado)
                                             checked
                                         @endif
                                         >
-                                        <label for="sexo1">Mujer</label><br>
-                                        <input type="radio" class="form-check-input" id="sexo2" name="sexo" value="1"
-                                        @if($user->sexo)
+                                        <label for="estado1">Activo</label><br>
+                                        <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
+                                        @if(!$curso->estado)
                                             checked
                                         @endif
                                         >
-                                        <label for="sexo2">Hombre</label>
+                                        <label for="estado2">Desactivado</label>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <label for="roles">Roles:</label>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-check">
-                                        @foreach($roles as $role)
-                                          <p>
-                                            <label for="" class="form-check-label">
-                                              <input type="checkbox" class="form-check-input" name="rolesSelected[]" value="{{ $role->id }}"
-                                                @if($user->hasRole($role->name))
-                                                    checked
-                                                @endif
-                                              >
-                                              <em>{{ $role->display_name }}</em>
-                                            </label>
-                                          </p>
-                                        @endforeach
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                             </div>
                             <br>
@@ -239,7 +203,7 @@
                                   <li><a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li>
-                                    <a title="Usuarios" href="{{route('usuarioIndex')}}"><span class="bread-blod">Usuarios</span></a>
+                                    <a title="Cursos" href="{{route('cursoIndex')}}"><span class="bread-blod">Cursos</span></a>
                                   </li>
                               </ul>
                           </div>

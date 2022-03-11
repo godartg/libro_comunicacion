@@ -42,8 +42,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('cursodocente/{usu}', [CursoController::class, 'cursoDocenteLista'])->name('cursoDocenteLista');
         Route::get('create', [CursoController::class, 'create'])->name('cursoCreate');
         Route::post('store', [CursoController::class, 'store'])->name('cursoStore');
-        Route::get('edit/{id}', [CursoController::class, 'edit'])->name('cursoEdit');
-        Route::post('update/{id}', [CursoController::class, 'update'])->name('cursoUpdate');
+        Route::get('edit/{curso}', [CursoController::class, 'edit'])->name('cursoEdit');
+        Route::post('update/{curso}', [CursoController::class, 'update'])->name('cursoUpdate');
     });
     Route::group(['prefix' => 'material/'], function(){
         Route::get('index/{docente}/{curso}', [MaterialController::class, 'index'])->name('materialIndex');
