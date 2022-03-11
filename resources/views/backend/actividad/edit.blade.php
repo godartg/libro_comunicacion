@@ -1,61 +1,54 @@
 @extends('layouts.backend')
 
 @section('content')
-<div class="data-table-area mg-b-15">
-  <div class="container-fluid">
-    <div class="row ">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="sparkline16-list">
-                <div class="sparkline16-hd">
-                    <div class="main-sparkline16-hd">
-                        <h1>Gestion de Actividad</h1>
-                    </div>
-                </div>
-                <div class="sparkline16-graph">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div class="analytics-sparkle-area">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card analytics-sparkle-line reso-mg-b-30">
+                    <div class="card-header">Editar Actividad</div>
 
-                    <div class="review-content-section">
-                      <div id="dropzone1" class="pro-ad">
-                        
-                      <form action="{{route('actividadStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <form action="{{route('actividadUpdate',[$actividad[0]->actividad_id, $actividad[0]->unidad_id])}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
                         {{csrf_field()}}
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                            <input type="hidden" name="unidad_id" class="form-control" placeholder="ID unidad"  value="{{$datos[0]->unidad_id}}">
+                            <input type="hidden" name="unidad_id" class="form-control" placeholder="ID unidad"  value="{{$actividad[0]->unidad_id}}">
 
                             <div class="form-group">
                             <label for="docente_nombre">Docente:</label>
-                              <input type="text" name="docente_nombre" class="form-control" placeholder="Docente" disabled="disabled" value="{{$datos[0]->usuario_nombre}} {{$datos[0]->usuario_apellidos}}">
+                              <input type="text" name="docente_nombre" class="form-control" placeholder="Docente" disabled="disabled" value="{{$actividad[0]->usuario_nombre}}">
                             </div>
 
                             <div class="form-group">
                               <label for="curso_nombre">Curso:</label>
-                              <input type="text" name="curso_nombre" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datos[0]->curso_nombre}}">
+                              <input type="text" name="curso_nombre" class="form-control" placeholder="Curso" disabled="disabled" value="{{$actividad[0]->curso_nombre}}">
                             </div>
 
                             <div class="form-group">
                               <label for="curso_grado">Grado:</label>
-                              <input type="text" name="curso_grado" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datos[0]->salon_grado}}">
+                              <input type="text" name="curso_grado" class="form-control" placeholder="Curso" disabled="disabled" value="{{$actividad[0]->curso_grado}}">
                             </div>
 
                             <div class="form-group">
                               <label for="curso_nivel">Nivel:</label>
-                              <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$datos[0]->curso_nivel}}">
+                              <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$actividad[0]->curso_nivel}}">
                             </div>
 
                             <div class="form-group">
                               <label for="material_titulo">Material:</label>
-                              <input type="text" name="material_titulo" class="form-control" placeholder="Título" disabled="disabled" value="{{$datos[0]->material_titulo}}">
+                              <input type="text" name="material_titulo" class="form-control" placeholder="Título" disabled="disabled" value="{{$actividad[0]->material_titulo}}">
                             </div>
 
                             <div class="form-group">
                               <label for="unidad_nombre">Unidad:</label>
-                              <input type="text" name="unidad_nombre" class="form-control" placeholder="Unidad" disabled="disabled" value="{{$datos[0]->unidad_nombre}}">
+                              <input type="text" name="unidad_nombre" class="form-control" placeholder="Unidad" disabled="disabled" value="{{$actividad[0]->unidad_nombre}}">
                             </div>
                               
                                                                 
@@ -63,24 +56,33 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                               <label for="actividad_detalle">Detalle de la actividad:</label>
-                              <textarea name="actividad_detalle" placeholder="Escribir el detalle de la actividad"></textarea>
+                              <textarea name="actividad_detalle" placeholder="Escribir el detalle de la actividad">{{$actividad[0]->actividad_detalle}}</textarea>
                             </div>
 
                             <div class="form-group">
                               <label for="actividad_ayuda">Ayuda para la actividad:</label>
-                              <textarea name="actividad_ayuda" placeholder="Detallar el contenido textual de la ayuda que brindara a los alumnos"></textarea>
+                              <textarea name="actividad_ayuda" placeholder="Detallar el contenido textual de la ayuda que brindara a los alumnos">{{$actividad[0]->actividad_ayuda}}</textarea>
                             </div>
 
                             <div class="form-group">
                               <label for="actividad_pagina">Número de página:</label>
-                              <input type="text" name="actividad_pagina" class="form-control" placeholder="Número de página"  value="">
+                              <input type="text" name="actividad_pagina" class="form-control" placeholder="Número de página"  value="{{$actividad[0]->actividad_pagina}}">
                             </div>
                             <div class="form-group">
-                              <label for="estado">Estado:</label><br>
-                              <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" checked>
-                              <label for="estado1">Activo</label><br>
-                              <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
-                              <label for="estado2">Inactivo</label>
+                            <label for="estado">Estado</label><br>
+                                        <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
+                                        @if($actividad[0]->actividad_estado)
+                                            checked
+                                        @endif
+                                        >
+                                        <label for="estado1">Activo</label><br>
+                                        
+                                        <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
+                                        @if(!$actividad[0]->actividad_estado)
+                                            checked
+                                        @endif
+                                        >
+                                        <label for="estado2">Inactivo</label>
                             </div>
                              
                                                                
@@ -93,35 +95,14 @@
                         </div>
                         </form>
 
-
-                      </div>
-                    </div> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 @endsection
+
 @push('styles')
 <!-- favicon
 		============================================ -->
@@ -249,7 +230,6 @@
 @endpush
 
 @push('sidebar')
-  
   <!-- Mobile Menu end -->
   <div class="breadcome-area">
       <div class="container-fluid">
@@ -260,13 +240,11 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                   
-                                  
                               </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <ul class="breadcome-menu">
-                                  <li>
-                                      <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
+                                  <li><a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li>
                                     <a title="Usuarios" href="{{route('usuarioIndex')}}"><span class="bread-blod">Usuarios</span></a>

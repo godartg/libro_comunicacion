@@ -52,7 +52,7 @@
                         @endif
                       </td>
                       <td>
-                        <a href="" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
+                        <a href="{{route('actividadEdit', $actividad->actividad_id)}}" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
                       </td>
                     </tr>
                   @endforeach
