@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\SalonController;
 use App\Http\Controllers\ListaAlumnoController;
+use App\Http\Controllers\ActividadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +39,33 @@ Route::group(['middleware' => 'auth'], function(){
     });
     Route::group(['prefix' => 'curso/'], function(){
         Route::get('index', [CursoController::class, 'index'])->name('cursoIndex');
+        Route::get('cursodocente/{usu}', [CursoController::class, 'cursoDocenteLista'])->name('cursoDocenteLista');
         Route::get('create', [CursoController::class, 'create'])->name('cursoCreate');
         Route::post('store', [CursoController::class, 'store'])->name('cursoStore');
         Route::get('edit/{id}', [CursoController::class, 'edit'])->name('cursoEdit');
         Route::post('update/{id}', [CursoController::class, 'update'])->name('cursoUpdate');
     });
+    Route::group(['prefix' => 'material/'], function(){
+        Route::get('index/{docente}/{curso}', [MaterialController::class, 'index'])->name('materialIndex');
+        Route::get('create/{id}', [MaterialController::class, 'create'])->name('materialCreate');
+        Route::post('store', [MaterialController::class, 'store'])->name('materialStore');
+        Route::get('edit/{id}', [MaterialController::class, 'edit'])->name('materialEdit');
+        Route::post('update/{id}/{docente}/{curso}', [MaterialController::class, 'update'])->name('materialUpdate');
+    });
+    Route::group(['prefix' => 'unidad/'], function(){
+        Route::get('index/{id}', [UnidadController::class, 'index'])->name('unidadIndex');
+        Route::get('create/{id}', [UnidadController::class, 'create'])->name('unidadCreate');
+        Route::post('store', [UnidadController::class, 'store'])->name('unidadStore');
+        Route::get('edit/{id}', [UnidadController::class, 'edit'])->name('unidadEdit');
+        Route::post('update/{id}/{idmaterial}', [UnidadController::class, 'update'])->name('unidadUpdate');
+    }); 
+    Route::group(['prefix' => 'actividad/'], function(){
+        Route::get('index/{id}', [ActividadController::class, 'index'])->name('actividadIndex');
+        Route::get('create/{id}', [ActividadController::class, 'create'])->name('actividadCreate');
+        Route::post('store', [ActividadController::class, 'store'])->name('actividadStore');
+        Route::get('edit/{id}', [ActividadController::class, 'edit'])->name('actividadEdit');
+        Route::post('update/{id}', [ActividadController::class, 'update'])->name('actividadUpdate');
+    });   
     Route::group(['prefix' => 'salon/'], function(){
         Route::get('index', [SalonController::class, 'index'])->name('salonIndex');
         Route::get('create', [SalonController::class, 'create'])->name('salonCreate');

@@ -9,6 +9,9 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
+                      <h1>LISTA DE CURSOS</br>
+                        <span class="table-project-n">Salon: 3° A (Primaria)</span>
+                      </h1>
                         <h1>Projects <span class="table-project-n">Data</span> Table</h1>
                     </div>
                 </div>
@@ -26,14 +29,12 @@
                             <thead>
                               <tr>
                                 <th data-field="state" data-checkbox="true"></th>
-                                <th data-field="id">ID</th>
-                                <th data-field="name">Nombre</th>
-                                <th data-field="last-name">Grado</th>
-                                <th data-field="email">Correo</th>
-                                <th data-field="dni">Nivel</th>
-                                <th data-field="fecha_nacimiento">estado</th>
-                                <th data-field="created_at">Creado en</th>
-                                <th data-field="action">Acciones</th>
+                                <th data-field="id">N°</th>
+                                <th data-field="nombre">Nombre</th>
+                                <th data-field="grado">Grado</th>
+                                <th data-field="nivel">Nivel</th>
+                                <th data-field="estado">Estado</th>
+                                <th data-field="action">Opciones</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -41,15 +42,23 @@
                                 <tr>
                                     <td></td>
                                   <td>{{$loop->index+1}}</td>
-                                  <td>{{$curso->name}}</td>
-                                  <td>{{$curso->last_name}}</td>
-                                  <td>{{$curso->grade}}</td>
-                                  <td>{{$curso->created_at}}</td>
+                                  <td>{{$curso->nombre}}</td>
+                                  <td>{{$curso->grado}}</td>
+                                  <td>{{$curso->nivel}}</td>
                                   <td>
-                                    @if(Auth::user()->isAbleTo('curso-update'))
-                                    <a href="{{route('cursoEdit', $curso->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    @if($curso->estado)
+                                      Activo
+                                    @else
+                                      Inactivo
                                     @endif
                                   </td>
+                                  <td>
+                                    <div>{{var_dump(Auth::user()->id)}}</div>
+                                    <div>{{var_dump( $curso->id)}}</div>
+                                    <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
+                                    <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
+                                  </td>
+                                 
                                 </tr>
                               @endforeach
                             </tbody>
@@ -118,6 +127,9 @@
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <ul class="breadcome-menu">
+                                  <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                  </li>
+                                  <li><span class="bread-blod">Dashboard V.1</span>
                                   <li>
                                     <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>

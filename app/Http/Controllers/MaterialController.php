@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Curso;
 use App\Models\Material;
 use App\Http\Requests\StoreMaterialRequest;
 use App\Http\Requests\UpdateMaterialRequest;
+
+
 
 class MaterialController extends Controller
 {
@@ -13,9 +17,24 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function index($docente, $curso)
     {
-        //
+        $materiales = Material::join('cursos','cursos.id','=','materials.curso_id')
+                    ->join('users','users.id','=','materials.docente_id')
+                    ->where('users.id',$docente)
+                    ->where('cursos.id',$curso)
+                    ->get(['materials.id','materials.curso_id','materials.titulo','materials.estado']);
+
+        $salon = Curso::join('salons','salons.grado','=','cursos.grado')
+                    ->join('users','users.id','=','salons.docente_id')
+                    ->where('users.id',$docente)
+                    ->where('cursos.id',$curso)
+                    ->where('salons.estado',true)
+                    ->get(['salons.grado','salons.seccion','salons.nivel','cursos.id as curso_id','cursos.nombre as nombrecurso','users.name as usuario_nombre','users.last_name as usuario_apellidos']);
+
+        return view('backend.material.index', compact('materiales','salon'));
+
     }
 
     /**
@@ -23,9 +42,10 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $curso = Curso::find($id);
+        return view('backend.material.create', compact('curso'));
     }
 
     /**
@@ -34,9 +54,27 @@ class MaterialController extends Controller
      * @param  \App\Http\Requests\StoreMaterialRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMaterialRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'curso_id'  =>  'required|max:250',
+            'docente_id'  =>  'required|max:250',
+            'titulo'  =>  'required|max:250',
+            'estado' => 'required|max:1'
+        ]);
+
+        $material = new Material;
+        $material->curso_id = $request->curso_id;
+        $material->docente_id = $request->docente_id;
+        $material->titulo = $request->titulo;
+        $material->estado = $request->estado;
+
+        $docente = $request->docente_id;
+        $curso = $request->curso_id;
+
+        $material->save();    
+
+        return redirect()->route('materialIndex',[$docente,$curso]);
     }
 
     /**
@@ -56,9 +94,24 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function edit(Material $material)
+    public function edit($id)
     {
-        //
+        $material = Material::join('cursos','cursos.id','=','materials.curso_id')
+                    ->join('users','users.id','=','materials.docente_id')
+                    ->where('materials.id',$id)
+                    ->get([
+                        'users.id as docente_id'
+                        ,'users.name as docente_nombre'
+                        ,'users.last_name as docente_apellidos'
+                        ,'cursos.id as curso_id'
+                        ,'cursos.nombre as curso_nombre'
+                        ,'cursos.grado as curso_grado'
+                        ,'cursos.nivel as curso_nivel'
+                        ,'materials.id'
+                        ,'materials.titulo as material_titulo'
+                        ,'materials.estado as material_estado']);
+
+        return view('backend.material.edit', compact('material'));
     }
 
     /**
@@ -68,9 +121,14 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaterialRequest $request, Material $material)
+    public function update(Request $request, $id, $docente, $curso)
     {
-        //
+        $material           = Material::find($id);
+        $material->titulo   = $request->titulo;
+        $material->estado   = $request->estado;
+        
+        $material->save();
+        return redirect()->route('materialIndex',[$docente,$curso]);
     }
 
     /**

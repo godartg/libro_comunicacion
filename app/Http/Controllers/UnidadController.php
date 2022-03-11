@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Unidad;
+use App\Models\User;
+use App\Models\Material;
+use App\Models\Curso;
 use App\Http\Requests\StoreUnidadRequest;
 use App\Http\Requests\UpdateUnidadRequest;
 
@@ -13,9 +16,40 @@ class UnidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $unidades = Unidad::join('materials','materials.id','=','unidads.material_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->join('salons','salons.docente_id','=','users.id')
+        ->where('materials.id',$id)
+        ->get(['unidads.id','unidads.material_id'
+        ,'unidads.nombre'
+        ,'unidads.estado'
+        ,'materials.titulo as material_titulo'
+        ,'cursos.nombre as curso_nombre'
+        ,'users.name as usuario_nombre'
+        ,'users.last_name as usuario_apellidos'
+        ,'salons.grado as salon_grado'
+        ,'salons.seccion as salon_seccion'
+        ]);
+
+        $datosalon = Material::join('cursos','cursos.id','=','materials.curso_id')
+                    ->join('users','users.id','=','materials.docente_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('materials.id',$id)
+                    ->get([
+                        'salons.grado as salon_grado'
+                        ,'salons.seccion as salon_seccion'
+                        ,'salons.nivel as salon_nivel'
+                        ,'cursos.nombre as curso_nombre'
+                        ,'materials.titulo as material_titulo'
+                        ,'materials.id as material_id'
+                        ,'users.name as usuario_nombre']);
+
+        return view('backend.unidad.index', compact('unidades','datosalon'));
+
+
     }
 
     /**
@@ -23,9 +57,26 @@ class UnidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $datosmaterial = Material::join('cursos','cursos.id','=','materials.curso_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->where('materials.id',$id)
+        ->get([
+        'materials.id'
+        ,'materials.curso_id'
+        ,'materials.docente_id'
+        ,'materials.titulo'
+        ,'materials.estado'
+        ,'cursos.nombre as curso_nombre'
+        ,'cursos.grado as curso_grado'
+        ,'cursos.nivel as curso_nivel'
+        ,'users.name as usuario_nombre'
+        ,'users.last_name as usuario_apellidos'
+        ]);
+        return view('backend.unidad.create', compact('datosmaterial'));
+
+       
     }
 
     /**
@@ -36,7 +87,21 @@ class UnidadController extends Controller
      */
     public function store(StoreUnidadRequest $request)
     {
-        //
+        $this->validate($request, [
+            'material_id'  =>  'required|max:250',
+            'nombre'  =>  'required|max:250',
+            'estado' => 'required|max:1'
+        ]);
+
+        $unidad = new Unidad;
+        $unidad->material_id = $request->material_id;
+        $unidad->nombre = $request->nombre;
+        $unidad->estado = $request->estado;
+
+        $idmaterial = $request->material_id;
+
+        $unidad->save();    
+        return redirect()->route('unidadIndex',$idmaterial);
     }
 
     /**
@@ -56,9 +121,28 @@ class UnidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit($id)
     {
-        //
+        $unidad = Unidad::join('materials','materials.id','=','unidads.material_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->where('unidads.id',$id)
+        ->get([
+        'materials.id as material_id'
+        ,'materials.titulo as material_titulo'
+        ,'materials.estado as material_estado'
+        ,'cursos.id as curso_id'
+        ,'cursos.nombre as curso_nombre'
+        ,'cursos.grado as curso_grado'
+        ,'cursos.nivel as curso_nivel'
+        ,'users.id as usuario_id'
+        ,'users.name as usuario_nombre'
+        ,'users.last_name as usuario_apellidos'
+        ,'unidads.id as unidad_id'
+        ,'unidads.nombre as unidad_nombre'
+        ,'unidads.nombre as unidad_estado'
+        ]);
+        return view('backend.unidad.edit', compact('unidad'));
     }
 
     /**
@@ -68,9 +152,14 @@ class UnidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUnidadRequest $request, Unidad $unidad)
+    public function update(Request $request, $id, $idmaterial)
     {
-        //
+        $unidad           = Unidad::find($id);
+        $unidad->nombre   = $request->unidad_nombre;
+        $unidad->estado   = $request->estado;
+        
+        $unidad->save();
+        return redirect()->route('unidadIndex',$idmaterial);
     }
 
     /**
