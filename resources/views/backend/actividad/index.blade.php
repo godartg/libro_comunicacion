@@ -8,9 +8,16 @@
           <div class="product-status-wrap"> 
             <h3>LISTA DE ACTIVIDADES</h3>
             <h4>
-            
+              @if ($datos->count())
+              Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
+              <br>Curso: {{$datos[0]->curso_nombre}}
+              <br>Material: {{$datos[0]->material_titulo}}
+              <br>Unidad: {{$datos[0]->unidad_nombre}}
+              @else
+              El salon esta desactivado
+              @endif
             </h4>
-            <div class="add-product"><a href="#">Nueva Actividad</a></div>
+            <div class="add-product"><a href="{{route('actividadCreate',$datos[0]->unidad_id)}}">Nueva Actividad</a></div>
             <div class="asset-inner">
               <!--TABLA-->
               <table>
@@ -18,10 +25,12 @@
                   <tr>
                     <th>N°</th>
                     <th>Detalle de actividad</th>
-                    <th>Unidad</th>
+                    <th>Página</th>
+                    <th>Detalle de ayuda</th>
                     <th>Material</th>
-                    <th>Docente</th>
                     <th>Curso</th>
+                    <th>Unidad</th>
+                    <th>Docente</th>
                     <th>Estado</th>
                     <th>Opciones</th>
                   </tr>
@@ -29,10 +38,12 @@
                     <tr>
                       <td>{{$loop->index+1}}</td>
                       <td>{{$actividad->actividad_detalle}}</td>
-                      <td>{{$actividad->unidad_nombre}}</td>
+                      <td>{{$actividad->actividad_pagina}}</td>
+                      <td>{{$actividad->actividad_ayuda}}</td>
                       <td>{{$actividad->material_titulo}}</td>
-                      <td>{{$actividad->usuario_nombre}}</td>
                       <td>{{$actividad->curso_nombre}}</td>
+                      <td>{{$actividad->unidad_nombre}}</td>
+                      <td>{{$actividad->usuario_nombre}} {{$actividad->usuario_apellidos}}</td>
                       <td>
                         @if($actividad->actividad_estado)
                           Activo

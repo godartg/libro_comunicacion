@@ -8,7 +8,7 @@
             <div class="sparkline16-list">
                 <div class="sparkline16-hd">
                     <div class="main-sparkline16-hd">
-                        <h1>Gestion de Unidad</h1>
+                        <h1>Gestion de Actividad</h1>
                     </div>
                 </div>
                 <div class="sparkline16-graph">
@@ -17,30 +17,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form action="{{route('unidadStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                    <form action="{{route('actividadStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <input type="hidden" name="material_id" class="form-control" placeholder="ID material"  value="{{$datosmaterial[0]->id}}">
+                                    <input type="text" name="material_id" class="form-control" placeholder="ID material"  value="{{$datos[0]->unidad_id}}">
 
                                     <label for="docente_id">Docente:</label>
-                                    <input type="text" name="docente_id" class="form-control" placeholder="Docente" disabled="disabled" value="{{Auth::user()->name}} {{Auth::user()->last_name}}">
+                                    <input type="text" name="docente_id" class="form-control" placeholder="Docente" disabled="disabled" value="{{$datos[0]->usuario_nombre}} {{$datos[0]->usuario_apellidos}}">
                                     <br>
                                     <label for="curso_nombre">Curso:</label>
-                                    <input type="text" name="curso_nombre" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datosmaterial[0]->curso_nombre}}">
+                                    <input type="text" name="curso_nombre" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datos[0]->curso_nombre}}">
                                     <br>
                                     <label for="curso_grado">Grado:</label>
-                                    <input type="text" name="curso_grado" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datosmaterial[0]->curso_grado}}">
+                                    <input type="text" name="curso_grado" class="form-control" placeholder="Curso" disabled="disabled" value="{{$datos[0]->salon_grado}}">
                                     <br>
                                     <label for="curso_nivel">Nivel:</label>
-                                    <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$datosmaterial[0]->curso_nivel}}">
+                                    <input type="text" name="curso_nivel" class="form-control" placeholder="Nivel" disabled="disabled" value="{{$datos[0]->curso_nivel}}">
                                     <br>                                    
                                     <label for="material_titulo">Material:</label>
-                                    <input type="text" name="material_titulo" class="form-control" placeholder="Título" disabled="disabled" value="{{$datosmaterial[0]->titulo}}">
+                                    <input type="text" name="material_titulo" class="form-control" placeholder="Título" disabled="disabled" value="{{$datos[0]->material_titulo}}">
                                     <br>
-                                    <label for="nombre">Nombre de unidad:</label>
-                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                                    <label for="unidad_nombre">Unidad:</label>
+                                    <input type="text" name="unidad_nombre" class="form-control" placeholder="Unidad" disabled="disabled" value="{{$datos[0]->unidad_nombre}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="estado">Estado:</label><br>
