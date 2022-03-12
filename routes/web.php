@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('create/{id}', [ActividadController::class, 'create'])->name('actividadCreate');
         Route::post('store', [ActividadController::class, 'store'])->name('actividadStore');
         Route::get('edit/{id}', [ActividadController::class, 'edit'])->name('actividadEdit');
-        Route::post('update/{id}', [ActividadController::class, 'update'])->name('actividadUpdate');
+        Route::post('update/{id}/{idunidad}', [ActividadController::class, 'update'])->name('actividadUpdate');
     });   
     Route::group(['prefix' => 'salon/'], function(){
         Route::get('index', [SalonController::class, 'index'])->name('salonIndex');
