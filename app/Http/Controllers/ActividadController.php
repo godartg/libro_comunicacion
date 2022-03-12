@@ -92,7 +92,7 @@ class ActividadController extends Controller
             'unidad_id'  =>  'required|max:250',
             'actividad_detalle'  =>  'required|max:250',
             'actividad_pagina'  =>  'required|max:250',
-            'actividad_ayudap'  =>  'required|max:250',
+            'actividad_ayuda'  =>  'required|max:250',
             'estado' => 'required|max:1'
         ]);
 
