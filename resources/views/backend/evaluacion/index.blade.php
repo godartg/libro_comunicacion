@@ -6,58 +6,56 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="product-status-wrap"> 
-            <h3>LISTA DE ACTIVIDADES</h3>
+            <h3>LISTA DE EVALUACIONES</h3>
             <h4>
               @if ($datos->count())
               Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
-              <br>Curso: {{$datos[0]->curso_nombre}}
-              <br>Material: {{$datos[0]->material_titulo}}
-              <br>Unidad: {{$datos[0]->unidad_nombre}}
+             
+              <br>Curso: {{$datos[0]->nombrecurso}}
               @else
               El salon esta desactivado
               @endif
             </h4>
-            <div class="add-product"><a href="{{route('actividadCreate',$datos[0]->unidad_id)}}">Nueva Actividad</a></div>
             <div class="asset-inner">
               <!--TABLA-->
               <table>
                 <tbody>
                   <tr>
-                    <th>N°</th>
-                    <th>N° Actividad</th>
-                    <th>Detalle de actividad</th>
-                    <th>Página</th>
-                    <th>Detalle de ayuda</th>
-                    <th>Material</th>
-                    <th>Curso</th>
-                    <th>Unidad</th>
-                    <th>Docente</th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="id">N°</th>
+                    <th data-field="titulo">Título</th>
+                    <th data-field="titulo">Detalle</th>
+                    <th data-field="titulo">Fecha</th>
+                    <th data-field="titulo">Curso</th>
+                    <th data-field="titulo">Salon</th>
+                    <th data-field="titulo">Nivel</th>
+                    <th data-field="estado">Estado</th>
+                    <th data-field="action">Opciones</th>
                   </tr>
-                  @foreach($actividades as $actividad)
-                    <tr>
-                      <td>{{$loop->index+1}}</td>
-                      <td>falta agregar N° de Act </td>
-                      <td>{{$actividad->actividad_detalle}}</td>
-                      <td>{{$actividad->actividad_pagina}}</td>
-                      <td>{{$actividad->actividad_ayuda}}</td>
-                      <td>{{$actividad->material_titulo}}</td>
-                      <td>{{$actividad->curso_nombre}}</td>
-                      <td>{{$actividad->unidad_nombre}}</td>
-                      <td>{{$actividad->usuario_nombre}} {{$actividad->usuario_apellidos}}</td>
-                      <td>
-                        @if($actividad->actividad_estado)
-                          Activo
-                        @else
-                          Inactivo Activo
-                        @endif
-                      </td>
-                      <td>
-                        <a href="{{route('actividadEdit', $actividad->actividad_id)}}" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
-                      </td>
-                    </tr>
-                  @endforeach
+                  @foreach($evaluaciones as $evaluacion)
+                  <tr>
+                    <td></td>
+                    <td>{{$loop->index+1}}</td>
+                    <td>{{$evaluacion->evaluacion_titulo}}</td>
+                    <td>{{$evaluacion->evaluacion_detalle}}</td>
+                    <td>{{$evaluacion->evaluacion_fecha}}</td>
+                    <td>{{$evaluacion->curso_nombre}}</td>
+                    <td>{{$evaluacion->salon_grado}} {{$evaluacion->salon_seccion}}</td>
+                    <td>{{$evaluacion->curso_nivel}}</td>
+                    <td>
+                      @if($evaluacion->evaluacion_estado)
+                        Activo
+                      @else
+                        Inactivo
+                      @endif
+                    </td>
+                    <td>
+                      <a href="{{route('evaluacionEdit', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
+                      <a href="" class="btn btn-primary btn-sm">Preguntas <i class="fa fa-edit"></i>
+                      <a href="" class="btn btn-primary btn-sm">Notas <i class="fa fa-edit"></i>
+                    </td>
+                  </tr>
+                 @endforeach
                 </tbody>
               </table>
               <!--END TABLA-->                          
@@ -76,6 +74,15 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 @endsection
 
@@ -127,8 +134,8 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('user-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
+                                @if(Auth::user()->hasRole('docente'))
+                                  <a href="{{ route('evaluacionCreate',$datos[0]->curso_id) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
                                 @endif
                               </div>
                           </div>
@@ -137,8 +144,6 @@
                                   <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li><span class="bread-blod">Dashboard V.1</span>
-                                  <li>
-                                    <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                               </ul>
                           </div>

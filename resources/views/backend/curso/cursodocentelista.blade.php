@@ -42,7 +42,7 @@
                       </td>
                       <td>
                         <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
-                        <a href="" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
+                        <a href="{{route('evaluacionIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
                       </td>
                     </tr>
                   @endforeach

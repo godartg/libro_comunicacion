@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Curso;
 use App\Models\Evaluacion;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreEvaluacionRequest;
 use App\Http\Requests\UpdateEvaluacionRequest;
 
@@ -13,9 +14,45 @@ class EvaluacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($idusuario, $idcurso)
     {
-        //
+        $evaluaciones = Evaluacion::join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('users','users.id','=','evaluacions.docente_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('users.id',$idusuario)
+                    ->where('cursos.id',$idcurso)
+                    ->where('salons.estado',true)
+                    ->where('cursos.estado',true)
+                    ->get(['evaluacions.id as evaluacion_id'
+                    ,'evaluacions.titulo as evaluacion_titulo'
+                    ,'evaluacions.detalle as evaluacion_detalle'
+                    ,'evaluacions.fecha as evaluacion_fecha'
+                    ,'evaluacions.estado as evaluacion_estado'
+                    ,'cursos.id as curso_id'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ]);
+
+        $datos = Curso::join('salons','salons.grado','=','cursos.grado')
+                    ->join('users','users.id','=','salons.docente_id')
+                    ->where('users.id',$idusuario)
+                    ->where('cursos.id',$idcurso)
+                    ->where('salons.estado',true)
+                    ->get(['salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ,'salons.nivel as salon_nivel'
+                    ,'cursos.id as curso_id'
+                    ,'cursos.nombre as nombrecurso'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos']);
+
+        return view('backend.evaluacion.index', compact('evaluaciones','datos'));
     }
 
     /**
@@ -23,9 +60,22 @@ class EvaluacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idcurso)
     {
-        //
+        $datos = Curso::join('salons','salons.grado','=','cursos.grado')
+                    ->join('users','users.id','=','salons.docente_id')
+                    ->where('cursos.id',$idcurso)
+                    ->where('salons.estado',true)
+                    ->get(['salons.seccion as salon_seccion'
+                    ,'cursos.id as curso_id'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'cursos.grado as curso_grado'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos']);
+        
+        return view('backend.evaluacion.create', compact('datos'));
     }
 
     /**
@@ -36,7 +86,28 @@ class EvaluacionController extends Controller
      */
     public function store(StoreEvaluacionRequest $request)
     {
-        //
+        $this->validate($request, [
+            'curso_id'  =>  'required|max:250',
+            'usuario_id'  =>  'required|max:250',
+            'evaluacion_titulo'  =>  'required|max:250',
+            'evaluacion_fecha'  =>  'required|max:12',
+            'evaluacion_detalle'  =>  'required|max:250',
+            'estado' => 'required|max:1'
+        ]);
+
+        $evaluacion = new Evaluacion;
+        $evaluacion->curso_id = $request->curso_id;
+        $evaluacion->docente_id = $request->usuario_id;
+        $evaluacion->titulo = $request->evaluacion_titulo;
+        $evaluacion->detalle = $request->evaluacion_detalle;
+        $evaluacion->fecha = $request->evaluacion_fecha;
+        $evaluacion->estado = $request->estado;
+
+        $idusuario = $request->usuario_id;
+        $idcurso = $request->curso_id;
+
+        $evaluacion->save();    
+        return redirect()->route('evaluacionIndex',[$idusuario, $idcurso]);
     }
 
     /**
@@ -56,9 +127,28 @@ class EvaluacionController extends Controller
      * @param  \App\Models\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Evaluacion $evaluacion)
+    public function edit($id)
     {
-        //
+        $datos = Evaluacion::join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('users','users.id','=','evaluacions.docente_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('evaluacions.id',$id)
+                    ->get(['evaluacions.id as evaluacion_id'
+                    ,'evaluacions.titulo as evaluacion_titulo'
+                    ,'evaluacions.detalle as evaluacion_detalle'
+                    ,'evaluacions.fecha as evaluacion_fecha'
+                    ,'evaluacions.estado as evaluacion_estado'
+                    ,'cursos.id as curso_id'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.grado as curso_grado'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ]);
+        return view('backend.evaluacion.edit', compact('datos'));             
     }
 
     /**
@@ -68,9 +158,16 @@ class EvaluacionController extends Controller
      * @param  \App\Models\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEvaluacionRequest $request, Evaluacion $evaluacion)
+    public function update(Request $request, $id, $idusuario, $idcurso)
     {
-        //
+        $evaluacion           = Evaluacion::find($id);
+        $evaluacion->titulo = $request->evaluacion_titulo;
+        $evaluacion->detalle = $request->evaluacion_detalle;
+        $evaluacion->fecha = $request->evaluacion_fecha;
+        $evaluacion->estado = $request->evaluacion_estado;
+        
+        $evaluacion->save();
+        return redirect()->route('evaluacionIndex',[$idusuario,$idcurso]);
     }
 
     /**
