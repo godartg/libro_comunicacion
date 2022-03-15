@@ -8,7 +8,7 @@
             <div class="sparkline16-list">
                 <div class="sparkline16-hd">
                     <div class="main-sparkline16-hd">
-                        <h1>Gestion de Evaluación</h1>
+                        <h1>Gestion de Pregunta</h1>
                     </div>
                 </div>
                 <div class="sparkline16-graph">
@@ -21,13 +21,12 @@
                     <div class="review-content-section">
                       <div id="dropzone1" class="pro-ad">
                         
-                      <form action="{{route('evaluacionUpdate', [$datos[0]->evaluacion_id, $datos[0]->usuario_id, $datos[0]->curso_id])}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
+                      <form action="{{route('preguntaStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
                         {{csrf_field()}}
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                            <input type="hidden" name="curso_id" class="form-control" placeholder="ID curso"  value="{{$datos[0]->curso_id}}">
-                            <input type="hidden" name="usuario_id" class="form-control" placeholder="ID usuario"  value="{{$datos[0]->usuario_id}}">
+                            <input type="hidden" name="evaluacion_id" class="form-control" placeholder="ID evaluacion"  value="{{$datos[0]->evaluacion_id}}">
 
                             <div class="form-group">
                             <label for="usuario_nombre">Docente:</label>
@@ -46,36 +45,36 @@
 
                             <div class="form-group">
                               <label for="evaluacion_titulo">Título de evaluación:</label>
-                              <input type="text" name="evaluacion_titulo" class="form-control" placeholder="Título de evaluación" value="{{$datos[0]->evaluacion_titulo}}">
+                              <input type="text" name="evaluacion_titulo" class="form-control" placeholder="Título de evaluación" disabled="disabled" value="{{$datos[0]->evaluacion_titulo}}">
                             </div>
 
                             <div class="form-group">
                               <label for="evaluacion_fecha">Fecha de evaluación:</label>
-                              <input type="date" name="evaluacion_fecha" class="form-control"  value="{{date('Y-m-d', strtotime($datos[0]->evaluacion_fecha))}}">
+                              <input type="date" name="evaluacion_fecha" class="form-control" placeholder="Fecha" disabled="disabled" value="{{date('Y-m-d', strtotime($datos[0]->evaluacion_fecha))}}">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="evaluacion_detalle">Detalle de la evaluación:</label>
+                              <textarea name="evaluacion_detalle" placeholder="Escribir el detalle de la evaluación" disabled="disabled" >{{$datos[0]->evaluacion_detalle}}</textarea>
                             </div>
                             
                           </div>
 
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                              <label for="evaluacion_detalle">Detalle de la evaluación:</label>
-                              <textarea name="evaluacion_detalle" placeholder="Escribir el detalle de la evaluación">{{$datos[0]->evaluacion_detalle}}</textarea>
+                              <label for="pregunta_detalle">Detalle de la pregunta:</label>
+                              <textarea name="pregunta_detalle" placeholder="Escribir el detalle de la pregunta"></textarea>
                             </div>
                             <div class="form-group">
-                            <label for="estado">Estado</label><br>
-                                        <input type="radio" class="form-check-input" id="estado1" name="evaluacion_estado" value="1" 
-                                        @if($datos[0]->evaluacion_estado)
-                                            checked
-                                        @endif
-                                        >
-                                        <label for="estado1">Activo</label><br>
-                                        
-                                        <input type="radio" class="form-check-input" id="estado2" name="evaluacion_estado" value="0"
-                                        @if(!$datos[0]->evaluacion_estado)
-                                            checked
-                                        @endif
-                                        >
-                                        <label for="estado2">Inactivo</label>
+                              <label for="pregunta_puntaje">Puntaje:</label>
+                              <input type="text" name="pregunta_puntaje" class="form-control" placeholder="Puntaje">
+                            </div>
+                            <div class="form-group">
+                              <label for="estado">Estado:</label><br>
+                              <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" checked>
+                              <label for="estado1">Activo</label><br>
+                              <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
+                              <label for="estado2">Inactivo</label>
                             </div>
 
                                          

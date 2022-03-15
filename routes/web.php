@@ -9,7 +9,7 @@ use App\Http\Controllers\SalonController;
 use App\Http\Controllers\ListaAlumnoController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EvaluacionController;
-
+use App\Http\Controllers\PreguntaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('update/{id}/{docente}/{curso}', [EvaluacionController::class, 'update'])->name('evaluacionUpdate');
     });
     Route::group(['prefix' => 'pregunta/'], function(){
-        Route::get('index/{docente}/{curso}', [PreguntaController::class, 'index'])->name('preguntaIndex');
+        Route::get('index/{id}', [PreguntaController::class, 'index'])->name('preguntaIndex');
         Route::get('create/{id}', [PreguntaController::class, 'create'])->name('preguntaCreate');
         Route::post('store', [PreguntaController::class, 'store'])->name('preguntaStore');
         Route::get('edit/{id}', [PreguntaController::class, 'edit'])->name('preguntaEdit');

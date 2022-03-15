@@ -51,8 +51,8 @@
                     </td>
                     <td>
                       <a href="{{route('evaluacionEdit', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
-                      <a href="" class="btn btn-primary btn-sm">Preguntas <i class="fa fa-edit"></i>
-                      <a href="" class="btn btn-primary btn-sm">Notas <i class="fa fa-edit"></i>
+                      <a href="{{route('preguntaIndex', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Preguntas <i class="fa fa-edit"></i>
+                      <a href="" class="btn btn-primary btn-sm">Ver Notas <i class="fa fa-edit"></i>
                     </td>
                   </tr>
                  @endforeach
