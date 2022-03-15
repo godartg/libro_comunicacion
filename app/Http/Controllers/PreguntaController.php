@@ -5,6 +5,7 @@ use App\Models\Evaluacion;
 use App\Models\Pregunta;
 use App\Http\Requests\StorePreguntaRequest;
 use App\Http\Requests\UpdatePreguntaRequest;
+use Illuminate\Http\Request;
 
 class PreguntaController extends Controller
 {
@@ -126,9 +127,31 @@ class PreguntaController extends Controller
      * @param  \App\Models\Pregunta  $pregunta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pregunta $pregunta)
+    public function edit($id)
     {
-        //
+        $pregunta = Pregunta::join('evaluacions','evaluacions.id','=','preguntas.evaluacion_id')
+                    ->join('users','users.id','=','evaluacions.docente_id')
+                    ->join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('preguntas.id',$id)
+                    ->get(['evaluacions.id as evaluacion_id'
+                    ,'evaluacions.titulo as evaluacion_titulo'
+                    ,'evaluacions.detalle as evaluacion_detalle'
+                    ,'evaluacions.fecha as evaluacion_fecha'
+                    ,'preguntas.id as pregunta_id'
+                    ,'preguntas.detalle as pregunta_detalle'
+                    ,'preguntas.puntaje as pregunta_puntaje'
+                    ,'preguntas.estado as pregunta_estado'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'cursos.grado as curso_grado'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ]);
+        return view('backend.pregunta.edit', compact('pregunta'));
     }
 
     /**
@@ -138,9 +161,15 @@ class PreguntaController extends Controller
      * @param  \App\Models\Pregunta  $pregunta
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePreguntaRequest $request, Pregunta $pregunta)
+    public function update(Request $request, $id, $idevaluacion)
     {
-        //
+        $pregunta           = Pregunta::find($id);
+        $pregunta->detalle = $request->pregunta_detalle;
+        $pregunta->puntaje = $request->pregunta_puntaje;
+        $pregunta->estado = $request->pregunta_estado;
+        
+        $pregunta->save();
+        return redirect()->route('preguntaIndex',$idevaluacion);
     }
 
     /**

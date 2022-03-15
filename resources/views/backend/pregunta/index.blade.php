@@ -46,7 +46,7 @@
                       @endif
                     </td>
                     <td>
-                      <a href="" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
+                      <a href="{{route('preguntaEdit', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
                       <a href="" class="btn btn-primary btn-sm">Alternativas <i class="fa fa-edit"></i>
                     </td>
                   </tr>
