@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Pregunta;
 use App\Models\Alternativa;
 use App\Http\Requests\StoreAlternativaRequest;
 use App\Http\Requests\UpdateAlternativaRequest;
@@ -13,9 +13,53 @@ class AlternativaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $alternativas = Alternativa::join('preguntas','preguntas.id','=','alternativas.pregunta_id')
+                    ->join('evaluacions','evaluacions.id','=','preguntas.evaluacion_id')
+                    ->join('users','users.id','=','evaluacions.docente_id')
+                    ->join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('preguntas.id',$id)
+                    ->get(['evaluacions.id as evaluacion_id'
+                    ,'evaluacions.titulo as evaluacion_titulo'
+                    ,'evaluacions.detalle as evaluacion_detalle'
+                    ,'preguntas.id as pregunta_id'
+                    ,'preguntas.detalle as pregunta_detalle'
+                    ,'preguntas.puntaje as pregunta_puntaje'
+                    ,'preguntas.estado as pregunta_estado'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ,'alternativas.detalle as alternativa_detalle'
+                    ,'alternativas.respuesta as alternativa_respuesta'
+                    ,'alternativas.estado as alternativa_estado'
+                    ]);
+
+        $datos = Pregunta::join('evaluacions','evaluacions.id','=','preguntas.evaluacion_id')
+                    ->join('users','users.id','=','evaluacions.docente_id')
+                    ->join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->where('preguntas.id',$id)
+                    ->get(['evaluacions.id as evaluacion_id'
+                    ,'evaluacions.titulo as evaluacion_titulo'
+                    ,'evaluacions.detalle as evaluacion_detalle'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ,'preguntas.detalle as pregunta_detalle'
+                    ]);
+  
+        
+        return view('backend.alternativa.index', compact('alternativas','datos'));
     }
 
     /**

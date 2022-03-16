@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="product-status-wrap"> 
-            <h3>LISTA DE PREGUNTAS</h3>
+            <h3>LISTA DE ALTERNATIVAS</h3>
             <h4>
               @if ($datos->count())
               Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
@@ -23,31 +23,30 @@
                   <tr>
                     <th data-field="state" data-checkbox="true"></th>
                     <th data-field="id">N°</th>
-                    <th data-field="titulo">Pregunta</th>
-                    <th data-field="titulo">Puntaje</th>
+                    <th data-field="titulo">Detalle de alternativa</th>
+                    <th data-field="titulo">Es respuesta</th>
                     <th data-field="titulo">Evaluación</th>
                     <th data-field="titulo">Curso</th>
                     <th data-field="estado">Estado</th>
                     <th data-field="action">Opciones</th>
                   </tr>
-                  @foreach($preguntas as $pregunta)
+                  @foreach($alternativas as $alternativa)
                   <tr>
                     <td></td>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$pregunta->pregunta_detalle}}</td>
-                    <td>{{$pregunta->pregunta_puntaje}}</td>
-                    <td>{{$pregunta->evaluacion_titulo}}</td>
-                    <td>{{$pregunta->curso_nombre}}</td>
+                    <td>{{$alternativa->pregunta_detalle}}</td>
+                    <td>{{$alternativa->pregunta_respuesta}}</td>
+                    <td>{{$alternativa->evaluacion_titulo}}</td>
+                    <td>{{$alternativa->curso_nombre}}</td>
                     <td>
-                      @if($pregunta->pregunta_estado)
+                      @if($alternativa->alternativa_estado)
                         Activo
                       @else
                         Inactivo
                       @endif
                     </td>
                     <td>
-                      <a href="{{route('preguntaEdit', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
-                      <a href="{{route('alternativaIndex', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Alternativas <i class="fa fa-edit"></i>
+                      <a href="" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
                     </td>
                   </tr>
                  @endforeach
@@ -130,7 +129,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                 @if(Auth::user()->hasRole('docente'))
-                                  <a href="{{ route('preguntaCreate',$datos[0]->evaluacion_id) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
+                                  <a href="" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
                                 @endif
                               </div>
                           </div>
