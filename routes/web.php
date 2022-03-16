@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
     Route::group(['prefix' => 'listaAlumno/'], function(){
         Route::get('index/{id}', [ListaAlumnoController::class, 'index'])->name('listaAlumnoIndex');
-        Route::get('create', [ListaAlumnoController::class, 'create'])->name('listaAlumnoCreate');
+        Route::get('{salon_id}/create', [ListaAlumnoController::class, 'create'])->name('listaAlumnoCreate');
         Route::post('store', [ListaAlumnoController::class, 'store'])->name('listaAlumnoStore');
         Route::get('edit/{id}', [ListaAlumnoController::class, 'edit'])->name('listaAlumnoEdit');
         Route::post('update/{id}', [ListaAlumnoController::class, 'update'])->name('listaAlumnoUpdate');

@@ -9,7 +9,7 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>Projects <span class="table-project-n">Data</span> Table</h1>
+                        <h1>Salones</h1>
                     </div>
                 </div>
 
@@ -25,25 +25,23 @@
                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                             <thead>
                               <tr>
-                                <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">ID</th>
                                 <th data-field="docente">Docente</th>
-                                <th data-field="grado">Grado</th>
                                 <th data-field="seccion">Sección</th>
+                                <th data-field="grado">Grado</th>
                                 <th data-field="nivel">Nivel</th>
                                 <th data-field="fecha_nacimiento">fecha</th>
-                                <th data-field="created_at">estado</th>
+                                <th data-field="estado">estado</th>
                                 <th data-field="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach($salons as $salon)
                                 <tr>
-                                    <td></td>
                                   <td>{{$loop->index+1}}</td>
                                   <td>{{$salon->name.' '.$salon->last_name}}</td>
-                                  <td>{{$salon->grado}}</td>
                                   <td>{{$salon->seccion}}</td>
+                                  <td>{{$salon->grado}}</td>
                                   <td>{{$salon->nivel}}</td>
                                   <td>
                                     {{$salon->fecha_creacion}}
@@ -55,10 +53,9 @@
                                         Desactivo
                                       @endif
                                   </td>
-                                  <td>{{$salon->created_at}}</td>
                                   <td>
                                     @if(Auth::user()->isAbleTo('salon-update'))
-                                    <a href="{{route('salonEdit', 'salon')}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('salonEdit', $salon->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                     @endif
                                     @if(Auth::user()->isAbleTo('salon-update'))
                                     <a href="{{route('listaAlumnoIndex', $salon->id)}}" class="btn btn-primary btn-sm">Lista de alumnos</a>
@@ -126,7 +123,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                 @if(Auth::user()->isAbleTo('salon-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
+                                  <a href="{{ route('salonCreate', $salon->id) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo salon</a>
                                 @endif
                               </div>
                           </div>

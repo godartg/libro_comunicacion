@@ -19,31 +19,73 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" name="nombre" value="{{$curso->nombre}}" class="form-control">
+                                      <label for="nombre">Nombre</label>
+                                      <input type="text" name="nombre" value="{{$curso->nombre}}" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="last_name">Grado</label>
-                                        <input type="text" name="last_name" value="{{$curso->grado}}" class="form-control" >
+                                      <label for="Grado">Grado</label>
+                                      <select data-placeholder="grado" class="chosen-select" name="grado" tabindex="-1">
+											                    <option value="1"
+                                          @if($curso->grado==1)
+                                            selected="selected"
+                                          @endif
+                                          >primer grado</option>
+											                    <option value="2"
+                                          @if($curso->grado==2)
+                                            selected="selected"
+                                          @endif
+                                          >segundo grado</option>
+											                    <option value="3"
+                                          @if($curso->grado==3)
+                                            selected="selected"
+                                          @endif
+                                          >tercer grado</option>
+											                    <option value="4"
+                                          @if($curso->grado==4)
+                                            selected="selected"
+                                          @endif
+                                          >cuarto grado</option>
+                                          <option value="5"
+                                          @if($curso->grado==5)
+                                            selected="selected"
+                                          @endif
+                                          >quinto grado</option>
+                                          <option value="6"
+                                          @if($curso->grado==6)
+                                            selected="selected"
+                                          @endif
+                                          >sexto grado</option>
+										                  </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Nivel</label>
-                                        <input type="text" name="email" value="{{$curso->nivel}}" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="estado">Estado</label><br>
-                                        <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
-                                        @if($curso->estado)
-                                            checked
+                                      <label for="nivel">Nivel</label>
+                                      <select data-placeholder="Nivel" class="chosen-select" name="nivel" tabindex="-1">
+										                    <option value="1"
+                                        @if($curso->nivel==1)
+                                          selected="selected"
                                         @endif
-                                        >
-                                        <label for="estado1">Activo</label><br>
-                                        <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
-                                        @if(!$curso->estado)
-                                            checked
+                                        >Primaria</option>
+										                    <option value="2"
+                                        @if($curso->nivel==2)
+                                          selected="selected"
                                         @endif
-                                        >
-                                        <label for="estado2">Desactivado</label>
+                                        >Secundaria</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="estado">Estado</label><br>
+                                      <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" 
+                                      @if($curso->estado)
+                                          checked
+                                      @endif
+                                      >
+                                      <label for="estado1">Activo</label><br>
+                                      <input type="radio" class="form-check-input" id="estado2" name="estado" value="0"
+                                      @if(!$curso->estado)
+                                          checked
+                                      @endif
+                                      >
+                                      <label for="estado2">Desactivado</label>
                                     </div>
                                 </div>
                             </div>

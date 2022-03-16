@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Salon;
+use App\Models\User;
 use App\Http\Requests\StoreSalonRequest;
 use App\Http\Requests\UpdateSalonRequest;
 
@@ -26,7 +27,8 @@ class SalonController extends Controller
      */
     public function create()
     {
-        return view('backend.salon.create', compact('salons'));
+        $docentes = User::whereRoleIs('docente')->get();
+        return view('backend.salon.create', compact('docentes'));
     }
 
     /**
@@ -37,12 +39,14 @@ class SalonController extends Controller
      */
     public function store(StoreSalonRequest $request)
     {
+        $salon = Salon::find($id);
         $salon = new Salon;
         $salon->docente_id = $request->docente_id;
         $salon->grado = $request->grado;
         $salon->seccion = $request->seccion;
-        $salon->fecha_creacion = $request->fecha_creacion;
+        $salon->nivel = $request->nivel;
         $salon->estado     = $request->estado;
+        $salon->save();
         return redirect()->route('salonIndex');
     }
 
@@ -52,9 +56,11 @@ class SalonController extends Controller
      * @param  \App\Models\Salon  $salon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Salon $salon)
+    public function edit($id)
     {
-        return view('backend.salon.edit', compact('salon'));
+        $salon = Salon::find($id);
+        $docentes = User::whereRoleIs('docente')->get();
+        return view('backend.salon.edit', compact('salon', 'docentes'));
     }
 
     /**
@@ -64,13 +70,15 @@ class SalonController extends Controller
      * @param  \App\Models\Salon  $salon
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSalonRequest $request, Salon $salon)
+    public function update(UpdateSalonRequest $request, $id)
     {
+        $salon = Salon::find($id);
         $salon->docente_id = $request->docente_id;
         $salon->grado = $request->grado;
         $salon->seccion = $request->seccion;
-        $salon->fecha_creacion = $request->fecha_creacion;
         $salon->estado = $request->estado;
+        $salon->nivel = $request->nivel;
+        $salon->save();
         return redirect()->route('salonIndex');
     }
 

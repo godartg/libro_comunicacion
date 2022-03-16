@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                                    <input type="date" name="fecha_nacimiento" class="form-control" min="1920-01-01" max="2019-12-31">
+                                    <input type="date" name="fecha_nacimiento" class="form-control" min="1920-01-01">
                                 </div>
                                 <div class="form-group">
                                     <label for="sexo">Sexo</label><br>

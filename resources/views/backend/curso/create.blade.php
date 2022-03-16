@@ -8,7 +8,7 @@
             <div class="sparkline16-list">
                 <div class="sparkline16-hd">
                     <div class="main-sparkline16-hd">
-                        <h1>Crear usuario</h1>
+                        <h1>Crear curso</h1>
                     </div>
                 </div>
                 <div class="sparkline16-graph">
@@ -20,40 +20,35 @@
                     <form action="{{route('cursoStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
                         {{csrf_field()}}
                         <div class="row">
-                            <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-12 ">
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                                  <label for="nombre">Nombre</label>
+                                  <input type="text" name="nombre" class="form-control" placeholder="Nombre">
                                 </div>
                                 <div class="form-group">
-                                    <div class="chosen-select-single mg-b-20">
-                                        <label>Grado</label>
-                                        <select data-placeholder="grado" class="chosen-select" name="grado" tabindex="-1">
-											<option value="1">primer grado</option>
-											<option value="2">segundo grado</option>
-											<option value="3">tercer grado</option>
-											<option value="4">cuarto grado</option>
-                                            <option value="5">quinto grado</option>
-                                            <option value="6">sexto grado</option>
-										</select>
-                                    </div>
-                                </div>
+                                  <label for="grado">Grado</label>
+                                  <select data-placeholder="grado" class="chosen-select" name="grado" tabindex="-1">
+											              <option value="1">primer grado</option>
+											              <option value="2">segundo grado</option>
+											              <option value="3">tercer grado</option>
+											              <option value="4">cuarto grado</option>
+                                    <option value="5">quinto grado</option>
+                                    <option value="6">sexto grado</option>
+										              </select>
                                 </div>
                                 <div class="form-group">
-                                    <div class="chosen-select-single mg-b-20">
-                                        <label>Nivel</label>
-                                        <select data-placeholder="Nivel" class="chosen-select" name="nivel" tabindex="-1">
-										    <option value="1">Primaria</option>
-										    <option value="2">Secundaria</option>
-                                        </select>
-                                    </div>    
+                                  <label for="nivel">Nivel</label>
+                                  <select data-placeholder="Nivel" class="chosen-select" name="nivel" tabindex="-1">
+										                <option value="1">Primaria</option>
+										                <option value="2">Secundaria</option>
+                                  </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Estado</label><br>
-                                    <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" >
-                                    <label for="estado1">Activo</label><br>
-                                    <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
-                                    <label for="estado2">Desactivado</label>
+                                  <label for="password">Estado</label><br>
+                                  <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" >
+                                  <label for="estado1">Activo</label><br>
+                                  <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
+                                  <label for="estado2">Desactivado</label>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +61,19 @@
         </div>
     </div>
 </div>
-
+@endsection
+@section('footer')
+<div class="footer-copyright-area">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="footer-copy-right">
+                  <p>Copyright © {{now()->year}}. All rights reserved. Template by <a href="https://colorlib.com/wp/templates/">Colorlib</a></p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 @endsection
 @push('styles')
 <!-- favicon
@@ -215,7 +222,7 @@
                                       <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li>
-                                    <a title="Usuarios" href="{{route('usuarioIndex')}}"><span class="bread-blod">Usuarios</span></a>
+                                    <a title="Usuarios" href="{{route('cursoIndex')}}"><span class="bread-blod">Cursos</span></a>
                                   </li>
                               </ul>
                           </div>

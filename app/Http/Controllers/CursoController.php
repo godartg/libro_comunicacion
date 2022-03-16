@@ -62,7 +62,12 @@ class CursoController extends Controller
      */
     public function store(StoreCursoRequest $request)
     {
-        Curso::create($request->all());
+        $curso = new Curso;
+        $curso->nombre = $request->nombre;
+        $curso->grado = $request->grado;
+        $curso->nivel = $request->nivel;
+        $curso->estado = $request->estado;
+        $curso->save();
         return redirect()->route('cursoIndex')->with('success', 'Curso creado exitoso');
     }
 
@@ -86,7 +91,11 @@ class CursoController extends Controller
      */
     public function update(UpdateCursoRequest $request, Curso $curso)
     {
-        $curso->update($request->all());
+        $curso->nombre = $request->nombre;
+        $curso->grado = $request->grado;
+        $curso->nivel = $request->nivel;
+        $curso->estado = $request->estado;
+        $curso->save();
         return redirect()->route('cursoIndex')->with('success', 'Curso updated successfully');
     }
 }

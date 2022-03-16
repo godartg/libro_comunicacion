@@ -39,9 +39,6 @@
     <!-- educate icon CSS
 		============================================ -->
     <link rel="stylesheet" href="{{ asset('/backend/css/educate-custon-icon.css') }}">
-    <!-- morrisjs CSS
-		============================================ -->
-    <link rel="stylesheet" href="{{ asset('/backend/css/morrisjs/morris.css') }}">
     <!-- mCustomScrollbar CSS
 		============================================ -->
     <link rel="stylesheet" href="{{ asset('/backend/css/scrollbar/jquery.mCustomScrollbar.min.css') }}">
@@ -73,13 +70,12 @@
         <nav id="sidebar" class="">
             <div class="sidebar-header">
                 <a href="{{route('home')}}"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}" alt="" /></a>
-                <strong><a href="{{route('home')}}"><img src="{{ asset('backend/img/logo/logosn.png') }}" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                     @if(Auth::user()->hasRole('administrador'))
-                      <li class="active">
+                      <li>
                         <a aria-expanded="false" href="{{ route('usuarioIndex')}}">
 						  <span class="educate-icon educate-home icon-wrap sub-icon-mg" aria-hidden="true"></span>
 						  <span class="mini-click-non">Usuarios</span>
@@ -88,7 +84,7 @@
                     @endif
                     @if(Auth::user()->hasRole('administrador'))
                       <li>
-                          <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos (Administrador)</span></a>
+                          <a aria-expanded="false" href="{{ route('cursoIndex')}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos</span></a>
                       </li>
                     @endif
                       @if(Auth::user()->hasRole('docente'))
@@ -812,11 +808,6 @@
 		============================================ -->
     <script src="{{ asset('/backend/js/metisMenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('/backend/js/metisMenu/metisMenu-active.js') }}"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="{{ asset('/backend/js/morrisjs/raphael-min.js') }}"></script>
-    <script src="{{ asset('/backend/js/morrisjs/morris.js') }}"></script>
-    <script src="{{ asset('/backend/js/morrisjs/morris-active.js') }}"></script>
     <!-- morrisjs JS
 		============================================ -->
     <script src="{{ asset('/backend/js/sparkline/jquery.sparkline.min.js') }}"></script>

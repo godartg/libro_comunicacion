@@ -8,11 +8,14 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
-                    <div class="main-sparkline13-hd">
-                        <h1>Projects <span class="table-project-n">Data</span> Table</h1>
-                    </div>
+                  <div class="main-sparkline13-hd">
+                    <h1>Lista de alumnos {{$salon->grado}}° {{$salon->seccion}} {{$salon->nivel}}</h1>
+                  </div>
+                  <div class="main-sparkline13-hd">
+                    <h1>Docente: {{$salon->docente_nombre}} {{$salon->docente_apellido}}</h1>
+                    <h1>{{$listaAlumnos->count()}} Alumnos</h1>
+                  </div>
                 </div>
-
                 <div class="sparkline13-graph">
                     <div class="datatable-dashv1-list custom-datatable-overright">
                         @if (session('status'))
@@ -25,19 +28,17 @@
                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                             <thead>
                               <tr>
-                                <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">ID</th>
                                 <th data-field="dni">DNI</th>
                                 <th data-field="alumno">Alumno</th>
                                 <th data-field="estado">Estado</th>
-                                <th data-field="created_at">estado</th>
+                                <th data-field="created_at">Creado</th>
                                 <th data-field="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach($listaAlumnos as $listaAlumno)
                                 <tr>
-                                    <td></td>
                                   <td>{{$loop->index+1}}</td>
                                   <td>{{$listaAlumno->dni}}</td>
                                   <td>{{$listaAlumno->name.' '.$listaAlumno->last_name}}</td>
@@ -51,7 +52,7 @@
                                   <td>{{$listaAlumno->created_at}}</td>
                                   <td>
                                     @if(Auth::user()->isAbleTo('salon-update'))
-                                    <a href="{{route('salonEdit', 'listaAlumno')}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('listaAlumnoEdit', $listaAlumno->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                     @endif
                                   </td>
                                 </tr>
@@ -99,7 +100,6 @@
     <script src="{{ asset('backend/js/data-table/bootstrap-table-resizable.js')}}"></script>
     <script src="{{ asset('backend/js/data-table/colResizable-1.5.source.js')}}"></script>
     <script src="{{ asset('backend/js/data-table/bootstrap-table-export.js')}}"></script>
-
 @endpush
 
 
@@ -115,8 +115,8 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('salon-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
+                                @if(Auth::user()->isAbleTo('lista_alumno-create'))
+                                  <a href="{{ route('listaAlumnoCreate', $salon->salon_id) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Agregar estudiante</a>
                                 @endif
                               </div>
                           </div>
@@ -124,6 +124,9 @@
                               <ul class="breadcome-menu">
                                   <li>
                                     <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
+                                  </li>
+                                  <li>
+                                    <a title="Salones" href="{{route('salonIndex')}}"><span class="bread-blod">Salones</span></a>
                                   </li>
                               </ul>
                           </div>
