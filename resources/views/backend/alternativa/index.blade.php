@@ -12,6 +12,7 @@
               Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
               <br>Curso: {{$datos[0]->curso_nombre}}
               <br>Evaluación: {{$datos[0]->evaluacion_titulo}}
+              <br>Pregunta: {{$datos[0]->pregunta_detalle}}
               @else
               El salon esta desactivado
               @endif
@@ -34,8 +35,14 @@
                   <tr>
                     <td></td>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$alternativa->pregunta_detalle}}</td>
-                    <td>{{$alternativa->pregunta_respuesta}}</td>
+                    <td>{{$alternativa->alternativa_detalle}}</td>
+                    <td>
+                      @if($alternativa->alternativa_respuesta)
+                        <span class="pd-setting">Si</span>
+                      @else
+                        <span class="ds-setting">No</span>
+                      @endif
+                    </td>
                     <td>{{$alternativa->evaluacion_titulo}}</td>
                     <td>{{$alternativa->curso_nombre}}</td>
                     <td>
@@ -46,7 +53,7 @@
                       @endif
                     </td>
                     <td>
-                      <a href="" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
+                      <a href="{{route('alternativaEdit', $alternativa->alternativa_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
                     </td>
                   </tr>
                  @endforeach
@@ -129,7 +136,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                 @if(Auth::user()->hasRole('docente'))
-                                  <a href="" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
+                                  <a href="{{route('alternativaCreate',$datos[0]->pregunta_id)}}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
                                 @endif
                               </div>
                           </div>
