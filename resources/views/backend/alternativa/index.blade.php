@@ -6,45 +6,57 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="product-status-wrap"> 
-            <h3>LISTA DE CURSOS (DOCENTE)</h3>
+            <h3>LISTA DE ALTERNATIVAS</h3>
             <h4>
-            @if ($salon->count())
-              Salon: {{$salon[0]->grado}}°{{strtoupper($salon[0]->seccion)}} - {{$salon[0]->nivel}}
-            @else
+              @if ($datos->count())
+              Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
+              <br>Curso: {{$datos[0]->curso_nombre}}
+              <br>Evaluación: {{$datos[0]->evaluacion_titulo}}
+              <br>Pregunta: {{$datos[0]->pregunta_detalle}}
+              @else
               El salon esta desactivado
-            @endif
+              @endif
             </h4>
             <div class="asset-inner">
               <!--TABLA-->
               <table>
                 <tbody>
                   <tr>
-                    <th>N°</th>
-                    <th>Nombre</th>
-                    <th>Grado</th>
-                    <th>Nivel</th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="id">N°</th>
+                    <th data-field="titulo">Detalle de alternativa</th>
+                    <th data-field="titulo">Es respuesta</th>
+                    <th data-field="titulo">Evaluación</th>
+                    <th data-field="titulo">Curso</th>
+                    <th data-field="estado">Estado</th>
+                    <th data-field="action">Opciones</th>
                   </tr>
-                  @foreach($cursos as $curso)
-                    <tr>
-                      <td>{{$loop->index+1}}</td>
-                      <td>{{$curso->nombre}}</td>
-                      <td>{{$curso->grado}}</td>
-                      <td>{{$curso->nivel}}</td>
-                      <td>
-                        @if($curso->estado_salon)
-                          Activo
-                        @else
-                          Inactivo Activo
-                        @endif
-                      </td>
-                      <td>
-                        <a href="{{route('materialIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Material de Apoyo <i class="fa fa-edit"></i>
-                        <a href="{{route('evaluacionIndex', [Auth::user()->id, $curso->id])}}" class="btn btn-primary btn-sm">Evaluaciones <i class="fa fa-edit"></i>
-                      </td>
-                    </tr>
-                  @endforeach
+                  @foreach($alternativas as $alternativa)
+                  <tr>
+                    <td></td>
+                    <td>{{$loop->index+1}}</td>
+                    <td>{{$alternativa->alternativa_detalle}}</td>
+                    <td>
+                      @if($alternativa->alternativa_respuesta)
+                        <span class="pd-setting">Si</span>
+                      @else
+                        <span class="ds-setting">No</span>
+                      @endif
+                    </td>
+                    <td>{{$alternativa->evaluacion_titulo}}</td>
+                    <td>{{$alternativa->curso_nombre}}</td>
+                    <td>
+                      @if($alternativa->alternativa_estado)
+                        Activo
+                      @else
+                        Inactivo
+                      @endif
+                    </td>
+                    <td>
+                      <a href="{{route('alternativaEdit', $alternativa->alternativa_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
+                    </td>
+                  </tr>
+                 @endforeach
                 </tbody>
               </table>
               <!--END TABLA-->                          
@@ -63,6 +75,15 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 @endsection
 
@@ -114,8 +135,8 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('user-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
+                                @if(Auth::user()->hasRole('docente'))
+                                  <a href="{{route('alternativaCreate',$datos[0]->pregunta_id)}}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Nuevo</a>
                                 @endif
                               </div>
                           </div>
@@ -124,8 +145,6 @@
                                   <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                   </li>
                                   <li><span class="bread-blod">Dashboard V.1</span>
-                                  <li>
-                                    <a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                               </ul>
                           </div>

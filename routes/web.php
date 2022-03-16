@@ -8,7 +8,9 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\SalonController;
 use App\Http\Controllers\ListaAlumnoController;
 use App\Http\Controllers\ActividadController;
-
+use App\Http\Controllers\EvaluacionController;
+use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\AlternativaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +54,29 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('edit/{id}', [MaterialController::class, 'edit'])->name('materialEdit');
         Route::post('update/{id}/{docente}/{curso}', [MaterialController::class, 'update'])->name('materialUpdate');
     });
+    Route::group(['prefix' => 'evaluacion/'], function(){
+        Route::get('index/{docente}/{curso}', [EvaluacionController::class, 'index'])->name('evaluacionIndex');
+        Route::get('create/{id}', [EvaluacionController::class, 'create'])->name('evaluacionCreate');
+        Route::post('store', [EvaluacionController::class, 'store'])->name('evaluacionStore');
+        Route::get('edit/{id}', [EvaluacionController::class, 'edit'])->name('evaluacionEdit');
+        Route::post('update/{id}/{docente}/{curso}', [EvaluacionController::class, 'update'])->name('evaluacionUpdate');
+    });
+    Route::group(['prefix' => 'pregunta/'], function(){
+        Route::get('index/{id}', [PreguntaController::class, 'index'])->name('preguntaIndex');
+        Route::get('create/{id}', [PreguntaController::class, 'create'])->name('preguntaCreate');
+        Route::post('store', [PreguntaController::class, 'store'])->name('preguntaStore');
+        Route::get('edit/{id}', [PreguntaController::class, 'edit'])->name('preguntaEdit');
+        Route::post('update/{id}/{evaluacion}', [PreguntaController::class, 'update'])->name('preguntaUpdate');
+    });
+
+    Route::group(['prefix' => 'alternativa/'], function(){
+        Route::get('index/{id}', [AlternativaController::class, 'index'])->name('alternativaIndex');
+        Route::get('create/{id}', [AlternativaController::class, 'create'])->name('alternativaCreate');
+        Route::post('store', [AlternativaController::class, 'store'])->name('alternativaStore');
+        Route::get('edit/{id}', [AlternativaController::class, 'edit'])->name('alternativaEdit');
+        Route::post('update/{id}/{pregunta}', [AlternativaController::class, 'update'])->name('alternativaUpdate');
+    });
+
     Route::group(['prefix' => 'unidad/'], function(){
         Route::get('index/{id}', [UnidadController::class, 'index'])->name('unidadIndex');
         Route::get('create/{id}', [UnidadController::class, 'create'])->name('unidadCreate');

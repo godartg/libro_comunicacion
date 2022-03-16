@@ -24,6 +24,7 @@
                 <tbody>
                   <tr>
                     <th>N°</th>
+                    <th>N° Actividad</th>
                     <th>Detalle de actividad</th>
                     <th>Página</th>
                     <th>Detalle de ayuda</th>
@@ -37,6 +38,7 @@
                   @foreach($actividades as $actividad)
                     <tr>
                       <td>{{$loop->index+1}}</td>
+                      <td>falta agregar N° de Act </td>
                       <td>{{$actividad->actividad_detalle}}</td>
                       <td>{{$actividad->actividad_pagina}}</td>
                       <td>{{$actividad->actividad_ayuda}}</td>
