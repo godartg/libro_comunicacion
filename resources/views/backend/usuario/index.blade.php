@@ -9,7 +9,7 @@
             <div class="sparkline13-list">
                 <div class="sparkline13-hd">
                     <div class="main-sparkline13-hd">
-                        <h1>Projects <span class="table-project-n">Data</span> Table</h1>
+                        <h1>Gestión de usuarios</h1>
                     </div>
                 </div>
 
@@ -21,11 +21,10 @@
                             </div>
                         @endif
                         
-                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                        <table id="table_datatable" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                             <thead>
                               <tr>
-                                <th data-field="state" data-checkbox="true"></th>
                                 <th data-field="id">ID</th>
                                 <th data-field="name">Nombre</th>
                                 <th data-field="last-name">Apellido</th>
@@ -34,13 +33,12 @@
                                 <th data-field="fecha_nacimiento">Fecha de nacimiento</th>
                                 <th data-field="sexo">Sexo</th>
                                 <th data-field="created_at">Creado en</th>
-                                <th data-field="action">Acciones</th>
+                                <th data-field="action" id="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
                               @foreach($users as $user)
                                 <tr>
-                                    <td></td>
                                   <td>{{$loop->index+1}}</td>
                                   <td>{{$user->name}}</td>
                                   <td>{{$user->last_name}}</td>
@@ -90,21 +88,49 @@
 @push('styles')
     <!-- normalize CSS
 	============================================ -->
-    <link rel="stylesheet" href="{{ asset('backend/css/data-table/bootstrap-table.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/css/data-table/bootstrap-editable.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/css/buttons.dataTables.min.css')}}">
 @endpush
 
 @push('scripts')
     <!-- data table JS
 		============================================ -->
-    <script src="{{ asset('backend/js/data-table/bootstrap-table.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/tableExport.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/data-table-active.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-editable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-editable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-resizable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/colResizable-1.5.source.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-export.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/jszip.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/buttons.html5.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/buttons.colVis.min.js')}}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#table_datatable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                'colvis'
+            ]
+        } );
+    } );
+    </script>
+
 
 @endpush
 
