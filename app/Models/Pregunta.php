@@ -14,4 +14,7 @@ class Pregunta extends Model
     public function alternativas(){
         return $this->hasMany(Alternativa::class);
     }
+    public function detalleEvaluacions(){
+        return $this->hasMany(detalleEvaluacions::class);
+    }
 }

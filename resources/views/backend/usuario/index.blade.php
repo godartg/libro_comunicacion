@@ -95,6 +95,7 @@
 @push('scripts')
     <!-- data table JS
 		============================================ -->
+    
     <script src="{{ asset('backend/js/datatable/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('backend/js/datatable/dataTables.buttons.min.js')}}"></script>
     <script src="{{ asset('backend/js/datatable/jszip.min.js')}}"></script>

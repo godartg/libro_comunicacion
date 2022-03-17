@@ -19,18 +19,18 @@
             <div class="add-product"><a href="#">Nuevo</a></div>
             <div class="asset-inner">
               <!--TABLA-->
-              <table>
-                <tbody>
+              <table id="table_datatable">
+                <thead>
                   <tr>
-                    <th data-field="state" data-checkbox="true"></th>
                     <th data-field="id">N°</th>
                     <th data-field="titulo">Título</th>
                     <th data-field="estado">Estado</th>
                     <th data-field="action">Opciones</th>
                   </tr>
+                </thead>
+                <tbody>
                   @foreach($materiales as $material)
                   <tr>
-                    <td></td>
                     <td>{{$loop->index+1}}</td>
                     <td>{{$material->titulo}}</td>
                     <td>
@@ -93,22 +93,48 @@
 @push('styles')
     <!-- normalize CSS
 	============================================ -->
-    <link rel="stylesheet" href="{{ asset('backend/css/data-table/bootstrap-table.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/css/data-table/bootstrap-editable.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/css/buttons.dataTables.min.css')}}">
 @endpush
 
 @push('scripts')
     <!-- data table JS
 		============================================ -->
-    <script src="{{ asset('backend/js/data-table/bootstrap-table.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/tableExport.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/data-table-active.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-editable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-editable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-resizable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/colResizable-1.5.source.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-export.js')}}"></script>
-
+    <script src="{{ asset('backend/js/datatable/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/jszip.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/buttons.html5.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/buttons.colVis.min.js')}}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#table_datatable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                'colvis'
+            ]
+        } );
+    } );
+    </script>
 @endpush
 
 

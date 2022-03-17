@@ -43,6 +43,9 @@ class User extends Authenticatable
     public function evaluacions(){
         return $this->hasMany(Evaluacion::class);
     }
+    public function detalleEvaluacions(){
+        return $this->hasMany(detalleEvaluacions::class);
+    }
     public function calificacions(){
         return $this->hasMany(Calificacion::class);
     }

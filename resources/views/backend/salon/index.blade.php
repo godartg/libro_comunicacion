@@ -21,8 +21,7 @@
                             </div>
                         @endif
                         
-                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                        <table id="table_datatable">
                             <thead>
                               <tr>
                                 <th data-field="id">ID</th>
@@ -30,9 +29,9 @@
                                 <th data-field="seccion">Sección</th>
                                 <th data-field="grado">Grado</th>
                                 <th data-field="nivel">Nivel</th>
-                                <th data-field="fecha_nacimiento">fecha</th>
-                                <th data-field="estado">estado</th>
-                                <th data-field="action">Acciones</th>
+                                <th data-field="fecha_nacimiento">Fecha</th>
+                                <th data-field="estado">Estado</th>
+                                <th data-field="action" id="action">Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -91,22 +90,48 @@
 @push('styles')
     <!-- normalize CSS
 	============================================ -->
-    <link rel="stylesheet" href="{{ asset('backend/css/data-table/bootstrap-table.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/css/data-table/bootstrap-editable.css')}}">
+  <link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('backend/css/buttons.dataTables.min.css')}}">
 @endpush
 
 @push('scripts')
     <!-- data table JS
 		============================================ -->
-    <script src="{{ asset('backend/js/data-table/bootstrap-table.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/tableExport.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/data-table-active.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-editable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-editable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-resizable.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/colResizable-1.5.source.js')}}"></script>
-    <script src="{{ asset('backend/js/data-table/bootstrap-table-export.js')}}"></script>
-
+    <script src="{{ asset('backend/js/datatable/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/jszip.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/buttons.html5.min.js')}}"></script>
+    <script src="{{ asset('backend/js/datatable/buttons.colVis.min.js')}}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#table_datatable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                      columns: ':visible(:not(:last-child))'
+                    }
+                },
+                'colvis'
+            ]
+        } );
+    } );
+    </script>
 @endpush
 
 

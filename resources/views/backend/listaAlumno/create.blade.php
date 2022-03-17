@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label for="dni">DNI</label>
                                     <input type="text" id="dni_alumno" name="dni" class="form-control" placeholder="DNI" >
-                                    <input type="hidden" id="alumno_id" >
+                                    <input type="hidden" id="alumno_id" name="alumno_id">
                                     <a class="btn btn-success" onclick="mostrarAlumno()">Buscar</a>
                                 </div>
                                 <div class="form-group">
