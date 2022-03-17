@@ -88,6 +88,7 @@ class AlternativaController extends Controller
                     ,'users.name as usuario_nombre'
                     ,'users.last_name as usuario_apellidos'
                     ,'salons.seccion as salon_seccion'
+                    ,'preguntas.id as pregunta_id'
                     ,'preguntas.detalle as pregunta_detalle'
                     ,'preguntas.puntaje as pregunta_puntaje'
                     ]);

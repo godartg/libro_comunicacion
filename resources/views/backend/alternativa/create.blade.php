@@ -26,7 +26,7 @@
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                            <input type="hidden" name="pregunta_id" class="form-control" placeholder="ID evaluacion"  value="{{$datos[0]->evaluacion_id}}">
+                            <input type="hidden" name="pregunta_id" class="form-control" placeholder="ID pregunta"  value="{{$datos[0]->pregunta_id}}">
 
                             <div class="form-group">
                             <label for="usuario_nombre">Docente:</label>
