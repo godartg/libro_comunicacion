@@ -20,4 +20,7 @@ class Evaluacion extends Model
     public function preguntas(){
         return $this->hasMany(Pregunta::class);
     }
+    public function detalleEvaluacions(){
+        return $this->hasMany(DetalleEvaluacion::class);
+    }
 }

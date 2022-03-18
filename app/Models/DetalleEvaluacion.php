@@ -11,6 +11,9 @@ class DetalleEvaluacion extends Model
     public function usuario(){
         return $this->belongsTo(User::class);
     }
+    public function evaluacion(){
+        return $this->belongsTo(Evaluacion::class);
+    }
     public function pregunta(){
         return $this->belongsTo(Pregunta::class);
     }
