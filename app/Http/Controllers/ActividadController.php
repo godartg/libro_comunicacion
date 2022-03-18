@@ -24,6 +24,7 @@ class ActividadController extends Controller
         ->get([
         'actividads.id as actividad_id'
         ,'actividads.detalle as actividad_detalle'
+        ,'actividads.numero as actividad_numero'
         ,'actividads.ayuda as actividad_ayuda'
         ,'actividads.pagina as actividad_pagina'
         ,'actividads.estado as actividad_estado'
@@ -99,6 +100,7 @@ class ActividadController extends Controller
         $actividad = new Actividad;
         $actividad->unidad_id = $request->unidad_id;
         $actividad->detalle = $request->actividad_detalle;
+        $actividad->numero = $request->actividad_numero;
         $actividad->pagina = $request->actividad_pagina;
         $actividad->ayuda = $request->actividad_ayuda;
         $actividad->estado = $request->estado;
@@ -138,6 +140,7 @@ class ActividadController extends Controller
         'actividads.id as actividad_id'
         ,'actividads.detalle as actividad_detalle'
         ,'actividads.ayuda as actividad_ayuda'
+        ,'actividads.numero as actividad_numero'
         ,'actividads.pagina as actividad_pagina'
         ,'actividads.estado as actividad_estado'
         ,'unidads.id as unidad_id'
@@ -164,6 +167,7 @@ class ActividadController extends Controller
         $actividad           = Actividad::find($id);
         $actividad->detalle   = $request->actividad_detalle;
         $actividad->ayuda   = $request->actividad_ayuda;
+        $actividad->numero   = $request->actividad_numero;
         $actividad->pagina   = $request->actividad_pagina;
         $actividad->estado   = $request->estado;
         

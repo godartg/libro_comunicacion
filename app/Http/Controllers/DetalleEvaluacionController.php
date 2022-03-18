@@ -13,9 +13,20 @@ class DetalleEvaluacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($idevaluacion,$idusuario)
     {
-        //
+        $respuestas = DetalleEvaluacion::join('evaluacions','evaluacions.id','=','detalle_evaluacions.evaluacion_id')
+                    ->join('preguntas','preguntas.id','=','detalle_evaluacions.pregunta_id')
+                    ->join('alternativas','alternativas.id','=','detalle_evaluacions.alternativa_id')
+                    ->join('users','users.id','=','detalle_evaluacions.alumno_id')
+                    ->where('evaluacions.id',$idevaluacion)
+                    ->where('users.id',$idusuario)
+                    ->get(['preguntas.detalle as pregunta_detalle'
+                    ,'alternativas.detalle as alternativa_detalle'
+                    ,'alternativas.respuesta as alternativa_respuesta'
+                    ,'preguntas.puntaje as pregunta_Puntaje'
+                    ]);
+        return view('backend.detalleevaluacion.index', compact('respuestas'));            
     }
 
     /**
