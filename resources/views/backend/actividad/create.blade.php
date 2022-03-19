@@ -72,6 +72,11 @@
                             </div>
 
                             <div class="form-group">
+                              <label for="actividad_numero">Número de actividad:</label>
+                              <input type="text" name="actividad_numero" class="form-control" placeholder="Número de actividad"  value="">
+                            </div>
+
+                            <div class="form-group">
                               <label for="actividad_pagina">Número de página:</label>
                               <input type="text" name="actividad_pagina" class="form-control" placeholder="Número de página"  value="">
                             </div>

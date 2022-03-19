@@ -11,6 +11,9 @@ use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\AlternativaController;
+use App\Http\Controllers\CalificacionController;
+use App\Http\Controllers\DetalleEvaluacionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +64,13 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('edit/{id}', [EvaluacionController::class, 'edit'])->name('evaluacionEdit');
         Route::post('update/{id}/{docente}/{curso}', [EvaluacionController::class, 'update'])->name('evaluacionUpdate');
     });
+    Route::group(['prefix' => 'calificacion/'], function(){
+        Route::get('index/{idevaluacion}', [CalificacionController::class, 'index'])->name('calificacionIndex');
+    });
+    Route::group(['prefix' => 'detalleevaluacion/'], function(){
+        Route::get('index/{idevaluacion}/{idusuario}', [DetalleEvaluacionController::class, 'index'])->name('detalleevaluacionIndex');
+    });
+
     Route::group(['prefix' => 'pregunta/'], function(){
         Route::get('index/{id}', [PreguntaController::class, 'index'])->name('preguntaIndex');
         Route::get('create/{id}', [PreguntaController::class, 'create'])->name('preguntaCreate');

@@ -6,57 +6,41 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="product-status-wrap"> 
-            <h3>LISTA DE ACTIVIDADES</h3>
+            <h3>Detalle de evaluación</h3>
             <h4>
-              @if ($datos->count())
-              Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
-              <br>Curso: {{$datos[0]->curso_nombre}}
-              <br>Material: {{$datos[0]->material_titulo}}
-              <br>Unidad: {{$datos[0]->unidad_nombre}}
-              @else
-              El salon esta desactivado
-              @endif
+           
             </h4>
-            <div class="add-product"><a href="{{route('actividadCreate',$datos[0]->unidad_id)}}">Nueva Actividad</a></div>
             <div class="asset-inner">
               <!--TABLA-->
               <table id="table_datatable">
                 <thead>
                   <tr>
                     <th>N°</th>
-                    <th>N° Actividad</th>
-                    <th>Detalle de actividad</th>
-                    <th>Página</th>
-                    <th>Detalle de ayuda</th>
-                    <th>Material</th>
-                    <th>Curso</th>
-                    <th>Unidad</th>
-                    <th>Docente</th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
+                    <th>Pregunta</th>
+                    <th>Respuesta</th>
+                    <th>Calificación</th>
+                    <th>Puntaje</th>
                   </tr>
-                </thead>
-                <tbody >
-                  @foreach($actividades as $actividad)
+                <thead>
+                <tbody>
+                  @foreach($respuestas as $respuesta)
                     <tr>
                       <td>{{$loop->index+1}}</td>
-                      <td>{{$actividad->actividad_numero}}</td>
-                      <td>{{$actividad->actividad_detalle}}</td>
-                      <td>{{$actividad->actividad_pagina}}</td>
-                      <td>{{$actividad->actividad_ayuda}}</td>
-                      <td>{{$actividad->material_titulo}}</td>
-                      <td>{{$actividad->curso_nombre}}</td>
-                      <td>{{$actividad->unidad_nombre}}</td>
-                      <td>{{$actividad->usuario_nombre}} {{$actividad->usuario_apellidos}}</td>
+                      <td>{{$respuesta->pregunta_detalle}}</td>
+                      <td>{{$respuesta->alternativa_detalle}}</td>
                       <td>
-                        @if($actividad->actividad_estado)
-                          Activo
-                        @else
-                          Inactivo Activo
-                        @endif
+                      @if($respuesta->alternativa_respuesta)
+                        ✓ 
+                      @else
+                        X
+                      @endif
                       </td>
                       <td>
-                        <a href="{{route('actividadEdit', $actividad->actividad_id)}}" class="btn btn-primary btn-sm">Editar <i class="fa fa-edit"></i>
+                        @if($respuesta->alternativa_respuesta)
+                         {{$respuesta->pregunta_Puntaje}} puntos
+                        @else
+                          0 puntos
+                        @endif
                       </td>
                     </tr>
                   @endforeach
@@ -140,7 +124,10 @@
         } );
     } );
     </script>
+
 @endpush
+
+
 
 @push('sidebar')
 
@@ -153,9 +140,7 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-                                @if(Auth::user()->isAbleTo('user-create'))
-                                  <a href="{{ route('usuarioCreate') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>Crear nuevo usuario</a>
-                                @endif
+                               
                               </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
