@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Salon;
 use App\Models\Role;
 use Hash;
 use Illuminate\Http\Request;
@@ -103,6 +104,13 @@ class UserController extends Controller
         
         return redirect()->route('usuarioIndex');
     }
-
+    public function obtenerDocentesFiltrado($grado, $seccion ){
+        $docente= Salon::join('users','users.id','=','salons.docente_id')
+        ->where('salons.grado', $grado)
+        ->where('salons.seccion', $seccion)
+        ->get(['users.name', 'users.last_name']);
+        return $docente;
+        return \response($docente);
+    }
 
 }

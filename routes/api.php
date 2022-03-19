@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource("docentes", DocenteController::class);
-Route::get('actividades/{grado}/{seccion}/{curso}/{material}/{pagina}/{numero}', [ActividadController::class, 'obtenerDescripcionFiltrado']);
+
+Route::get('user/{grado}/{seccion}', [UserController::class, 'obtenerDocentesFiltrado']);
 

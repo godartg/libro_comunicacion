@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Actividad;
 use App\Models\Unidad;
+use App\Models\Salon;
 use App\Http\Requests\StoreActividadRequest;
 use App\Http\Requests\UpdateActividadRequest;
 
@@ -185,14 +186,18 @@ class ActividadController extends Controller
         return \response($actividadAyudas);
     }
 
-    public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+    
+    public function obtenerDocenteDeSeccionGrado($grado, $seccion){
         $actividadesDetalles= Actividad::where('estado', 1)->where('pagina', $pagina)->where('numero', $numero)->get('detalle');
         return \response($actividadesDetalles);
     }
-    public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
-        $actividadesDetalles= Actividad::where('estado', 1)->where('pagina', $pagina)->where('numero', $numero)->get('ayuda');
-        return \response($actividadesDetalles);
-    }
+    //public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+    //    $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
+    //    ->join('materials','materials.id','=','unidads.material_id')->where('actividads.estado', 1)
+    //    ->join('cursos','cursos.id','=','materials.curso_id')
+    //    ->where('unidads', $pagina)->where('numero', $numero)->get('ayuda');
+    //    return \response($actividadesDetalles);
+    //}
     /**
      * Remove the specified resource from storage.
      *
