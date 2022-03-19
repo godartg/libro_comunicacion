@@ -171,6 +171,24 @@ class ActividadController extends Controller
         return redirect()->route('actividadIndex',$idunidad);
     }
 
+
+    public function obtenerDescripcion(){
+        $actividadDetalles= Actividad::where('estado', 1)->get('detalle');
+        return \response($actividadDetalles);
+    }
+    public function obtenerAyudas(){
+        $actividadAyudas= Actividad::where('estado', 1)->get('ayuda');
+        return \response($actividadAyudas);
+    }
+
+    public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+        $actividadesDetalles= Actividad::where('estado', 1)->where('pagina', $pagina)->where('numero', $numero)->get('detalle');
+        return \response($actividadesDetalles);
+    }
+    public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+        $actividadesDetalles= Actividad::where('estado', 1)->where('pagina', $pagina)->where('numero', $numero)->get('ayuda');
+        return \response($actividadesDetalles);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -181,4 +199,5 @@ class ActividadController extends Controller
     {
         //
     }
+
 }
