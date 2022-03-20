@@ -208,6 +208,22 @@ class ActividadController extends Controller
         ->get('actividads.ayuda');
         return \response($actividadesDetalles);
     }
+    public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+        $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
+        ->join('materials','materials.id','=','unidads.material_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->join('salons','salons.docente_id','=','users.id')
+        ->where('cursos.nombre', $curso)
+        ->where('salons.grado', $grado)
+        ->where('salons.seccion', $seccion)
+        ->where('materials.titulo', $material)
+        ->where('actividads.pagina', $pagina)
+        ->where('actividads.estado', 1)
+        ->where('actividads.numero', $numero)
+        ->get('actividads.detalle');
+        return \response($actividadesDetalles);
+    }
     /**
      * Remove the specified resource from storage.
      *
