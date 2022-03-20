@@ -191,13 +191,23 @@ class ActividadController extends Controller
         $actividadesDetalles= Actividad::where('estado', 1)->where('pagina', $pagina)->where('numero', $numero)->get('detalle');
         return \response($actividadesDetalles);
     }
-    //public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
-    //    $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
-    //    ->join('materials','materials.id','=','unidads.material_id')->where('actividads.estado', 1)
-    //    ->join('cursos','cursos.id','=','materials.curso_id')
-    //    ->where('unidads', $pagina)->where('numero', $numero)->get('ayuda');
-    //    return \response($actividadesDetalles);
-    //}
+
+    public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+        $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
+        ->join('materials','materials.id','=','unidads.material_id')
+        ->join('users','users.id','=','materials.docente_id')
+        ->join('cursos','cursos.id','=','materials.curso_id')
+        ->join('salons','salons.docente_id','=','users.id')
+        ->where('cursos.nombre', $curso)
+        ->where('salons.grado', $grado)
+        ->where('salons.seccion', $seccion)
+        ->where('materials.titulo', $material)
+        ->where('actividads.pagina', $pagina)
+        ->where('actividads.estado', 1)
+        ->where('actividads.numero', $numero)
+        ->get('actividads.ayuda');
+        return \response($actividadesDetalles);
+    }
     /**
      * Remove the specified resource from storage.
      *

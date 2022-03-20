@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActividadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('user/{grado}/{seccion}', [UserController::class, 'obtenerDocentesFiltrado']);
-
+Route::get('actividad/{grado}/{seccion}/{curso}/{material}/{pagina}/{numero}', [ActividadController::class, 'obtenerAyudaFiltrado']);
