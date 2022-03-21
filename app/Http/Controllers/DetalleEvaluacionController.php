@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Calificacion;
 use App\Models\DetalleEvaluacion;
 use App\Http\Requests\StoredetalleEvaluacionRequest;
 use App\Http\Requests\UpdatedetalleEvaluacionRequest;
@@ -26,7 +26,23 @@ class DetalleEvaluacionController extends Controller
                     ,'alternativas.respuesta as alternativa_respuesta'
                     ,'preguntas.puntaje as pregunta_Puntaje'
                     ]);
-        return view('backend.detalleevaluacion.index', compact('respuestas'));            
+        $datos = Calificacion::join('evaluacions','evaluacions.id','=','calificacions.evaluacion_id')
+                    ->join('users','users.id','=','calificacions.alumno_id')
+                    ->join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('lista_alumnos','lista_alumnos.alumno_id','=','users.id')
+                    ->join('salons','salons.id','=','lista_alumnos.salon_id')
+                    ->where('evaluacions.id',$idevaluacion)
+                    ->where('users.id',$idusuario)
+                    ->get(['evaluacions.titulo as evaluacion_titulo'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'calificacions.nota as calificacion_nota'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ]);
+        return view('backend.detalleevaluacion.index', compact('respuestas','datos'));            
     }
 
     /**

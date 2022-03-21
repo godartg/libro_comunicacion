@@ -8,7 +8,19 @@
           <div class="product-status-wrap"> 
             <h3>Detalle de evaluación</h3>
             <h4>
-           
+            @if ($datos->count())
+              Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
+              <br>
+              Curso: {{$datos[0]->curso_nombre}}
+              <br>
+              Evaluación: {{$datos[0]->evaluacion_titulo}}
+              <br>
+              Alumno: {{$datos[0]->usuario_nombre}} {{$datos[0]->usuario_apellidos}}
+              <br>
+              Nota: {{$datos[0]->calificacion_nota}}
+            @else
+              El salon esta desactivado
+            @endif
             </h4>
             <div class="asset-inner">
               <!--TABLA-->
