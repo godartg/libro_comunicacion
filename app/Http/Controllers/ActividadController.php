@@ -205,7 +205,7 @@ class ActividadController extends Controller
         ->where('actividads.pagina', $pagina)
         ->where('actividads.estado', 1)
         ->where('actividads.numero', $numero)
-        ->get('actividads.ayuda');
+        ->get('actividads.ayuda')->first();
         return \response($actividadesDetalles);
     }
     public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
@@ -221,7 +221,7 @@ class ActividadController extends Controller
         ->where('actividads.pagina', $pagina)
         ->where('actividads.estado', 1)
         ->where('actividads.numero', $numero)
-        ->get('actividads.detalle');
+        ->get('actividads.detalle')->first();
         return \response($actividadesDetalles);
     }
     /**
