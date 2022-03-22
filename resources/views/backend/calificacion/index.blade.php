@@ -9,11 +9,11 @@
             <h3>LISTA DE NOTAS</h3>
             <h4>
             @if ($datos->count())
-              Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->salon_nivel}}
+              Salon: {{$datos[0]->salon_grado}}°{{strtoupper($datos[0]->salon_seccion)}} - {{$datos[0]->curso_nivel}}
               <br>
               Curso: {{$datos[0]->curso_nombre}}
               <br>
-              Curso: {{$datos[0]->evaluacion_titulo}}
+              Evaluación: {{$datos[0]->evaluacion_titulo}}
             @else
               El salon esta desactivado
             @endif
