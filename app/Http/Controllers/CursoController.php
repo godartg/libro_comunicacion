@@ -42,7 +42,23 @@ class CursoController extends Controller
 
     }
 
+    public function cursoAlumnoLista($usu){
+        $cursos = Curso::join('salons','salons.grado','=','cursos.grado')
+        ->join('lista_alumnos','lista_alumnos.salon_id','=','salons.id')
+        ->join('users','users.id','=','lista_alumnos.alumno_id')
+        ->where('users.id',$usu)
+        ->where('salons.estado',true)
+        ->where('cursos.estado',true)
+        ->get(['cursos.id','cursos.nombre','cursos.grado','cursos.nivel','cursos.estado','salons.estado as estado_salon']);
 
+        $salon = Curso::join('salons','salons.grado','=','cursos.grado')
+            ->join('users','users.id','=','salons.docente_id')
+            ->join('lista_alumnos','lista_alumnos.salon_id','=','salons.id')
+            ->where('lista_alumnos.alumno_id',$usu)
+            ->where('salons.estado',true)
+            ->get(['salons.grado','salons.seccion','salons.nivel', 'lista_alumnos.alumno_id']);
+        return view('backend.curso.cursoalumnolista', compact('cursos','salon'));
+    }
 
     /**
      * Show the form for creating a new resource.

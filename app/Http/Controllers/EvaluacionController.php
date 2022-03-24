@@ -19,7 +19,7 @@ class EvaluacionController extends Controller
         $evaluaciones = Evaluacion::join('cursos','cursos.id','=','evaluacions.curso_id')
                     ->join('users','users.id','=','evaluacions.docente_id')
                     ->join('salons','salons.docente_id','=','users.id')
-                    ->where('users.id',$idusuario)
+                    ->where('evaluacions.docente_id',$idusuario)
                     ->where('cursos.id',$idcurso)
                     ->where('salons.estado',true)
                     ->where('cursos.estado',true)
@@ -51,10 +51,52 @@ class EvaluacionController extends Controller
                     ,'cursos.nivel as curso_nivel'
                     ,'users.name as usuario_nombre'
                     ,'users.last_name as usuario_apellidos']);
-
         return view('backend.evaluacion.index', compact('evaluaciones','datos'));
     }
 
+    public function indexAlumno($idusuario, $idcurso)
+    {
+        $evaluaciones = Evaluacion::join('cursos','cursos.id','=','evaluacions.curso_id')
+                    ->join('users','users.id','=','evaluacions.docente_id')
+                    ->join('salons','salons.docente_id','=','users.id')
+                    ->join('lista_alumnos','lista_alumnos.salon_id','=','salons.id')
+                    ->where('lista_alumnos.id',$idusuario)
+                    ->where('cursos.id',$idcurso)
+                    ->where('salons.estado',true)
+                    ->where('cursos.estado',true)
+                    ->get(['evaluacions.id as evaluacion_id'
+                    ,'evaluacions.titulo as evaluacion_titulo'
+                    ,'evaluacions.detalle as evaluacion_detalle'
+                    ,'evaluacions.fecha as evaluacion_fecha'
+                    ,'evaluacions.estado as evaluacion_estado'
+                    ,'cursos.id as curso_id'
+                    ,'cursos.nombre as curso_nombre'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.id as usuario_id'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos'
+                    ,'salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ]);
+
+        $datos = Curso::join('salons','salons.grado','=','cursos.grado')
+                    ->join('lista_alumnos','lista_alumnos.salon_id','=','salons.id')
+                    ->join('users','users.id','=','salons.docente_id')
+                    ->where('lista_alumnos.alumno_id',$idusuario)
+                    ->where('cursos.id',$idcurso)
+                    ->where('salons.estado',true)
+                    ->get(['salons.grado as salon_grado'
+                    ,'salons.seccion as salon_seccion'
+                    ,'salons.nivel as salon_nivel'
+                    ,'cursos.id as curso_id'
+                    ,'cursos.nombre as nombrecurso'
+                    ,'cursos.nivel as curso_nivel'
+                    ,'users.name as usuario_nombre'
+                    ,'users.last_name as usuario_apellidos']);
+                    
+        return compact('evaluaciones','datos');
+        return view('backend.evaluacion.index', compact('evaluaciones','datos'));
+    }
     /**
      * Show the form for creating a new resource.
      *

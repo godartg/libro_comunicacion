@@ -89,12 +89,17 @@
                     @endif
                       @if(Auth::user()->hasRole('docente'))
                       <li>
-                          <a aria-expanded="false" href="{{ route('cursoDocenteLista',Auth::user()->id)}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos (Docente)</span></a>
+                          <a aria-expanded="false" href="{{ route('cursoDocenteLista',Auth::user()->id)}}"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Cursos </span></a>
                       </li>
                       @endif
                     @if(Auth::user()->hasRole('administrador'))
                       <li>
                           <a aria-expanded="false" href="{{ route('salonIndex')}}"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Salones</span></a>
+                      </li>
+                    @endif
+                    @if(Auth::user()->hasRole('alumno'))
+                      <li>
+                          <a aria-expanded="false" href="{{ route('cursoAlumnoLista',Auth::user()->id)}}"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Cursos </span></a>
                       </li>
                     @endif
                     </ul>
@@ -754,10 +759,18 @@
                       <div class="mobile-menu">
                           <nav id="dropdown">
                               <ul class="mobile-menu-nav">
-                                  <li><a href="{{ route('usuarioIndex')}}">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
-                                  <li><a href="#">Salones <span class="admin-project-icon edu-icon "></span></a></li>
-                                  <li><a href="{{ route('cursoIndex')}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
-                                  <li><a href="{{ route('cursoIndex')}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
+                                @if(Auth::user()->hasRole('administrador'))
+                                    <li><a href="{{ route('usuarioIndex')}}">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
+                                @endif
+                                @if(Auth::user()->hasRole('administrador'))
+                                    <li><a href="{{ route('cursoIndex')}}">Usuario <span class="admin-project-icon edu-icon "></span></a></li>
+                                @endif
+                                @if(Auth::user()->hasRole('administrador'))
+                                    <li><a href="{{ route('salonIndex')}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
+                                @endif
+                                @if(Auth::user()->hasRole('docente'))
+                                    <li><a href="{{ route('cursoDocenteLista',Auth::user()->id)}}">Cursos <span class="admin-project-icon edu-icon "></span></a></li>
+                                @endif
                                   <li><a href="{{ route('salonIndex')}}">Salones <span class="admin-project-icon edu-icon "></span></a></li>
                               </ul>
                           </nav>

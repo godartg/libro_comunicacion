@@ -29,6 +29,7 @@ use App\Http\Controllers\DetalleEvaluacionController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('obtenerDescripcionActividad/{grado}/{seccion}/{curso}/{material}/{pagina}/{numero}', [ActividadController::class, 'obtenerDescripcionFiltrado']);
 
 Auth::routes();
 
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'curso/'], function(){
         Route::get('index', [CursoController::class, 'index'])->name('cursoIndex');
         Route::get('cursodocente/{usu}', [CursoController::class, 'cursoDocenteLista'])->name('cursoDocenteLista');
+        Route::get('cursoalumno/{usu}', [CursoController::class, 'cursoAlumnoLista'])->name('cursoAlumnoLista');
         Route::get('create', [CursoController::class, 'create'])->name('cursoCreate');
         Route::post('store', [CursoController::class, 'store'])->name('cursoStore');
         Route::get('edit/{curso}', [CursoController::class, 'edit'])->name('cursoEdit');
@@ -59,6 +61,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
     Route::group(['prefix' => 'evaluacion/'], function(){
         Route::get('index/{docente}/{curso}', [EvaluacionController::class, 'index'])->name('evaluacionIndex');
+        Route::get('indexalumno/{alumno}/{curso}', [EvaluacionController::class, 'indexAlumno'])->name('evaluacionAlumnoIndex');
         Route::get('create/{id}', [EvaluacionController::class, 'create'])->name('evaluacionCreate');
         Route::post('store', [EvaluacionController::class, 'store'])->name('evaluacionStore');
         Route::get('edit/{id}', [EvaluacionController::class, 'edit'])->name('evaluacionEdit');

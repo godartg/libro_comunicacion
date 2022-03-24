@@ -191,7 +191,9 @@ class ActividadController extends Controller
         $actividadesDetalles= Actividad::where('estado', 1)->where('pagina', $pagina)->where('numero', $numero)->get('detalle');
         return \response($actividadesDetalles);
     }
-
+    /**
+     * @OA\Info(title="Search API obtenerAyudaFiltrado", version="1.0.0")
+     */
     public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
         $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
         ->join('materials','materials.id','=','unidads.material_id')
@@ -208,6 +210,9 @@ class ActividadController extends Controller
         ->get('actividads.ayuda')->first();
         return \response($actividadesDetalles);
     }
+    /**
+     * @OA\Info(title="Search API obtenerDescripcionFiltrado", version="1.0.0")
+     */
     public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
         $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
         ->join('materials','materials.id','=','unidads.material_id')
