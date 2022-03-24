@@ -19,7 +19,6 @@ class PreguntaController extends Controller
         $preguntas = Pregunta::join('evaluacions','evaluacions.id','=','preguntas.evaluacion_id')
                     ->join('users','users.id','=','evaluacions.docente_id')
                     ->join('cursos','cursos.id','=','evaluacions.curso_id')
-                    ->join('salons','salons.docente_id','=','users.id')
                     ->where('evaluacions.id',$id)
                     ->get(['evaluacions.id as evaluacion_id'
                     ,'evaluacions.titulo as evaluacion_titulo'
@@ -33,8 +32,6 @@ class PreguntaController extends Controller
                     ,'users.id as usuario_id'
                     ,'users.name as usuario_nombre'
                     ,'users.last_name as usuario_apellidos'
-                    ,'salons.grado as salon_grado'
-                    ,'salons.seccion as salon_seccion'
                     ]);
 
         $datos = Evaluacion::join('users','users.id','=','evaluacions.docente_id')

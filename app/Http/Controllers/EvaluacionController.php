@@ -60,7 +60,7 @@ class EvaluacionController extends Controller
                     ->join('users','users.id','=','evaluacions.docente_id')
                     ->join('salons','salons.docente_id','=','users.id')
                     ->join('lista_alumnos','lista_alumnos.salon_id','=','salons.id')
-                    ->where('lista_alumnos.id',$idusuario)
+                    ->where('lista_alumnos.alumno_id',$idusuario)
                     ->where('cursos.id',$idcurso)
                     ->where('salons.estado',true)
                     ->where('cursos.estado',true)
@@ -94,7 +94,6 @@ class EvaluacionController extends Controller
                     ,'users.name as usuario_nombre'
                     ,'users.last_name as usuario_apellidos']);
                     
-        return compact('evaluaciones','datos');
         return view('backend.evaluacion.index', compact('evaluaciones','datos'));
     }
     /**

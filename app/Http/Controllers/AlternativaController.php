@@ -20,7 +20,6 @@ class AlternativaController extends Controller
                     ->join('evaluacions','evaluacions.id','=','preguntas.evaluacion_id')
                     ->join('users','users.id','=','evaluacions.docente_id')
                     ->join('cursos','cursos.id','=','evaluacions.curso_id')
-                    ->join('salons','salons.docente_id','=','users.id')
                     ->where('preguntas.id',$id)
                     ->get(['evaluacions.id as evaluacion_id'
                     ,'evaluacions.titulo as evaluacion_titulo'
@@ -34,8 +33,6 @@ class AlternativaController extends Controller
                     ,'users.id as usuario_id'
                     ,'users.name as usuario_nombre'
                     ,'users.last_name as usuario_apellidos'
-                    ,'salons.grado as salon_grado'
-                    ,'salons.seccion as salon_seccion'
                     ,'alternativas.id as alternativa_id'
                     ,'alternativas.detalle as alternativa_detalle'
                     ,'alternativas.respuesta as alternativa_respuesta'
