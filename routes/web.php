@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('store', [EvaluacionController::class, 'store'])->name('evaluacionStore');
         Route::get('edit/{id}', [EvaluacionController::class, 'edit'])->name('evaluacionEdit');
         Route::post('update/{id}/{docente}/{curso}', [EvaluacionController::class, 'update'])->name('evaluacionUpdate');
+        Route::get('examen/{id}', [EvaluacionController::class, 'show'])->name('examen');
     });
     Route::group(['prefix' => 'calificacion/'], function(){
         Route::get('index/{idevaluacion}', [CalificacionController::class, 'index'])->name('calificacionIndex');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Curso;
 use App\Models\Evaluacion;
+use App\Models\Pregunta;
+use App\Models\Alternativa;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEvaluacionRequest;
 use App\Http\Requests\UpdateEvaluacionRequest;
@@ -58,7 +60,7 @@ class EvaluacionController extends Controller
     {
         $evaluaciones = Evaluacion::join('cursos','cursos.id','=','evaluacions.curso_id')
                     ->join('users','users.id','=','evaluacions.docente_id')
-                    ->join('calificacions','calificacions.evaluacion_id','=','evaluacions.id')
+                    ->leftJoin('calificacions','calificacions.evaluacion_id','=','evaluacions.id')
                     ->join('salons','salons.docente_id','=','users.id')
                     ->join('lista_alumnos','lista_alumnos.salon_id','=','salons.id')
                     ->where('lista_alumnos.alumno_id',$idusuario)
@@ -68,6 +70,7 @@ class EvaluacionController extends Controller
                     ->get(['evaluacions.id as evaluacion_id'
                     ,'evaluacions.titulo as evaluacion_titulo'
                     ,'evaluacions.fecha as evaluacion_fecha'
+                    ,'calificacions.nota as nota_alumno'
                     ,'salons.grado as salon_grado'
                     ,'salons.seccion as salon_seccion'
                     ]);
@@ -150,9 +153,32 @@ class EvaluacionController extends Controller
      * @param  \App\Models\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Evaluacion $evaluacion)
+    public function show($id)
     {
-        //
+        $evaluacion = Evaluacion::join('cursos','cursos.id','=','evaluacions.curso_id')
+            ->join('users','users.id','=','evaluacions.docente_id')
+            ->where('evaluacions.id', $id)
+            ->get(['evaluacions.id as evaluacion_id',
+                    'evaluacions.titulo as titulo_evaluacion',
+                    'users.name as nombre_usuario',
+                    'users.last_name as apellido_usuario',
+                    'cursos.nombre as nombre_curso'])->first();
+        
+        $preguntas = Pregunta::join('evaluacions', 'evaluacions.id', '=', 'preguntas.evaluacion_id')
+            ->where('evaluacions.id', $id)
+            ->where('preguntas.estado',true)
+            ->get(['preguntas.id as pregunta_id',
+                    'preguntas.detalle as nombre_pregunta',
+                    'preguntas.puntaje as puntaje_pregunta']);
+        
+        $alternativas = Alternativa::join('preguntas', 'preguntas.id', '=', 'alternativas.pregunta_id')
+            ->join('evaluacions', 'evaluacions.id', '=', 'preguntas.evaluacion_id')
+            ->where('evaluacions.id', $id)
+            ->where('alternativas.estado',true)
+            ->get(['preguntas.id as pregunta_id',
+                    'alternativas.id as alternativa_id',
+                    'alternativas.detalle as nombre_alternativa']);
+        return view('backend.evaluacion.examen', compact('evaluacion', 'preguntas', 'alternativas'));  
     }
 
     /**
@@ -204,14 +230,4 @@ class EvaluacionController extends Controller
         return redirect()->route('evaluacionIndex',[$idusuario,$idcurso]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Evaluacion  $evaluacion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Evaluacion $evaluacion)
-    {
-        //
-    }
 }

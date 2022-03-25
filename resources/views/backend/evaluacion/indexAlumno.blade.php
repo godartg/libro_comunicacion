@@ -36,42 +36,22 @@
                     <td>{{$loop->index+1}}</td>
                     <td>{{$evaluacion->evaluacion_titulo}}</td>
                     <td>{{$evaluacion->evaluacion_fecha}}</td>
-                    <td></td>
+                    <td>{{$evaluacion->nota_alumno}}</td>
                     <td>
-                      <a href="{{route('evaluacionEdit', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
-                      <a href="{{route('preguntaIndex', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Preguntas <i class="fa fa-edit"></i>
-                      <a href="{{route('calificacionIndex', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Ver Notas <i class="fa fa-edit"></i>
+                      <a href="{{route('examen', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Realizar Evaluación</a>
+                      <a class="btn btn-primary btn-sm">Ver Calificación</a>
                     </td>
                   </tr>
                  @endforeach
                 </tbody>
               </table>
               <!--END TABLA-->                          
-            </div>          
-            <div class="custom-pagination">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
             </div>
           </div>
         </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 @endsection
 
 @section('footer')
