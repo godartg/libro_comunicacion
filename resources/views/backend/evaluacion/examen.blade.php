@@ -20,17 +20,20 @@
 
                     <div class="review-content-section">
                       <div id="dropzone1" class="pro-ad">
-                        <form action="{{route('evaluacionStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
+                        <form action="{{route('detalleEvaluacionStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
                             {{csrf_field()}}
                             <div class="row">
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <input type="hidden" name="evaluacion_id" class="form-control" placeholder="ID curso"  value="{{$evaluacion->evaluacion_id}}">
+                                <input type="hidden" name="evaluacion_id" class="form-control" value="{{$evaluacion->evaluacion_id}}">
+                                <input type="hidden" name="users_id" class="form-control" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="curso_id" class="form-control" value="{{ $evaluacion->curso_id }}">
                                 <div class="form-group-inner">
                                   
                                   @foreach ( $preguntas as $pregunta)
                                     <div class="row">
                                       <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
-                                          <label class="">{{$loop->index+1}}. ¿{{$pregunta->nombre_pregunta}}?</label>
+                                          <label class="">{{$loop->index+1}}. {{$pregunta->nombre_pregunta}}</label>
+                                          <input type="hidden" name="preguntas[]" value="{{$pregunta->pregunta_id}}">
                                       </div>
                                       <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
                                           <div class="bt-df-checkbox ">

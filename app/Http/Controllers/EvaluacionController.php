@@ -162,6 +162,7 @@ class EvaluacionController extends Controller
                     'evaluacions.titulo as titulo_evaluacion',
                     'users.name as nombre_usuario',
                     'users.last_name as apellido_usuario',
+                    'cursos.id as curso_id',
                     'cursos.nombre as nombre_curso'])->first();
         
         $preguntas = Pregunta::join('evaluacions', 'evaluacions.id', '=', 'preguntas.evaluacion_id')

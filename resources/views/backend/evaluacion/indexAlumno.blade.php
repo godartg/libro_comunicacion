@@ -24,8 +24,8 @@
                     <th data-field="state" data-checkbox="true"></th>
                     <th data-field="id">N°</th>
                     <th data-field="titulo">Evaluación</th>
-                    <th data-field="titulo">Fecha</th>
-                    <th data-field="titulo">Nota</th>
+                    <th data-field="Fecha">Fecha</th>
+                    <th data-field="Nota">Nota</th>
                     <th data-field="action">Opciones</th>
                   </tr>
                 </thead>

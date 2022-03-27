@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Calificacion;
 use App\Models\DetalleEvaluacion;
+use App\Models\Pregunta;
+use App\Models\Alternativa;
 use App\Http\Requests\StoredetalleEvaluacionRequest;
 use App\Http\Requests\UpdatedetalleEvaluacionRequest;
 
@@ -63,9 +65,45 @@ class DetalleEvaluacionController extends Controller
      */
     public function store(StoredetalleEvaluacionRequest $request)
     {
-        //
+        $preguntas = $request->preguntas;
+        $curso_id = $request->curso_id;
+        $users_id = $request->users_id;
+        $puntaje_total=0;
+        foreach($preguntas as $pregunta){
+            $detalleEvaluacion = new DetalleEvaluacion();
+            $detalleEvaluacion->evaluacion_id = $request->evaluacion_id;
+            $detalleEvaluacion->pregunta_id = $pregunta;
+            $detalleEvaluacion->alternativa_id = $request[$pregunta];
+            $detalleEvaluacion->alumno_id = $request->users_id;
+            $puntaje_pregunta = $this->calcularPuntaje($pregunta, $request[$pregunta]);
+            $detalleEvaluacion->puntaje = $puntaje_pregunta;
+            $puntaje_total += $puntaje_pregunta;
+            $detalleEvaluacion->save();
+        }
+        $calificacion = new Calificacion();
+        $calificacion->evaluacion_id = $request->evaluacion_id;
+        $calificacion->alumno_id = $users_id;
+        $calificacion->nota= $puntaje_total;
+        
+        return redirect()->route('evaluacionAlumnoIndex',[$users_id, $curso_id]);
     }
 
+    /**
+     * 
+     */
+    public function calcularPuntaje($pregunta_id,$alternativa_id){
+        $puntaje = 0;
+        $pregunta = Pregunta::findOrFail($pregunta_id);
+        $alternativa = Alternativa::findOrFail($alternativa_id);
+        if($pregunta->estado == '1'){
+            if($pregunta->id==$alternativa->pregunta_id){
+                if($alternativa->respuesta == '1'){
+                    $puntaje = $pregunta->puntaje;
+                }
+            }
+        }
+        return $puntaje;
+    }
     /**
      * Display the specified resource.
      *
