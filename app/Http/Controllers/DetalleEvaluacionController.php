@@ -84,7 +84,7 @@ class DetalleEvaluacionController extends Controller
         $calificacion->evaluacion_id = $request->evaluacion_id;
         $calificacion->alumno_id = $users_id;
         $calificacion->nota= $puntaje_total;
-        
+        $calificacion->save();
         return redirect()->route('evaluacionAlumnoIndex',[$users_id, $curso_id]);
     }
 
