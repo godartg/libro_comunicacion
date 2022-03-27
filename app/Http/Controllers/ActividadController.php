@@ -92,9 +92,9 @@ class ActividadController extends Controller
     {
         $this->validate($request, [
             'unidad_id'  =>  'required|max:250',
-            'actividad_detalle'  =>  'required|max:250',
+            'actividad_detalle'  =>  'required|max:1000',
             'actividad_pagina'  =>  'required|max:250',
-            'actividad_ayuda'  =>  'required|max:250',
+            'actividad_ayuda'  =>  'required|max:1000',
             'estado' => 'required|max:1'
         ]);
 
