@@ -17,7 +17,7 @@ class CreatePreguntasTable extends Migration
             $table->id();
             $table->foreignId('evaluacion_id')->references('id')->on('evaluacions');
             $table->string('detalle');
-            $table->integer('puntaje');
+            $table->double('puntaje');
             $table->boolean('estado');
             $table->timestamps();
         });

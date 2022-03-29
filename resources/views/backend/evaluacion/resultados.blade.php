@@ -8,7 +8,8 @@
             <div class="sparkline16-list">
                 <div class="sparkline16-hd">
                     <div class="main-sparkline16-hd">
-                        <h1>Gestion de Evaluación</h1>
+                        <h1>DETALLE DE CALIFICACIÓN</h1>
+                        <div>Calificación: {{ $calificacion->nota }}</div>
                     </div>
                 </div>
                 <div class="sparkline16-graph">
@@ -20,47 +21,37 @@
 
                     <div class="review-content-section">
                       <div id="dropzone1" class="pro-ad">
-                        <form action="{{route('detalleEvaluacionStore')}}" method="POST" class="dropzone dropzone-custom needsclick add-professors dz-clickable" id="demo1-upload" >
-                            {{csrf_field()}}
-                            <div class="row">
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <input type="hidden" name="evaluacion_id" class="form-control" value="{{$evaluacion->evaluacion_id}}">
-                                <input type="hidden" name="users_id" class="form-control" value="{{ Auth::user()->id }}">
-                                <input type="hidden" name="curso_id" class="form-control" value="{{ $evaluacion->curso_id }}">
-                                <div class="form-group-inner">
-                                  
-                                  @foreach ( $preguntas as $pregunta)
-                                    <div class="row">
-                                      <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
-                                          <label class="">{{$loop->index+1}}. {{$pregunta->nombre_pregunta}}</label>
-                                          <input type="hidden" name="preguntas[]" value="{{$pregunta->pregunta_id}}">
+                        {{csrf_field()}}
+                        <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group-inner ">
+                              @foreach ( $detalleEvaluacions as $detalle)
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
+                                      <label class="label_pregunta">{{$loop->index+1}}. {{$detalle->nombre_pregunta}}</label>
+                                      <div class="respuesta_seleccionado">
+                                        <div>Respuesta: {{$detalle->nombre_alternativa}}</div>
+                                        <div
+                                        @if ($detalle->puntaje_pregunta >0)
+                                          class="respuesta_correcta"
+                                        @else
+                                          class="respuesta_erronea"
+                                        @endif
+                                        >
+                                        ({{$detalle->puntaje_pregunta}} puntos)
+                                        </div>
+                                        
                                       </div>
-                                      <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
-                                          <div class="bt-df-checkbox ">
-                                            @foreach ( $alternativas as $alternativa)
-                                              @if($pregunta->pregunta_id==$alternativa->pregunta_id)
-                                              <div class="row">
-                                                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
-                                                      <div class="i-checks">
-                                                          <label>
-                                                          <input type="radio" value="{{$alternativa->alternativa_id}}" name="{{$pregunta->pregunta_id}}"> {{$alternativa->nombre_alternativa}} </label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              @endif
-                                            @endforeach
-                                          </div>
-                                      </div>
-                                    </div>
-                                  @endforeach
+                                  </div>
                                 </div>
+                              @endforeach
                             </div>
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <button class="btn btn-success">Terminar evaluación</button>
-                              </div>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <a href="{{route('evaluacionAlumnoIndex',[$alumno_id, $curso_id ])}}" class="btn btn-danger">Cancelar</a>
+                          </div>
+                        </div>
                       </div>
                     </div> 
                 </div>
@@ -123,6 +114,7 @@
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="{{ asset('backend/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/css/resultados.css')}}">
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="{{ asset('backend/css/responsive.css')}}">
@@ -210,7 +202,8 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
-
+                                  
+                                  
                               </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

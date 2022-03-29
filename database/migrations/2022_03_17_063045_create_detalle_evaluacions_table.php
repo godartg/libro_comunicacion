@@ -18,7 +18,7 @@ class CreateDetalleEvaluacionsTable extends Migration
             $table->foreignId('alumno_id')->references('id')->on('users');
             $table->foreignId('pregunta_id')->references('id')->on('preguntas');
             $table->foreignId('alternativa_id')->references('id')->on('alternativas');
-            $table->integer('puntaje');
+            $table->double('puntaje');
             $table->timestamps();
         });
     }

@@ -1,0 +1,13 @@
+.respuesta_correcta{
+    color:green;
+}
+.respuesta_erronea{
+    color:red;
+}
+.respuesta_seleccionado{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: space-between;
+    margin-left: 20px;
+}

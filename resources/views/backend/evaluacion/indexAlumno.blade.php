@@ -38,8 +38,11 @@
                     <td>{{$evaluacion->evaluacion_fecha}}</td>
                     <td>{{$evaluacion->nota_alumno}}</td>
                     <td>
-                      <a href="{{route('examen', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm">Realizar Evaluación</a>
-                      <a class="btn btn-primary btn-sm">Ver Calificación</a>
+                      @if(empty($evaluacion->nota_alumno))
+                        <a href="{{route('examen', $evaluacion->evaluacion_id)}}" class="btn btn-primary btn-sm ">Realizar Evaluacion</a> 
+                      @else
+                        <a href="{{route('resultado',[ $evaluacion->evaluacion_id, Auth::user()->id, $datos[0]->curso_id ])}}" class="btn btn-primary btn-sm">Ver Calificación</a>
+                      @endif
                     </td>
                   </tr>
                  @endforeach
@@ -132,9 +135,8 @@
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <ul class="breadcome-menu">
-                                  <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                  </li>
-                                  <li><span class="bread-blod">Dashboard V.1</span>
+                                  <li><a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span></li>
+                                  <li><a href="{{route('cursoAlumnoLista', Auth::user()->id)}}" class="">Curso</a>
                                   </li>
                               </ul>
                           </div>

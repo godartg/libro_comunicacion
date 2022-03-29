@@ -5,6 +5,8 @@ use App\Models\Curso;
 use App\Models\Evaluacion;
 use App\Models\Pregunta;
 use App\Models\Alternativa;
+use App\Models\Calificacion;
+use App\Models\DetalleEvaluacion;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEvaluacionRequest;
 use App\Http\Requests\UpdateEvaluacionRequest;
@@ -182,6 +184,22 @@ class EvaluacionController extends Controller
         return view('backend.evaluacion.examen', compact('evaluacion', 'preguntas', 'alternativas'));  
     }
 
+    public function showCalificacion($id, $alumno, $curso){
+        $detalleEvaluacions = DetalleEvaluacion::join('evaluacions', 'evaluacions.id', '=', 'detalle_evaluacions.evaluacion_id')
+            ->join('preguntas', 'preguntas.id', '=', 'detalle_evaluacions.pregunta_id')
+            ->join('alternativas', 'alternativas.id', '=', 'detalle_evaluacions.alternativa_id')
+            ->where('evaluacions.id', $id)
+            ->get(['evaluacions.id as evaluacion_id',
+                    'preguntas.id as pregunta_id',
+                    'alternativas.id as alternativa_id',
+                    'alternativas.detalle as nombre_alternativa',
+                    'preguntas.detalle as nombre_pregunta',
+                    'detalle_evaluacions.puntaje as puntaje_pregunta']);
+        $calificacion = Calificacion::where('evaluacion_id', $id)->get('nota')->first();
+        $alumno_id = $alumno;
+        $curso_id = $curso;
+        return view('backend.evaluacion.resultados', compact('detalleEvaluacions', 'calificacion', 'alumno_id','curso_id'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
