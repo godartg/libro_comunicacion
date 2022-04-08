@@ -194,17 +194,17 @@ class ActividadController extends Controller
     /**
      * @OA\Info(title="Search API obtenerAyudaFiltrado", version="1.0.0")
      */
-    public function obtenerAyudaFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+    public function obtenerAyudaFiltrado($grado, $seccion, $curso, $pagina, $numero ){
         $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
         ->join('materials','materials.id','=','unidads.material_id')
         ->join('users','users.id','=','materials.docente_id')
         ->join('cursos','cursos.id','=','materials.curso_id')
-        ->join('salons','salons.docente_id','=','users.id')
+        ->join('salons','salons.docente_id','=','materials.docente_id')
         ->where('cursos.nombre', $curso)
         ->where('salons.grado', $grado)
         ->where('salons.seccion', $seccion)
         ->where('actividads.pagina', $pagina)
-        ->where('actividads.estado', 1)
+        ->where('materials.estado', 1)
         ->where('actividads.numero', $numero)
         ->get('actividads.ayuda')->first();
         return \response($actividadesDetalles);
@@ -212,17 +212,17 @@ class ActividadController extends Controller
     /**
      * @OA\Info(title="Search API obtenerDescripcionFiltrado", version="1.0.0")
      */
-    public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $material, $pagina, $numero ){
+    public function obtenerDescripcionFiltrado($grado, $seccion, $curso, $pagina, $numero ){
         $actividadesDetalles= Actividad::join('unidads','unidads.id','=','actividads.unidad_id')
         ->join('materials','materials.id','=','unidads.material_id')
         ->join('users','users.id','=','materials.docente_id')
         ->join('cursos','cursos.id','=','materials.curso_id')
-        ->join('salons','salons.docente_id','=','users.id')
+        ->join('salons','salons.docente_id','=','materials.docente_id')
         ->where('cursos.nombre', $curso)
         ->where('salons.grado', $grado)
         ->where('salons.seccion', $seccion)
         ->where('actividads.pagina', $pagina)
-        ->where('actividads.estado', 1)
+        ->where('materials.estado', 1)
         ->where('actividads.numero', $numero)
         ->get('actividads.detalle')->first();
         return \response($actividadesDetalles);

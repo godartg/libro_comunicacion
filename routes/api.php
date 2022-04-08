@@ -21,5 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('user/{grado}/{seccion}', [UserController::class, 'obtenerDocentesFiltrado']);
-Route::get('obtenerAyudaActividad/{grado}/{seccion}/{curso}/{material}/{pagina}/{numero}', [ActividadController::class, 'obtenerAyudaFiltrado']);
-Route::get('obtenerDescripcionActividad/{grado}/{seccion}/{curso}/{material}/{pagina}/{numero}', [ActividadController::class, 'obtenerDescripcionFiltrado']);
+Route::get('obtenerAyudaActividad/{grado}/{seccion}/{curso}/{pagina}/{numero}', [ActividadController::class, 'obtenerAyudaFiltrado']);
+Route::get('obtenerDescripcionActividad/{grado}/{seccion}/{curso}/{pagina}/{numero}', [ActividadController::class, 'obtenerDescripcionFiltrado']);
