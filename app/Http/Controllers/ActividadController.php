@@ -200,7 +200,7 @@ class ActividadController extends Controller
         ->join('users','users.id','=','materials.docente_id')
         ->join('cursos','cursos.id','=','materials.curso_id')
         ->join('salons','salons.docente_id','=','users.id')
-        ->where('cursos.id', $curso)
+        ->where('cursos.nombre', $curso)
         ->where('salons.grado', $grado)
         ->where('salons.seccion', $seccion)
         ->where('materials.titulo', $material)
