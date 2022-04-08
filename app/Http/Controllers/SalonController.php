@@ -6,6 +6,7 @@ use App\Models\Salon;
 use App\Models\User;
 use App\Http\Requests\StoreSalonRequest;
 use App\Http\Requests\UpdateSalonRequest;
+use Carbon\Carbon;
 
 class SalonController extends Controller
 {
