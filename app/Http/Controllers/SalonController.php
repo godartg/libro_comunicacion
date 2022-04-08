@@ -39,7 +39,6 @@ class SalonController extends Controller
      */
     public function store(StoreSalonRequest $request)
     {
-        $salon = Salon::find($id);
         $salon = new Salon;
         $salon->docente_id = $request->docente_id;
         $salon->grado = $request->grado;
