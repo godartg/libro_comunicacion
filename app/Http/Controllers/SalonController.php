@@ -46,7 +46,7 @@ class SalonController extends Controller
         $salon->seccion = $request->seccion;
         $salon->nivel = $request->nivel;
         $salon->estado     = $request->estado;
-        $salon->fecha_creacion = Carbon::now()->format('Y-m-d H:i:s');
+        $salon->fecha_creacion = Carbon::now()->timezone('America/Lima')->format('Y-m-d H:i:s');
         $salon->save();
         return redirect()->route('salonIndex');
     }
