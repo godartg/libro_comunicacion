@@ -16,7 +16,6 @@
               El salon esta desactivado
               @endif
             </h4>
-            <div class="add-product"><a href="#">Nuevo</a></div>
             <div class="asset-inner">
               <!--TABLA-->
               <table id="table_datatable">
@@ -49,15 +48,6 @@
                 </tbody>
               </table>
               <!--END TABLA-->                          
-            </div>          
-            <div class="custom-pagination">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
             </div>
           </div>
         </div>
@@ -157,9 +147,7 @@
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <ul class="breadcome-menu">
-                                  <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                  </li>
-                                  <li><span class="bread-blod">Dashboard V.1</span>
+                                  <li><a href="{{route('home')}}">Home</a> <span class="bread-slash">/</span>
                                   </li>
                               </ul>
                           </div>

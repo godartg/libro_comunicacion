@@ -27,9 +27,8 @@ use App\Http\Controllers\DetalleEvaluacionController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
-Route::get('obtenerDescripcionActividad/{grado}/{seccion}/{curso}/{material}/{pagina}/{numero}', [ActividadController::class, 'obtenerDescripcionFiltrado']);
 
 Auth::routes();
 
