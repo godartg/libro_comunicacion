@@ -155,7 +155,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <div class="breadcome-heading">
                                 @if(Auth::user()->hasRole('docente'))
-                                  <a href="{{ route('evaluacionCreate',$datos[0]->curso_id) }}" class="btn btn-primary"><i class="fa fa-user-plus"></i>  Docente nuevo</a>
+                                  <a href="{{ route('evaluacionCreate',$datos[0]->curso_id) }}" class="btn btn-primary"><i class="fa fa-pencil-square"></i> nueva evaluacion</a>
                                 @endif
                               </div>
                           </div>
