@@ -27,25 +27,44 @@
                             <div class="col-md-12 ">
                                 <input type="hidden" name="salon_id" value="{{$salon->salon_id}}">
                                 <div class="form-group">
-                                    <label for="dni">DNI</label>
-                                    <input type="text" id="dni_alumno" name="dni" class="form-control" placeholder="DNI" >
-                                    <input type="hidden" id="alumno_id" name="alumno_id">
-                                    <a class="btn btn-success" onclick="mostrarAlumno()">Buscar</a>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <label for="dni">DNI</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" id="dni_alumno" name="dni" class="form-control" placeholder="DNI" >
+                                            <input type="hidden" id="alumno_id" name="alumno_id">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <a class="btn btn-success" onclick="mostrarAlumno()">Buscar</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="campo_nombre"><label>Nombres: </label><p id="nombres_alumno"></p></div>
                                     <div class="campo_apellidos"><label>Apellidos: </label><p id="apellidos_alumno"></p></div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="estado">Estado</label><br>
-                                  <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" >
-                                  <label for="estado1">Activo</label><br>
-                                  <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
-                                  <label for="estado2">Desactivado</label>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <label for="estado">Estado</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <input type="radio" class="form-check-input" id="estado1" name="estado" value="1" >
+                                            <label for="estado1">Activo</label><br>
+                                            <input type="radio" class="form-check-input" id="estado2" name="estado" value="0">
+                                            <label for="estado2">Desactivado</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
                         <button class="btn btn-success">Guardar</button>
                     </form>
                     

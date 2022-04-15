@@ -253,9 +253,7 @@
     <!-- main JS
 		============================================ -->
     <script src="{{ asset('/backend/js/main.js') }}"></script>
-    <!-- tawk chat JS
-		============================================ -->
-    <script src="{{ asset('/backend/js/tawk-chat.js') }}"></script>
+  
     @stack('scripts')
 </body>
 </html>

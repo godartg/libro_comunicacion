@@ -22,26 +22,50 @@
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="form-group">
-                                  <label for="nombre">Nombre</label>
-                                  <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                                  <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <label for="nombre">Nombre</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                                    </div>
+                                  </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="grado">Grado</label>
-                                  <select data-placeholder="grado" class="chosen-select" name="grado" tabindex="-1">
-											              <option value="1">primer grado</option>
-											              <option value="2">segundo grado</option>
-											              <option value="3">tercer grado</option>
-											              <option value="4">cuarto grado</option>
-                                    <option value="5">quinto grado</option>
-                                    <option value="6">sexto grado</option>
-										              </select>
+                                  <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <label for="grado">Grado</label>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <select data-placeholder="grado" class="form-control chosen-select" name="grado" tabindex="-1">
+											                  <option value="1">primer grado</option>
+											                  <option value="2">segundo grado</option>
+											                  <option value="3">tercer grado</option>
+											                  <option value="4">cuarto grado</option>
+                                        <option value="5">quinto grado</option>
+                                        <option value="6">sexto grado</option>
+										                  </select>
+                                    </div>
+                                  </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="nivel">Nivel</label>
-                                  <select data-placeholder="Nivel" class="chosen-select" name="nivel" tabindex="-1">
-										                <option value="1">Primaria</option>
-										                <option value="2">Secundaria</option>
-                                  </select>
+                                  <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <label for="nivel">Nivel</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                      <select data-placeholder="Nivel" class="form-control chosen-select" name="nivel" tabindex="-1">
+										                    <option value="1">Primaria</option>
+										                    <option value="2">Secundaria</option>
+                                      </select>
+                                    </div>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="password">Estado</label><br>

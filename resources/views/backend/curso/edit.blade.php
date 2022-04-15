@@ -17,60 +17,84 @@
                         <form action="{{route('cursoUpdate', $curso)}}" method="POST">
                             {{csrf_field()}}
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" name="nombre" value="{{$curso->nombre}}" class="form-control">
+                                      <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <label for="nombre">Nombre</label>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <input type="text" name="nombre" value="{{$curso->nombre}}" class="form-control">
+                                        </div>
+                                      </div>
                                     </div>
                                     <div class="form-group">
-                                      <label for="Grado">Grado</label>
-                                      <select data-placeholder="grado" class="chosen-select" name="grado" tabindex="-1">
-											                    <option value="1"
-                                          @if($curso->grado==1)
-                                            selected="selected"
-                                          @endif
-                                          >primer grado</option>
-											                    <option value="2"
-                                          @if($curso->grado==2)
-                                            selected="selected"
-                                          @endif
-                                          >segundo grado</option>
-											                    <option value="3"
-                                          @if($curso->grado==3)
-                                            selected="selected"
-                                          @endif
-                                          >tercer grado</option>
-											                    <option value="4"
-                                          @if($curso->grado==4)
-                                            selected="selected"
-                                          @endif
-                                          >cuarto grado</option>
-                                          <option value="5"
-                                          @if($curso->grado==5)
-                                            selected="selected"
-                                          @endif
-                                          >quinto grado</option>
-                                          <option value="6"
-                                          @if($curso->grado==6)
-                                            selected="selected"
-                                          @endif
-                                          >sexto grado</option>
-										                  </select>
+                                      <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <label for="Grado">Grado</label>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <select data-placeholder="grado" class="form-control chosen-select" name="grado" tabindex="-1">
+											                        <option value="1"
+                                              @if($curso->grado==1)
+                                                selected="selected"
+                                              @endif
+                                              >primer grado</option>
+											                        <option value="2"
+                                              @if($curso->grado==2)
+                                                selected="selected"
+                                              @endif
+                                              >segundo grado</option>
+											                        <option value="3"
+                                              @if($curso->grado==3)
+                                                selected="selected"
+                                              @endif
+                                              >tercer grado</option>
+											                        <option value="4"
+                                              @if($curso->grado==4)
+                                                selected="selected"
+                                              @endif
+                                              >cuarto grado</option>
+                                              <option value="5"
+                                              @if($curso->grado==5)
+                                                selected="selected"
+                                              @endif
+                                              >quinto grado</option>
+                                              <option value="6"
+                                              @if($curso->grado==6)
+                                                selected="selected"
+                                              @endif
+                                              >sexto grado</option>
+										                      </select>
+                                        </div>
+                                      </div>
                                     </div>
                                     <div class="form-group">
-                                      <label for="nivel">Nivel</label>
-                                      <select data-placeholder="Nivel" class="chosen-select" name="nivel" tabindex="-1">
-										                    <option value="1"
-                                        @if($curso->nivel==1)
-                                          selected="selected"
-                                        @endif
-                                        >Primaria</option>
-										                    <option value="2"
-                                        @if($curso->nivel==2)
-                                          selected="selected"
-                                        @endif
-                                        >Secundaria</option>
-                                      </select>
+                                      <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <label for="nivel">Nivel</label>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                          <select data-placeholder="Nivel" class="form-control chosen-select" name="nivel" tabindex="-1">
+										                        <option value="1"
+                                            @if($curso->nivel==1)
+                                              selected="selected"
+                                            @endif
+                                            >Primaria</option>
+										                        <option value="2"
+                                            @if($curso->nivel==2)
+                                              selected="selected"
+                                            @endif
+                                            >Secundaria</option>
+                                          </select>
+                                        </div>
+                                      </div>
                                     </div>
                                     <div class="form-group">
                                       <label for="estado">Estado</label><br>
