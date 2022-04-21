@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Proyecto Colegio</title>
+    <title>Apoyo estudiantil Mariscal Cáceres</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/backend/img/Logo_mariscal_caceres.png') }}">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -53,12 +53,14 @@
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="{{ asset('/backend/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/backend/home.css') }}">
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="{{ asset('/backend/css/responsive.css') }}">
     <!-- modernizr JS
 		============================================ -->
     <script src="{{ asset('/backend/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('/backend/css/backend.css') }}">
     @stack('styles')
 </head>
 <body>
@@ -69,7 +71,7 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="{{route('home')}}"><img class="main-logo" src="{{ asset('backend/img/logo/logo.png') }}" alt="" /></a>
+                <a href="{{route('home')}}" class="logo_proyecto"><img class="main-logo" src="{{ asset('backend/img/Logo_mariscal_caceres.png') }}" alt="" />AEMC</a>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">

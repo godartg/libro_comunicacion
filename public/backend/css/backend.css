@@ -1,0 +1,16 @@
+.logo_proyecto{
+    font-size: 26px;
+    font-weight: 700;
+    color: #006df0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+}
+.logo_proyecto:hover{
+    color: #006df0;
+}
+.main-logo{
+    height: 50px;
+}
