@@ -75,7 +75,6 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('index/{idevaluacion}/{idusuario}', [DetalleEvaluacionController::class, 'index'])->name('detalleevaluacionIndex');
         Route::post('store', [DetalleEvaluacionController::class, 'store'])->name('detalleEvaluacionStore');
     });
-
     Route::group(['prefix' => 'pregunta/'], function(){
         Route::get('index/{id}', [PreguntaController::class, 'index'])->name('preguntaIndex');
         Route::get('create/{id}', [PreguntaController::class, 'create'])->name('preguntaCreate');

@@ -110,6 +110,7 @@
         $("#alumno_id").val(obj.id)
       }
     </script>
+    
 @endpush
 
 @push('sidebar')
