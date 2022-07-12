@@ -23,45 +23,47 @@
                       {{ session('status') }}
                   </div>
                 @endif
-                <!--TABLA-->
-                <table id="table_datatable">
-                  <thead>
-                    <tr>
-                      <th data-field="state" data-checkbox="true"></th>
-                      <th data-field="id">N°</th>
-                      <th data-field="titulo">Pregunta</th>
-                      <th data-field="titulo">Puntaje</th>
-                      <th data-field="titulo">Evaluación</th>
-                      <th data-field="titulo">Curso</th>
-                      <th data-field="estado">Estado</th>
-                      <th data-field="action">Opciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($preguntas as $pregunta)
-                    <tr>
-                      <td></td>
-                      <td>{{$loop->index+1}}</td>
-                      <td>{{$pregunta->pregunta_detalle}}</td>
-                      <td>{{$pregunta->pregunta_puntaje}}</td>
-                      <td>{{$pregunta->evaluacion_titulo}}</td>
-                      <td>{{$pregunta->curso_nombre}}</td>
-                      <td>
-                        @if($pregunta->pregunta_estado)
-                          Activo
-                        @else
-                          Inactivo
-                        @endif
-                      </td>
-                      <td>
-                        <a href="{{route('preguntaEdit', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
-                        <a href="{{route('alternativaIndex', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Alternativas <i class="fa fa-edit"></i>
-                      </td>
-                    </tr>
-                   @endforeach
-                  </tbody>
-                </table>
-                <!--END TABLA-->
+                <div class="asset-inner">
+                  <!--TABLA-->
+                  <table id="table_datatable">
+                    <thead>
+                      <tr>
+                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-field="id">N°</th>
+                        <th data-field="titulo">Pregunta</th>
+                        <th data-field="titulo">Puntaje</th>
+                        <th data-field="titulo">Evaluación</th>
+                        <th data-field="titulo">Curso</th>
+                        <th data-field="estado">Estado</th>
+                        <th data-field="action">Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($preguntas as $pregunta)
+                      <tr>
+                        <td></td>
+                        <td>{{$loop->index+1}}</td>
+                        <td>{{$pregunta->pregunta_detalle}}</td>
+                        <td>{{$pregunta->pregunta_puntaje}}</td>
+                        <td>{{$pregunta->evaluacion_titulo}}</td>
+                        <td>{{$pregunta->curso_nombre}}</td>
+                        <td>
+                          @if($pregunta->pregunta_estado)
+                            Activo
+                          @else
+                            Inactivo
+                          @endif
+                        </td>
+                        <td>
+                          <a href="{{route('preguntaEdit', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Editar<i class="fa fa-edit"></i>
+                          <a href="{{route('alternativaIndex', $pregunta->pregunta_id)}}" class="btn btn-primary btn-sm">Alternativas <i class="fa fa-edit"></i>
+                        </td>
+                      </tr>
+                     @endforeach
+                    </tbody>
+                  </table>
+                  <!--END TABLA-->
+                </div>  
               </div>                      
             </div>
           </div>
